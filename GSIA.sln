@@ -5,7 +5,7 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GSIA", "GSIA\GSIA.csproj", "{63341C7D-81AE-4DAF-8A75-F5E168060DB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibMySql", "LibMySql\LibMySql.csproj", "{59D78209-D8A7-44D6-8B1D-CE6B9FBF5300}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryMySql", "LibraryMySql\LibraryMySql.csproj", "{75FC7427-13F1-4FF2-A378-275C7CAFEFCA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{63341C7D-81AE-4DAF-8A75-F5E168060DB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63341C7D-81AE-4DAF-8A75-F5E168060DB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63341C7D-81AE-4DAF-8A75-F5E168060DB7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{59D78209-D8A7-44D6-8B1D-CE6B9FBF5300}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{59D78209-D8A7-44D6-8B1D-CE6B9FBF5300}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{59D78209-D8A7-44D6-8B1D-CE6B9FBF5300}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{59D78209-D8A7-44D6-8B1D-CE6B9FBF5300}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75FC7427-13F1-4FF2-A378-275C7CAFEFCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75FC7427-13F1-4FF2-A378-275C7CAFEFCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75FC7427-13F1-4FF2-A378-275C7CAFEFCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75FC7427-13F1-4FF2-A378-275C7CAFEFCA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

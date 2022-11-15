@@ -5,7 +5,7 @@ using LibraryMySql;
 using Microsoft.Extensions.Options;
 using LibraryMySql.DataAccess.Login;
 
-namespace Ocr.StartupConfig;
+namespace GSIA.StartupConfig;
 
 public static class DependencyExt
 {

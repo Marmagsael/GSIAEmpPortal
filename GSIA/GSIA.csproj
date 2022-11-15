@@ -4,6 +4,7 @@
         <TargetFramework>net6.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
+        <UserSecretsId>6c51563f-109c-4d8c-97a5-c45e631d66a3</UserSecretsId>
       </PropertyGroup>
 
 	<ItemGroup>
@@ -24,6 +25,10 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\LibraryMySql\LibraryMySql.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="wwwroot\images\" />
 	</ItemGroup>
 
 </Project>

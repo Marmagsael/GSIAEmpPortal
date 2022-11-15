@@ -1,7 +1,9 @@
+using GSIA.StartupConfig;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.AddServices();
+builder.AddAuthenticationServices();
 
 var app = builder.Build();
 
@@ -18,6 +20,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
