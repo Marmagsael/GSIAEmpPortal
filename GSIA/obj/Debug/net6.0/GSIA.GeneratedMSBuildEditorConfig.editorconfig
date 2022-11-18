@@ -8,37 +8,57 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = GSIA
 build_property.RootNamespace = GSIA
-build_property.ProjectDir = D:\Development\Web\GSIA\GSIA\GSIA\
+build_property.ProjectDir = d:\Development\Web\GSIA\GSIA\GSIA\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Development\Web\GSIA\GSIA\GSIA
+build_property.MSBuildProjectDirectory = d:\Development\Web\GSIA\GSIA\GSIA
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Development/Web/GSIA/GSIA/GSIA/Views/Home/Index.cshtml]
+[d:/Development/Web/GSIA/GSIA/GSIA/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Development/Web/GSIA/GSIA/GSIA/Views/Home/Privacy.cshtml]
+[d:/Development/Web/GSIA/GSIA/GSIA/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Development/Web/GSIA/GSIA/GSIA/Views/Shared/Error.cshtml]
+[d:/Development/Web/GSIA/GSIA/GSIA/Views/Pis/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGlzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Development/Web/GSIA/GSIA/GSIA/Views/Pis/Ram.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGlzXFJhbS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Development/Web/GSIA/GSIA/GSIA/Views/Sample/DragDrop.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FtcGxlXERyYWdEcm9wLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Development/Web/GSIA/GSIA/GSIA/Views/Sample/ImageDragAndDrop.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FtcGxlXEltYWdlRHJhZ0FuZERyb3AuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Development/Web/GSIA/GSIA/GSIA/Views/Sample/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FtcGxlXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Development/Web/GSIA/GSIA/GSIA/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Development/Web/GSIA/GSIA/GSIA/Views/Shared/_ValidationScriptsPartial.cshtml]
+[d:/Development/Web/GSIA/GSIA/GSIA/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Development/Web/GSIA/GSIA/GSIA/Views/_ViewImports.cshtml]
+[d:/Development/Web/GSIA/GSIA/GSIA/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Development/Web/GSIA/GSIA/GSIA/Views/_ViewStart.cshtml]
+[d:/Development/Web/GSIA/GSIA/GSIA/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Development/Web/GSIA/GSIA/GSIA/Views/Shared/_Layout.cshtml]
+[d:/Development/Web/GSIA/GSIA/GSIA/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-uicv07pi7r

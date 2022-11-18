@@ -1,0 +1,177 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<style>
+    #files-label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50vh;
+        width: 100%;
+        background-color: lightpink;
+        color: black;
+        font-weight: bold;
+        font-size: 25px;
+        border: 10px dashed black;
+        margin: 0;
+        text-align: center;
+        transition: .5s;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-iteration-count: infinite;
+    }
+
+    #files-field {
+        display: none;
+    }
+
+    #files-progress{
+        width: 0;
+        background-color: lightgrey;
+        color: white;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 25px;
+        padding: 0 5px;
+    }
+
+    .modal-page {
+        visibility: hidden;
+        opacity: 0;
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        transition: .5s;
+        background-color: black;
+        margin: 0;
+        padding: 0;
+        overflow: auto;
+    }
+
+    .modal-page img {
+        display: block;
+        margin: 0 auto;
+        width: 100%;
+        height: auto;
+    }
+
+    .modal-page:target {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    @* Create a web.config file to configure the upload size limit *@
+
+
+    
+
+</style>
+
+<form action="#" method="post" onsubmit="return submitFilesForm(this);">
+
+    @Html.AntiForgeryToken() 
+    <input type="file" name="files" id="files-field" accept="image/" onchange="submitFilesForm(this.form);" multiple />
+    <label for="files-field" id="files-label"
+        ondragover="stopDefault(event); dragOver(this,'Drop the image to upload files');"
+        ondragenter="stopDefault(event); dragOver(this,'Drop the image to upload files');"
+        ondragleave="stopDefault(event); dragLeave(this); addFilesAndSubmit(event);"
+    >
+        Click to choose images or drag-n-drop files here
+    </label>
+</form>
+
+@* progress bar *@
+<div style="text-align: left;">
+    <div id="files-progress"></div>
+</div>
+
+<div class="modal-page" id="uploaded-files"></div>
+
+@section Scripts {
+    <script type="text/javascript">
+        function stopDefault(event) {
+            event.preventDefault(); 
+            event.stopPropagation(); 
+            
+        }
+
+        function dragOver(label,text) {
+            label.style.animationName = "dropbox"; 
+            label.innerText = text; 
+        }
+
+        function dragLeave(label) {
+            label.style.animationName = ""; 
+            label.innerText = "Click to choose images or drag-n-drap here."; 
+        }
+
+        function addFilesAndSubmit(event) {
+            var files   = event.target.files || event.dataTransfer.files; 
+            var field   = document.getElementById("files-field") ; 
+            field.files = files; 
+            submitFilesForm(field.form); 
+        }
+
+        function submitFilesForm(form) {
+            var label = document.getElementById("files-label"); 
+            dragOver(label, "Uploading images..."); // sets the drag zone text and styling 
+            if(!FormData) {
+                alert("Function not supported by browser."); 
+                return false; 
+            }
+
+            var fd = new FormData(); 
+            for (var i = 0; i < from.files.files.length; ++) {
+                var field = form.files; 
+                fd.append(field.name, field.files[i], field.files[i].name); 
+            }
+
+            fd.append(form.elements[0].name, form.elements[0].value) // must append the AntiForgeryToken to the form data
+            var progress = document.getElementById("files-progress"); 
+            var x = new XMLHttpRequest(); 
+            if(x.upload) {
+                x.upload.addEventListener("progress", function(even) {
+                    var percentage = Math.floor(event.loaded / event.total * 100 ); 
+                    progress.innerText = progress.style.width = percentage + "%"; 
+                }); 
+            }
+
+            x.onreadystatechange = function() {
+                if(x.readyState == 4) {
+                    progress.innerText progress.style.width = ""; 
+                    form.files.value = ""; 
+
+                    dragLeave(label); // reset styling and text of drop zone; 
+
+                    if(x.status == 200) {
+                        var images = x.response.split("|"); 
+                        for (var i = 0; i <images.length; i++) {
+                            var img = document.createElement("img"); 
+                            img.src = images[i]; 
+                            document.getElementById("uploaded-files").appendChild(img); 
+                        }
+                        location.href = "#uploaded-files"; 
+                    }
+                    else if(x.status == 500) {
+                        alert(x.responseText); 
+                    } 
+                    else {
+                        alert(x.status + ": " + x.statusText); 
+                    }
+                }
+            }; 
+
+            x.open(form.method, form.action, true); 
+            x.send(fd); 
+            return false ; 
+
+
+        }
+
+    </script>
+}

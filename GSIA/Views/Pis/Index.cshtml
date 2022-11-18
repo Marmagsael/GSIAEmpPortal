@@ -1,0 +1,96 @@
+﻿@using LibraryMySql.Models.Pis
+@model List<EmpmasBasicModel>
+
+@{
+    
+}
+
+
+<style>
+    #edit {
+        position:fixed;
+        float:left; 
+        
+        background-color:rgba(255,255,255,.8);
+        top:0; 
+        left:0; 
+        
+        border:1px solid red; 
+
+        width: 100%;
+        min-height:100vh; 
+    }
+    
+</style>
+
+<section id="main">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Emp. No.</th>
+                <th scope="col">Emp. Name</th>
+                <th scope="col">Action</th>
+
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            @foreach (EmpmasBasicModel empmas in ViewBag.Empmas)
+            {
+
+                <tr>
+                    <td>@empmas.EmpNumber</td>
+                    <td>@empmas.EmpName </td>
+                    <td>
+                        @{
+                            var x = new { x = "123", xx = "456" };
+                            var x1 = Html.Raw(x);
+                        }
+                        <btn onclick="Edit(@empmas.DeploymentCode, @x.x)" class="btn btn-outline-primary btn-sm">Edit</btn>
+                        <btn id="bDelete"   class="btn btn-outline-danger btn-sm">Delete</btn>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>
+
+
+@*edit section *@
+<section id="edit" class="d-none">
+    <div id="screen-cover">
+        asdfasdfasdfasdfasd
+    </div>
+
+</section>
+
+@section Scripts {
+    <script>
+        function Edit(EmpNumber,x) {
+            // alert(EmpNumber);
+            console.log(EmpNumber,x);
+        }
+
+
+
+        $(document).ready(function() {
+            
+            $("#bEdit").click(function() {
+                $("#edit").removeClass("d-none"); 
+
+            }); 
+
+            
+            //function Edit(empnumber, rec) {
+            //    alert("hi");
+            //}
+        })
+
+    </script>
+}
+
+
+
+
+
+
+
