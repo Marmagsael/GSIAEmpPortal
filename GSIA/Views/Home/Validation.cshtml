@@ -1,0 +1,83 @@
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@model AuthenticationDataModel
+
+@{
+    var errormsg = ViewData["errormsg"] as string;
+}
+
+<section id="login-container">
+    <div class="container-fluid">
+        <div class="row login-bg d-flex flex-row-reverse">
+            <div class="col-12 col-md-5 col-lg-3 login-form ">
+                <div class="inner-container bg-white p-3 rounded-3">
+                    <form action="/login" method="Post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        @* Header *@
+                        <div class="login-header text-center mt-3 mb-4">
+                            <p class="fw-bold text-muted welcome-msg">Welcome to</p>
+                            @* <p class="fw-bolder comp-name"> @ViewBag.Title</p>*@
+                            <p class="fw-bolder comp-name">GSIA</p>
+                        </div>
+
+
+                        @* Form Input *@
+                        <div class="form-group mb-2">
+                            <label asp-for="Email" class="control-label"></label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-2">
+                            <label asp-for="EmployeeNumber" class="control-label"></label>
+                            <input asp-for="EmployeeNumber" class="form-control" />
+                            <span asp-validation-for="EmployeeNumber" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group row mb-2">
+                            <div class="col-md-6">
+                                <label class="control-label">Deployment Code</label>
+                                <input class="form-control" />
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="control-label">Movement No.</label>
+                                <input class="form-control" />
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row mb-2">
+                            <div class="col-md-6">
+                                <label class="control-label">License No.</label>
+                                <input class="form-control" />
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="control-label">Date Hired</label>
+                                <input class="form-control" type="date" />
+                            </div>
+                        </div>
+
+                        <hr class="mt-5">
+
+
+                        @* Buttons *@
+                        <div class="login-btn d-flex flex-column align-items-center mt-4 pt-2">
+                            <input type="submit" value="Sign-in" class=" btn btn-success w-100" />
+                            <div class="my-4">or</div>
+                            <a class=" nav-link btn btn-danger w-100 text-white" asp-area="" asp-controller="LoginLocked" asp-action="SignInWithGoogle">Sig-in with Google</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
