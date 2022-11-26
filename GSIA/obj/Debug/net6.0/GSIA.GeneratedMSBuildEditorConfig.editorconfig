@@ -32,6 +32,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/ASP.Net Apps/_GSIA(PIS)/GSIA/Views/Login/Validation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cVmFsaWRhdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/ASP.Net Apps/_GSIA(PIS)/GSIA/Views/Main/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpblxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/ASP.Net Apps/_GSIA(PIS)/GSIA/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

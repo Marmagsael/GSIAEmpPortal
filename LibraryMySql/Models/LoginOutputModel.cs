@@ -25,6 +25,7 @@ public class LoginOutputModel
     public string License { get; set; } = string.Empty;
     public string MovNumber { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
+    public string Password { get; set; } = string.Empty;
 
 
 

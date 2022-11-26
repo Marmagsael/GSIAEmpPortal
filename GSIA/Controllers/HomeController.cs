@@ -9,29 +9,20 @@ namespace GSIA.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IConfiguration _configuration;
-        private readonly ILoginAccess _data;
+     
 
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IConfiguration configuration, ILoginAccess data )
         {
             _logger = logger;
         }
 
         [AllowAnonymous]
-        [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            return Redirect("/login");
         }
 
-        [AllowAnonymous]
-        [HttpPost]
-        public IActionResult ValidateEmployee(string EmployeeNumber, int Password)
-        {
-
-            return View();
-        }
 
         public IActionResult Privacy()
         {

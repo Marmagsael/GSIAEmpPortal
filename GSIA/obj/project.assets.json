@@ -536,6 +536,19 @@
           "lib/net6.0/ZstdNet.dll": {}
         }
       },
+      "MySqlConnector/2.2.1": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/MySqlConnector.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/MySqlConnector.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Newtonsoft.Json/13.0.1": {
         "type": "package",
         "compile": {
@@ -2311,6 +2324,33 @@
         "lib/netstandard2.1/ZstdNet.dll",
         "mysql.data.8.0.31.nupkg.sha512",
         "mysql.data.nuspec"
+      ]
+    },
+    "MySqlConnector/2.2.1": {
+      "sha512": "k5wwd56u2WoIVLxeKsUHl8WS27shGluK6yLwziAnJwERnMQ5TsAFHRpr6EKEfpLwGF+FwrbmJXUdCk9+EU7Wrw==",
+      "type": "package",
+      "path": "mysqlconnector/2.2.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net461/MySqlConnector.dll",
+        "lib/net461/MySqlConnector.xml",
+        "lib/net471/MySqlConnector.dll",
+        "lib/net471/MySqlConnector.xml",
+        "lib/net6.0/MySqlConnector.dll",
+        "lib/net6.0/MySqlConnector.xml",
+        "lib/net7.0/MySqlConnector.dll",
+        "lib/net7.0/MySqlConnector.xml",
+        "lib/netcoreapp3.1/MySqlConnector.dll",
+        "lib/netcoreapp3.1/MySqlConnector.xml",
+        "lib/netstandard2.0/MySqlConnector.dll",
+        "lib/netstandard2.0/MySqlConnector.xml",
+        "lib/netstandard2.1/MySqlConnector.dll",
+        "lib/netstandard2.1/MySqlConnector.xml",
+        "logo.png",
+        "mysqlconnector.2.2.1.nupkg.sha512",
+        "mysqlconnector.nuspec"
       ]
     },
     "Newtonsoft.Json/13.0.1": {
@@ -4855,6 +4895,7 @@
       "Microsoft.AspNetCore.Authentication.OpenIdConnect >= 6.0.10",
       "Microsoft.EntityFrameworkCore >= 6.0.10",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.10",
+      "MySqlConnector >= 2.2.1",
       "Newtonsoft.Json >= 13.0.1",
       "System.Collections >= 4.3.0",
       "System.Net.Http >= 4.3.4"
@@ -4929,6 +4970,10 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[6.0.10, )"
+          },
+          "MySqlConnector": {
+            "target": "Package",
+            "version": "[2.2.1, )"
           },
           "Newtonsoft.Json": {
             "target": "Package",

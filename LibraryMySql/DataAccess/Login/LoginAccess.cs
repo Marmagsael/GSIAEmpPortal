@@ -28,7 +28,8 @@ namespace LibraryMySql.DataAccess.Login
                                 e.Tin,
                                 e.SecLicense License,
                                 e.MovNumber,
-                                e.Email
+                                e.Email,
+                                e.passwd
                             from " + schema + ".empmas e " +
                             " left join " + schema + ".client c on c.ClNumber = e.Client_ " +
                             " left join " + schema + ".empstat s on s.code = e.empstat_ " +
@@ -53,7 +54,8 @@ namespace LibraryMySql.DataAccess.Login
                                 e.Tin,
                                 e.SecLicense License,
                                 e.MovNumber,
-                                e.Email
+                                e.Email,
+                                e.passwd
                             from " + schema + ".empmas e " +
                             " left join " + schema + ".client c on c.ClNumber = e.Client_ " +
                             " left join " + schema + ".empstat s on s.code = e.empstat_ " +
