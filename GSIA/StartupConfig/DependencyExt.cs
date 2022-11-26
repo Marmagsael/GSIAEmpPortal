@@ -11,9 +11,11 @@ public static class DependencyExt
 {
     public static void AddServices(this WebApplicationBuilder builder)
     {
-        builder.Services.AddControllersWithViews();
+        builder.Services.AddControllersWithViews()
+            .AddRazorRuntimeCompilation();
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
+
 
 
         builder.Services.AddSingleton<IMySqlDataAccess, MySqlDataAccess>();

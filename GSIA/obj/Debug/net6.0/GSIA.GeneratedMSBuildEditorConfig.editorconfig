@@ -11,7 +11,7 @@ build_property.RootNamespace = GSIA
 build_property.ProjectDir = d:\Development\Web\GSIA\GSIA\GSIA\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
-build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = true
 build_property.MSBuildProjectDirectory = d:\Development\Web\GSIA\GSIA\GSIA
 build_property._RazorSourceGeneratorDebug = 
 
@@ -21,6 +21,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [d:/Development/Web/GSIA/GSIA/GSIA/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Development/Web/GSIA/GSIA/GSIA/Views/PatrialView/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0cmlhbFZpZXdcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [d:/Development/Web/GSIA/GSIA/GSIA/Views/Pis/Index.cshtml]
@@ -43,8 +47,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FtcGxlXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[d:/Development/Web/GSIA/GSIA/GSIA/Views/Sample/PartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FtcGxlXFBhcnRpYWxWaWV3LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [d:/Development/Web/GSIA/GSIA/GSIA/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[d:/Development/Web/GSIA/GSIA/GSIA/Views/Shared/PartialView/_SamplePartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFBhcnRpYWxWaWV3XF9TYW1wbGVQYXJ0aWFsVmlldy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [d:/Development/Web/GSIA/GSIA/GSIA/Views/Shared/_ValidationScriptsPartial.cshtml]

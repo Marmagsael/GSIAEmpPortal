@@ -2,5 +2,66 @@
 @{
 }
 
+this is drag and drop 
 
+<style>
+    #files-field {
+        display: none;
+    }
+</style>
+
+
+<form action="#" method="post" onsubmit="return submitFilesForm(this);">
+
+    @Html.AntiForgeryToken() 
+
+    <input id="files-field" type="file" name="files"  accept="image/" onchange="submitFilesForm(this.form);" multiple />
+
+    <label for="files-field"  id="files-label"
+        ondragover="stopDefault(event); dragOver(this,'Drop the image to upload files')"
+        ondragenter="stopDefault(event); dragOver(this,'Drop the image to upload files');"
+        ondragleave="stopDefault(event); dragLeave(this); addFiles(event)"
+    >
+        Click to choose images or drag-n-drop files here
+    </label>
+</form>
+
+@section Scripts {
+
+    <script  type="text/javascript">
+        function stopDefault(event) {
+            event.preventDefault(); 
+            event.stopPropagation(); 
+        }
+
+        function dragOver (label, text) {
+            label.style.animation = "dropbox"
+            label.innerText = text; 
+
+        }
+
+        function dragLeave(label) {
+            label.style.animationName = ""; 
+            label.innerText = "Click to choose images or drag-n-drap here."; 
+        }
+
+        function addFiles(event) {
+            var files   = event.target.files || event.dataTransfer.files; 
+            var field   = document.getElementById("files-field") ; 
+            field.files = files; 
+
+            console.log(field)
+        }
+
+        function submitFilesForm(form) {
+            var label = document.getElementById("files-label"); 
+            dragOver(label, "Uploading images..."); // sets the drag zone text and styling
+            stopDefault(event) ;  
+            alert('submitFilesForm');
+        }
+
+
+    </script>
+
+}
 

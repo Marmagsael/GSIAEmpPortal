@@ -1,0 +1,68 @@
+﻿<div class="row">
+    <div class="col-12">
+        <a href="#" onclick="CreateNew(); return false;" class="btn btn-primary">Add New</a>
+        
+        @*@Html.Partial("~/Views/Shared/PartialView/_SamplePartialView.cshtml")*@
+        <partial name="~/Views/Shared/PartialView/_SamplePartialView.cshtml" />
+    </div>
+
+    <div class="col-12">
+        <br />
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Email</th>
+
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+</div>
+
+
+@section Scripts {
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            
+        });
+
+        function CreateNew() {
+            var x = document.getElementById("btnSampleModal");
+            //$("btnSampleModal").trigger("click"); 
+
+            x.click();
+            LoadEmpmasBasicList(); 
+
+            //alert(x);
+            //ClearAll(); 
+            //$("#btnSampleModal").trigger('click'); 
+        }
+
+        function ClearAll() {
+
+        }
+
+        function LoadEmpmasBasicList() {
+            $.ajax({
+                type : 'post',
+                url: 'Sample/GetAllEmpBasicList'
+                DataTransfer : {}, 
+                success(data) {
+                    console.log(data); 
+                }, 
+                error() {
+                    console.log("Error Found " );
+                }
+            }); 
+
+        }
+
+
+    </script>
+
+}
+
