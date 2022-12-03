@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\ASP.Net Apps\\_GSIA(PIS)\\GSIA\\GSIA.csproj": {}
+    "D:\\Development\\Web\\GSIA\\GSIA\\GSIA\\GSIA.csproj": {}
   },
   "projects": {
-    "C:\\ASP.Net Apps\\_GSIA(PIS)\\GSIA\\GSIA.csproj": {
+    "D:\\Development\\Web\\GSIA\\GSIA\\GSIA\\GSIA.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\ASP.Net Apps\\_GSIA(PIS)\\GSIA\\GSIA.csproj",
+        "projectUniqueName": "D:\\Development\\Web\\GSIA\\GSIA\\GSIA\\GSIA.csproj",
         "projectName": "GSIA",
-        "projectPath": "C:\\ASP.Net Apps\\_GSIA(PIS)\\GSIA\\GSIA.csproj",
-        "packagesPath": "C:\\Users\\judit\\.nuget\\packages\\",
-        "outputPath": "C:\\ASP.Net Apps\\_GSIA(PIS)\\GSIA\\obj\\",
+        "projectPath": "D:\\Development\\Web\\GSIA\\GSIA\\GSIA\\GSIA.csproj",
+        "packagesPath": "C:\\Users\\Mar\\.nuget\\packages\\",
+        "outputPath": "D:\\Development\\Web\\GSIA\\GSIA\\GSIA\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\judit\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Mar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,14 +26,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\ASP.Net Apps\\_GSIA(PIS)\\LibraryMySql\\LibraryMySql.csproj": {
-                "projectPath": "C:\\ASP.Net Apps\\_GSIA(PIS)\\LibraryMySql\\LibraryMySql.csproj"
+              "D:\\Development\\Web\\GSIA\\GSIA\\LibraryMySql\\LibraryMySql.csproj": {
+                "projectPath": "D:\\Development\\Web\\GSIA\\GSIA\\LibraryMySql\\LibraryMySql.csproj"
               }
             }
           }
@@ -110,20 +111,20 @@
         }
       }
     },
-    "C:\\ASP.Net Apps\\_GSIA(PIS)\\LibraryMySql\\LibraryMySql.csproj": {
+    "D:\\Development\\Web\\GSIA\\GSIA\\LibraryMySql\\LibraryMySql.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\ASP.Net Apps\\_GSIA(PIS)\\LibraryMySql\\LibraryMySql.csproj",
+        "projectUniqueName": "D:\\Development\\Web\\GSIA\\GSIA\\LibraryMySql\\LibraryMySql.csproj",
         "projectName": "LibraryMySql",
-        "projectPath": "C:\\ASP.Net Apps\\_GSIA(PIS)\\LibraryMySql\\LibraryMySql.csproj",
-        "packagesPath": "C:\\Users\\judit\\.nuget\\packages\\",
-        "outputPath": "C:\\ASP.Net Apps\\_GSIA(PIS)\\LibraryMySql\\obj\\",
+        "projectPath": "D:\\Development\\Web\\GSIA\\GSIA\\LibraryMySql\\LibraryMySql.csproj",
+        "packagesPath": "C:\\Users\\Mar\\.nuget\\packages\\",
+        "outputPath": "D:\\Development\\Web\\GSIA\\GSIA\\LibraryMySql\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\judit\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Mar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -132,6 +133,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

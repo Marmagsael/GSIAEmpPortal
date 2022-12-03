@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GSIA", "GSIA\GSIA.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryMySql", "LibraryMySql\LibraryMySql.csproj", "{75FC7427-13F1-4FF2-A378-275C7CAFEFCA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MysqlApi", "MysqlApi\MysqlApi.csproj", "{36C220E2-DEEE-4345-9056-87A3AB04E7C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MysqlApiLibrary", "MysqlApiLibrary\MysqlApiLibrary.csproj", "{D20E93EB-F07C-4016-AC41-64E99509B11F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{75FC7427-13F1-4FF2-A378-275C7CAFEFCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75FC7427-13F1-4FF2-A378-275C7CAFEFCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75FC7427-13F1-4FF2-A378-275C7CAFEFCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36C220E2-DEEE-4345-9056-87A3AB04E7C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36C220E2-DEEE-4345-9056-87A3AB04E7C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36C220E2-DEEE-4345-9056-87A3AB04E7C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36C220E2-DEEE-4345-9056-87A3AB04E7C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D20E93EB-F07C-4016-AC41-64E99509B11F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D20E93EB-F07C-4016-AC41-64E99509B11F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D20E93EB-F07C-4016-AC41-64E99509B11F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D20E93EB-F07C-4016-AC41-64E99509B11F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
