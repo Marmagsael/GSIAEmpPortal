@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "mo53sqpavPvkb9Ja1BT8wXyK3r/4d74icTzFUhR+Uw0=",
+  "Hash": "FhYk+t9wkD7D44hgDqx/Lm38OVFBqnKYMV21nvcUG1U=",
   "Source": "GSIA",
   "BasePath": "_content/GSIA",
   "Mode": "Default",
@@ -51,12 +51,12 @@
       "OriginalItemSpec": "C:\\Web Apps\\Asp.Net\\_GSIA(PIS)\\GSIA\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\GSIA.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Web Apps\\Asp.Net\\_GSIA(PIS)\\GSIA\\wwwroot\\css\\_01Login.css",
+      "Identity": "C:\\Web Apps\\Asp.Net\\_GSIA(PIS)\\GSIA\\wwwroot\\css\\_01Auth.css",
       "SourceId": "GSIA",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Web Apps\\Asp.Net\\_GSIA(PIS)\\GSIA\\wwwroot\\",
       "BasePath": "_content/GSIA",
-      "RelativePath": "css/_01Login.css",
+      "RelativePath": "css/_01Auth.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -65,7 +65,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\_01Login.css"
+      "OriginalItemSpec": "wwwroot\\css\\_01Auth.css"
     },
     {
       "Identity": "C:\\Web Apps\\Asp.Net\\_GSIA(PIS)\\GSIA\\wwwroot\\css\\site.css",

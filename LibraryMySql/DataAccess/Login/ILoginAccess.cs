@@ -4,9 +4,9 @@ namespace LibraryMySql.DataAccess.Login
 {
     public interface ILoginAccess
     {
-        Task<LoginOutputModel?> FetchEmployeeInMainByEmpNo(LoginInputModel input);
-        Task<LoginOutputModel?> FetchEmployeeInMainByEmpNoAndPassword(LoginInputModel input);
+        Task<LoginOutputModel?> FetchEmployeeByEmailMain(string email);
         Task<LoginOutputModel?> LoginEmployee(LoginInputModel input);
-        Task<LoginOutputModel?> LoginEmployee(string Schema, string EmpNumber, string Password);
+        Task<LoginOutputModel?> LoginEmployee(string Schema, string EmpNumber);
+        Task<LoginOutputModel?> LoginEmployeeByEmpnoMain(LoginInputModel input);
     }
 }

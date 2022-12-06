@@ -53,3 +53,9 @@
     #login-container .inner-container {
         height: 100%;
     }
+
+.b-err-msg {
+    font-size: .9rem;
+    display: inline-block;
+    line-height: 1.25rem;
+}
