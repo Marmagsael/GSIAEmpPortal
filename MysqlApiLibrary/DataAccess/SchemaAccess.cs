@@ -1,5 +1,8 @@
 ﻿
 using Microsoft.Extensions.Configuration;
+using MysqlApiLibrary.Models.Login;
+using MysqlApiLibrary.Models.Main;
+
 namespace MysqlApiLibrary.DataAccess;
 
 public class SchemaAccess : ISchemaAccess
@@ -27,13 +30,13 @@ public class SchemaAccess : ISchemaAccess
     }
 
 
-    public void _1000_CreateDefaultSchema(string schema = "Main")
+    public void _1001_CreateDefaultSchema(string schema = "Main")
     {
         string sql = "CREATE DATABASE IF NOT EXISTS " + schema;
         _sql.ExecuteCmd(sql, new { });
     }
 
-    public void _2001_CreateLoginTbl(string schema = "Main")
+    public void _1002_CreateLoginTbl(string schema = "Main")
     {
         string sql = @"CREATE TABLE if not exists " + schema + @".Users (
                           Id        INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -41,12 +44,23 @@ public class SchemaAccess : ISchemaAccess
                           Password  VARCHAR(80),
                           Email     VARCHAR(45),
                           Domain    VARCHAR(25),
-                          PRIMARY KEY(`Id`))ENGINE = InnoDB;"; 
+                          status    Char(1)         DEFAULT 'A',
+                          PRIMARY KEY(`Id`))ENGINE = InnoDB;";
         _sql.ExecuteCmd(sql, new { });
     }
 
+    // --- Create User TABLE and User's Schema ------------------------------- 
 
 
+    public async Task<SchemaStructureModel?> _0001_CheckIfTableExists(string schema, string tableName)
+    {
+        string sql = @"SELECT TABLE_SCHEMA, TABLE_NAME, TABLE_TYPE FROM information_schema.TABLES 
+                        WHERE TABLE_SCHEMA = @Schema and TABLE_NAME = @TableName;";
+        var data = await _sql.FetchData<SchemaStructureModel, dynamic>(sql, new { Schema = schema, TableName = tableName });
+        return data.FirstOrDefault();
+
+
+    }
 
 
 

@@ -2,6 +2,7 @@
 using MysqlApiLibrary.DataAccess;
 using MysqlApiLibrary.DataAccess.Login;
 using MysqlApiLibrary.Models;
+using MysqlApiLibrary.Models.Login;
 using System.Data;
 
 namespace MysqlApi.Controllers.Login; 
@@ -37,7 +38,7 @@ public class LoginController : ControllerBase
         return await _login.LoginEmployee(_schema.getDefaultPisSchema());
     }
 
-    [HttpGet("ConString")] 
+    [HttpGet("GetConString")] 
     public string GetConnString(string connName = "MySqlConn")
     {
         return _config.GetConnectionString(connName);
@@ -45,18 +46,101 @@ public class LoginController : ControllerBase
 
 
 
-    [HttpGet("PisScheme")]
+
+    [HttpGet("GetPisScheme")]
     public string PisScheme()
     {
         return _schema.getDefaultPisSchema(); 
     }
 
-    [HttpGet("CreateMainSchema")]
+    [HttpHead("1000/CreateMainSchema")]
     public void CreateMainSchema(string schemaName="Main")
     {
-        _schema._1000_CreateDefaultSchema(schemaName);
-        _schema._2001_CreateLoginTbl(schemaName);
+        _schema._1001_CreateDefaultSchema(schemaName);
+        _schema._1002_CreateLoginTbl(schemaName);
     }
+
+    [HttpGet("1000/userlogin/{loginname}/{password}")]
+    public async Task<ActionResult<UserMainModel>> Get(string loginname, string password)
+    {
+        try
+        {
+            var output = await _login._1000_Login(loginname, password);
+            return Ok(output);
+        } catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        
+    }
+
+    [HttpGet("1001/{id}")]
+    public async Task<ActionResult<UserMainModel>> Get(int id)
+    {
+        var output = await _login._1001_GetUserMainById(id);
+        return Ok(output);
+    }
+
+    [HttpGet("1002/GetUser/{loginname}")]
+    public async Task<ActionResult<UserMainModel>> Get(string loginname)
+    {
+        var output = await _login._1002_GetUserMainByLoginName(loginname);
+        return Ok(output);
+    }
+
+
+    [HttpGet("1003/GetUser/{email}")]
+    public async Task<ActionResult<UserMainModel>> GetByEmail(string email)
+    {
+        var output = await _login._1003_GetUserMainByEmail(email);
+        return Ok(output);
+    }
+
+
+    [HttpPut("1004/insertUser")]
+    public async Task<ActionResult<UserMainModel?>> Insert(UserMainModel user)
+    {
+        var usr = await _login._1002_GetUserMainByLoginName(user.LoginName!);
+        if (usr == null)
+        {
+            user.Domain = _config.GetSection("Schema:domain").Value;
+            await _login._1004_InsertUserMain(user);
+            usr = await _login._1002_GetUserMainByLoginName(user.LoginName!);
+        } else
+        {
+            usr.Id = -1; 
+        }
+        return Ok(usr);
+    }
+
+    [HttpPut("1005/updateUser/{id}")]
+    public async Task<ActionResult<UserMainModel?>> Update(int id, UserMainModel user)
+    {
+        await _login._1005_Update(id, user);
+        var usr = _login._1001_GetUserMainById(id); 
+        return Ok(usr);
+    }
+
+    [HttpPost("1007/changeUserStatus/{id}/{status}")]
+    public async Task<ActionResult<UserMainModel?>> UpdateStatus(int id, string status)
+    {
+        var usr = await _login._1007_ChangeUserStatus(id, status); 
+        return Ok(usr);
+    }
+
+    [HttpPost("1008/createUserSchema/{id}/{connName}")]
+    public async Task<ActionResult<UserMainModel?>> CreateUserSchema(int id, string connName = "MySqlConn")
+    {
+        var usr = await _login._1008_CreateUserSchema(id);
+        return Ok(usr);
+    }
+
+
+
+
+
+
+
 
 
 
