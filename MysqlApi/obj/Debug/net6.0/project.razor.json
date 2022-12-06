@@ -1,5 +1,5 @@
 {
-  "FilePath": "d:\\Development\\Web\\GSIA\\GSIA\\GSIA\\GSIA.csproj",
+  "FilePath": "d:\\Development\\Web\\GSIA\\GSIA\\MysqlApi\\MysqlApi.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "6.0",
@@ -16295,63 +16295,7 @@
     ],
     "CSharpLanguageVersion": 1000
   },
-  "RootNamespace": "GSIA",
-  "Documents": [
-    {
-      "FilePath": "d:\\Development\\Web\\GSIA\\GSIA\\GSIA\\Views\\Home\\Index.cshtml",
-      "TargetPath": "Views\\Home\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\Development\\Web\\GSIA\\GSIA\\GSIA\\Views\\Home\\Privacy.cshtml",
-      "TargetPath": "Views\\Home\\Privacy.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\Development\\Web\\GSIA\\GSIA\\GSIA\\Views\\Main\\Index.cshtml",
-      "TargetPath": "Views\\Main\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\Development\\Web\\GSIA\\GSIA\\GSIA\\Views\\Home\\Validation.cshtml",
-      "TargetPath": "Views\\Home\\Validation.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\Development\\Web\\GSIA\\GSIA\\GSIA\\Views\\Shared\\_Layout.cshtml",
-      "TargetPath": "Views\\Shared\\_Layout.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\Development\\Web\\GSIA\\GSIA\\GSIA\\Views\\_ViewImports.cshtml",
-      "TargetPath": "Views\\_ViewImports.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\Development\\Web\\GSIA\\GSIA\\GSIA\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
-      "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\Development\\Web\\GSIA\\GSIA\\GSIA\\Views\\Login\\Validation.cshtml",
-      "TargetPath": "Views\\Login\\Validation.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\Development\\Web\\GSIA\\GSIA\\GSIA\\Views\\Shared\\Error.cshtml",
-      "TargetPath": "Views\\Shared\\Error.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\Development\\Web\\GSIA\\GSIA\\GSIA\\Views\\_ViewStart.cshtml",
-      "TargetPath": "Views\\_ViewStart.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\Development\\Web\\GSIA\\GSIA\\GSIA\\Views\\Login\\Index.cshtml",
-      "TargetPath": "Views\\Login\\Index.cshtml",
-      "FileKind": "mvc"
-    }
-  ],
+  "RootNamespace": "MysqlApi",
+  "Documents": [],
   "SerializationFormat": "0.2"
 }
