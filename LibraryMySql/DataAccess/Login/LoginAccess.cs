@@ -1,4 +1,5 @@
-﻿using LibraryMySql.Models;
+﻿using Dapper;
+using LibraryMySql.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,13 +61,41 @@ namespace LibraryMySql.DataAccess.Login
                             " left join " + schema + ".client c on c.ClNumber = e.Client_ " +
                             " left join " + schema + ".empstat s on s.code = e.empstat_ " +
                             " left join " + schema + ".Position p on p.Code = e.Position_" +
-                            " where e.Empnumber = @Empnumber ";
+                            " where e.Empnumber = @Empnumber and e.Password = @Password";
 
             var data = await _mysql.FetchData<LoginOutputModel?, dynamic>(sql, new { Empnumber = EmpNumber });
 
             return data.FirstOrDefault();
 
         }
+
+        public async Task<LoginOutputModel?> FetchEmployeeInMainByEmpNo(LoginInputModel input)
+        {
+            string schema = input.Schema;
+            var parameter = new DynamicParameters();
+            parameter.Add("@EmpNumber", input.EmpNumber, System.Data.DbType.String);
+            var cmd = "select * from " + schema + ".users e where e.Empnumber = @Empnumber";
+
+            var data = await _mysql.FetchData<LoginOutputModel?, dynamic>(cmd, parameter);
+            return data.FirstOrDefault();
+        }
+
+        public async Task<LoginOutputModel?> FetchEmployeeInMainByEmpNoAndPassword(LoginInputModel input)
+        {
+            string schema = input.Schema;
+            var parameter = new DynamicParameters();
+            parameter.Add("@EmpNumber", input.EmpNumber, System.Data.DbType.String);
+            parameter.Add("@Password", input.Password, System.Data.DbType.AnsiString);
+            var cmd = "select * from " + schema + ".users e where e.Empnumber = @Empnumber and e.password = @Password";
+
+            var data = await _mysql.FetchData<LoginOutputModel?, dynamic>(cmd, parameter);
+            return data.FirstOrDefault();
+        }
+
+        //public async Task<LoginOutputModel?> FetchEmployeeInMainByEmail()
+        //{
+        //    return ;
+        //}
 
 
     }

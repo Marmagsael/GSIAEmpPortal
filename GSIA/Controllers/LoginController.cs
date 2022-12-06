@@ -6,6 +6,15 @@ using LibraryMySql;
 using Dapper;
 using MySqlX.XDevAPI;
 using GSIA.Models;
+using Org.BouncyCastle.Security;
+using Org.BouncyCastle.Asn1.X509;
+using System.ComponentModel;
+using System.Net.NetworkInformation;
+using System.Runtime.Intrinsics.X86;
+using System.Xml.Linq;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 
 namespace GSIA.Controllers;
 
@@ -15,13 +24,15 @@ public class LoginController : Controller
     private readonly IConfiguration _configuration;
     private readonly ILoginAccess _login;
     private readonly IMySqlDataAccess _mysql;
+    private static string EmpNum = null;
+
 
 
     public LoginController(IConfiguration configuration, ILoginAccess login, IMySqlDataAccess mysql)
     {
-        _configuration  = configuration;
-        _login          = login;
-        _mysql          = mysql;
+        _configuration = configuration;
+        _login = login;
+        _mysql = mysql;
 
     }
 
@@ -38,76 +49,163 @@ public class LoginController : Controller
     [HttpPost("login")]
     public async Task<IActionResult> ValidateInitialCredentials(LoginInputModel input)
     {
-        var output = await _login.LoginEmployee(input);
-        
-        if(output is not null)
+
+        if (input.EmpNumber != null)
         {
-            if(output.Password.Length == 0)
+            //Check if Employee Number Exists in Main Table
+            input.Schema = "main";
+            var EmpNoInMain = await _login.FetchEmployeeInMainByEmpNo(input);
+            if (EmpNoInMain != null)
             {
-                ViewBag.EmpNumber = output?.EmpNumber;
-                //return Redirect("login/Validation");
-                return View("~/Views/Login/Validation.cshtml"); // Problem with redirecting the page using view
+                //Check Password
+                if (input.Password != null)
+                {
+                    var userInMain = await _login.FetchEmployeeInMainByEmpNoAndPassword(input);
+                    if (userInMain != null)
+                    {
+                        return View("~/Views/Main/Index.cshtml");
+                    }
+                    else
+                    {
+                        ViewData["errPasswordMsg"] = "Incorrect password";
+                        return View("~/Views/login/Index.cshtml");
+                    }
+                }
+                else
+                {
+                    ViewData["errPasswordMsg"] = "Enter your password";
+                    return View("~/Views/login/Index.cshtml");
+                }
             }
-            return View("~/Views/Main/Index.cshtml");
+            else
+            {
+                //Otherwise check Employee Number in Secpis Table
+                input.Schema = "secpis";
+                var EmpNoInSecpis = await _login.LoginEmployee(input);
+                if (EmpNoInSecpis != null)
+                {
+                    //Pass Employee Number then redirect to the account verification page
+                    ViewData["empNo"] = input.EmpNumber;
+                    //ValidationInputModel data= new ValidationInputModel();
+                    //data.VEmpNumber = input.EmpNumber;
+
+                    EmpNum = input.EmpNumber;
+
+
+                    return View("~/Views/login/AccountVerification.cshtml");
+
+
+                }
+                else
+                {
+                    ViewData["errEmpNoMsg"] = "Employee number doesn't exist";
+                    return View("~/Views/login/Index.cshtml");
+                }
+            }
         }
 
-        return View();
-      
+        return Ok("Please enter an employee number");
+
     }
 
     // --------- VALIDATION PAGE -----------
 
     [AllowAnonymous]
-    [HttpGet("login/Validation")]
+    [HttpGet("login/AccountVerification")]
     public IActionResult Validation()
     {
         return View();
     }
 
+
+
     [AllowAnonymous]
-    [HttpPost("login/Validation")]
-    public  async Task<IActionResult> ValidateOtherCredentials(ValidationInputModel input)
+    [HttpPost("login/AccountVerification")]
+    public async Task<IActionResult> ValidateOtherCredentials(ValidationInputModel input)
     {
-        string schema = input.Schema;
+
+        string schema = "secpis";
+
         var parameter = new DynamicParameters();
-        parameter.Add("@Empnumber", input.EmpNumber, System.Data.DbType.String);
+        parameter.Add("@Empnumber", EmpNum, System.Data.DbType.String);
         parameter.Add("@Position_", input.Position_, System.Data.DbType.String);
         parameter.Add("@SecLicense", input.SecLicense, System.Data.DbType.String);
         parameter.Add("@MovNumber", input.MovNumber, System.Data.DbType.String);
         parameter.Add("@DateHired", input.DateHired, System.Data.DbType.DateTime);
         string sql = @" select  e.Empnumber, e.EmpLastNm, e.EmpFirstNm, e.EmpMidNm,
-                                c.clNumber, c.ClName,
-                                s.code EmpStatCd, s.Name EmpStatus, s.IsResigned,  
-                                Position_ PositionCd, p.Name as Position,
                                 e.DateHired,
-                                e.Sss,
-                                e.Tin,
                                 e.SecLicense License,
-                                e.MovNumber,
-                                e.Email,
-                                e.passwd
-                            from " + schema + ".empmas e " +
-                        " left join " + schema + ".client c on c.ClNumber = e.Client_ " +
-                        " left join " + schema + ".empstat s on s.code = e.empstat_ " +
-                        " left join " + schema + ".Position p on p.Code = e.Position_" +
-                        " where e.Empnumber = @Empnumber and Position_ = @Position_ and e.SecLicense = @SecLicense and e.MovNumber = @MovNumber and e.DateHired = @DateHired ";
+                                e.MovNumber
+                       from " + schema + ".empmas e " +
+                            " where e.Empnumber = @Empnumber and e.SecLicense = @SecLicense and e.MovNumber = @MovNumber and e.DateHired = @DateHired ";
 
-        var data = await _mysql.FetchData<LoginOutputModel?, dynamic>(sql, new {parameter });
-        var output =  data.FirstOrDefault();
+        var data = await _mysql.FetchData<LoginOutputModel?, dynamic>(sql, parameter);
+        var output = data.FirstOrDefault();
 
-        if(output is not null)
+        if (output != null)
         {
-            //Save Password in database
-            var par = new DynamicParameters();
-            par.Add("@Password", input.Password, System.Data.DbType.AnsiString);
-            string slq_insert = @"INSERT INTO " + schema + ".empmas e (passwd)" +
-                                    "values (HASHBYTES('SHA2_512', @Password));";
+            //Save Data in Main db
+            schema = "main";
+            var parameter2 = new DynamicParameters();
+            parameter2.Add("@Empnumber", output.EmpNumber, System.Data.DbType.String);
+            parameter2.Add("@Position_", output.PositionCd, System.Data.DbType.String);
+            parameter2.Add("@SecLicense", output.License, System.Data.DbType.String);
+            parameter2.Add("@MovNumber", output.MovNumber, System.Data.DbType.String);
+            parameter2.Add("@DateHired", output.DateHired, System.Data.DbType.DateTime);
+            parameter.Add("@Password", input.VPassword, System.Data.DbType.AnsiString);
 
-     
-            //await slq_insert.ExecuteCmdQS(sql, parameter, "Default");
+            var cmd = "Insert into " + schema + ".users  ( Empnumber,  License,  MovNumber,  DateHired)" +
+                        "values ( @Empnumber, @SecLicense, @MovNumber, @DateHired)";
+            await _mysql.ExecuteCmd(cmd, parameter2);
 
+
+            //check if data is successfully saved
+            //var userInMain = await _login.FetchEmployeeInMainByEmpNoAndPassword(output);
+
+            //once saved
+            var claims = new List<Claim>();
+            claims.Add(new Claim(ClaimTypes.Name, output.EmpFirstNm + output.EmpLastNm));
+
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var claimPrincipal = new ClaimsPrincipal(claimsIdentity);
+            await HttpContext.SignInAsync(claimPrincipal);
+
+            return Redirect("/Main");
         }
 
+        return Ok("Credentials are incorrect");
+    }
+
+
+    // --------- LOGIN WITH GOOGLE ----------
+    public async Task<IActionResult> SignInWithGoogle()
+    {
+        var claims = User.Claims;
+        var emailIdentifier = ClaimTypes.Email;
+        //Check if email exist in main db
+
+
+        //if emploee doesn't exist in main db redirect user to registration page
+        // return Redirect("/login/Register");
         return View();
+    }
+
+
+    // -------- REGISTRATION PAGE -----------
+    [AllowAnonymous]
+    [HttpGet("login/Register")]
+    public IActionResult Regsiter()
+    {
+        return View();
+    }
+
+    [AllowAnonymous]
+    [HttpPost("login/Register")]
+    public async Task<IActionResult> Regsiter(LoginInputModel input)
+    {
+        //Save Data in main db
+
+        //Once Saved
+        return Redirect("/Main");
     }
 }

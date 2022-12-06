@@ -22,3 +22,15 @@ C:\ASP.Net Apps\_GSIA(PIS)\LibraryMySql\obj\Debug\net6.0\LibraryMySql.dll
 C:\ASP.Net Apps\_GSIA(PIS)\LibraryMySql\obj\Debug\net6.0\refint\LibraryMySql.dll
 C:\ASP.Net Apps\_GSIA(PIS)\LibraryMySql\obj\Debug\net6.0\LibraryMySql.pdb
 C:\ASP.Net Apps\_GSIA(PIS)\LibraryMySql\obj\Debug\net6.0\ref\LibraryMySql.dll
+C:\Web Apps\Asp.Net\_GSIA(PIS)\LibraryMySql\bin\Debug\net6.0\LibraryMySql.deps.json
+C:\Web Apps\Asp.Net\_GSIA(PIS)\LibraryMySql\bin\Debug\net6.0\LibraryMySql.dll
+C:\Web Apps\Asp.Net\_GSIA(PIS)\LibraryMySql\bin\Debug\net6.0\LibraryMySql.pdb
+C:\Web Apps\Asp.Net\_GSIA(PIS)\LibraryMySql\obj\Debug\net6.0\LibraryMySql.csproj.AssemblyReference.cache
+C:\Web Apps\Asp.Net\_GSIA(PIS)\LibraryMySql\obj\Debug\net6.0\LibraryMySql.GeneratedMSBuildEditorConfig.editorconfig
+C:\Web Apps\Asp.Net\_GSIA(PIS)\LibraryMySql\obj\Debug\net6.0\LibraryMySql.AssemblyInfoInputs.cache
+C:\Web Apps\Asp.Net\_GSIA(PIS)\LibraryMySql\obj\Debug\net6.0\LibraryMySql.AssemblyInfo.cs
+C:\Web Apps\Asp.Net\_GSIA(PIS)\LibraryMySql\obj\Debug\net6.0\LibraryMySql.csproj.CoreCompileInputs.cache
+C:\Web Apps\Asp.Net\_GSIA(PIS)\LibraryMySql\obj\Debug\net6.0\LibraryMySql.dll
+C:\Web Apps\Asp.Net\_GSIA(PIS)\LibraryMySql\obj\Debug\net6.0\refint\LibraryMySql.dll
+C:\Web Apps\Asp.Net\_GSIA(PIS)\LibraryMySql\obj\Debug\net6.0\LibraryMySql.pdb
+C:\Web Apps\Asp.Net\_GSIA(PIS)\LibraryMySql\obj\Debug\net6.0\ref\LibraryMySql.dll
