@@ -1,6 +1,4 @@
-﻿using Org.BouncyCastle.Crypto.Macs;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace GSIA.Models
 {
@@ -12,11 +10,9 @@ namespace GSIA.Models
         [Required(ErrorMessage = "Please enter your employee number")]
         public string EmpNumber { get; set; } = string.Empty;
 
-
-        [DataType(DataType.EmailAddress, ErrorMessage = "Invalid data type, please enter email address")]
-        [Display(Name = "Email Address")]
+        [Display(Name = "Position")]
         [Required]
-        public string Email { get; set; } = string.Empty;
+        public string Position { get; set; } = string.Empty;
 
         [Display(Name = "Deployment Code")]
         [Required]
@@ -40,6 +36,11 @@ namespace GSIA.Models
         [Required]
         [StringLength(20, ErrorMessage = "The {0} must be at least 6 characters long.", MinimumLength = 6)]
         public string Password { get; set; } = string.Empty;
+
+        [DataType(DataType.EmailAddress, ErrorMessage = "Invalid data type, please enter email address")]
+        [Display(Name = "Email Address")]
+        [Required]
+        public string Email { get; set; } = string.Empty;
 
     }
 }

@@ -7,3 +7,10 @@
 @ViewBag.Output
 
 This is the landing Page
+
+<ul>
+    @foreach (var c in User.Claims)
+    {
+        <li>@c.Type : @c.Value</li>
+    }
+</ul>

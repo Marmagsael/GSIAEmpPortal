@@ -16313,6 +16313,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\Development\\Web\\GSIA\\GSIA\\GSIA\\Views\\Register\\Index.cshtml",
+      "TargetPath": "Views\\Register\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Development\\Web\\GSIA\\GSIA\\GSIA\\Views\\Home\\Validation.cshtml",
       "TargetPath": "Views\\Home\\Validation.cshtml",
       "FileKind": "mvc"
@@ -16323,6 +16328,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\Development\\Web\\GSIA\\GSIA\\GSIA\\Views\\Login\\VerifyUser.cshtml",
+      "TargetPath": "Views\\Login\\VerifyUser.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Development\\Web\\GSIA\\GSIA\\GSIA\\Views\\_ViewImports.cshtml",
       "TargetPath": "Views\\_ViewImports.cshtml",
       "FileKind": "mvc"
@@ -16330,11 +16340,6 @@
     {
       "FilePath": "d:\\Development\\Web\\GSIA\\GSIA\\GSIA\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\Development\\Web\\GSIA\\GSIA\\GSIA\\Views\\Login\\Validation.cshtml",
-      "TargetPath": "Views\\Login\\Validation.cshtml",
       "FileKind": "mvc"
     },
     {

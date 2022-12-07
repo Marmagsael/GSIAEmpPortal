@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <Folder Include="DataAccess\_100Main\" />
-    <Folder Include="DataAccess\_200Pis\" />
   </ItemGroup>
 
 </Project>

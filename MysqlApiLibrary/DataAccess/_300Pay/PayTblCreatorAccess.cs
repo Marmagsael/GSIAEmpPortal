@@ -36,17 +36,17 @@ public class PayTblCreatorAccess : IPayTblCreatorAccess
     public async Task<string> _1102PayrollGrpSub(string schema, string connName = "MySqlConn")
     {
         string sql = "CREATE TABLE  " + schema + @".PGrpInfo (
-                          Id          INTEGER       UNSIGNED NOT NULL ,
-                          Addr1       varchar(150)  DEFAULT NULL,
-                          Addr2       varchar(150)  DEFAULT NULL,
-                          IdArea      INTEGER               UNSIGNED    Default 0,
-                          IdRegion    INTEGER       UNSIGNED            Default 0,
-                          IdParent    INTEGER               UNSIGNED    Default 0,
-                          RateMo      double(10,2)  NOT NULL            DEFAULT '0.00',
-                          MinRateMo   double(10,2)  NOT NULL            DEFAULT '0.00',
-                          BillRateHr  double(9,2)                       DEFAULT NULL,
-                          MealAllow   double(6,2)   NOT NULL            DEFAULT '0.00',
-                          PRIMARY     KEY(`Id`)) ENGINE = InnoDB";
+                          Id            INTEGER       UNSIGNED  NOT NULL ,
+                          Addr1         varchar(150)                        DEFAULT NULL,
+                          Addr2         varchar(150)                        DEFAULT NULL,
+                          IdArea        INTEGER       UNSIGNED              Default 0,
+                          IdDepartment  INTEGER       UNSIGNED              Default 0,
+                          IdParent      INTEGER       UNSIGNED              Default 0,
+                          RateMo        double(10,2)            NOT NULL    DEFAULT '0.00',
+                          MinRateMo     double(10,2)            NOT NULL    DEFAULT '0.00',
+                          BillRateHr    double(9,2)                         DEFAULT NULL,
+                          MealAllow     double(6,2)             NOT NULL    DEFAULT '0.00',
+                          PRIMARY       KEY(`Id`)) ENGINE = InnoDB";
         await _sql.ExecuteCmd<dynamic>(sql, new { }, connName);
 
         return "succeeded";

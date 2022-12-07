@@ -67,6 +67,31 @@ public class LoginAccess : ILoginAccess
 
     }
 
+    public async Task<LoginOutputModel?> _00001_EmpmasByEmpNumber(string empNumber, string schema="SecPis", string connName = "MySqlConn")
+    {
+        string sql = @" select  e.Empnumber, e.EmpLastNm, e.EmpFirstNm, e.EmpMidNm,
+                                c.clNumber, c.ClName,
+                                s.code EmpStatCd, s.Name EmpStatus, s.IsResigned,  
+                                Position_ PositionCd, p.Name as Position,
+                                e.DateHired,
+                                e.Sss,
+                                e.Tin,
+                                e.SecLicense License,
+                                e.MovNumber,
+                                e.Email,
+                                e.passwd
+                            from " + schema + ".empmas e " +
+                        " left join " + schema + ".client c on c.ClNumber = e.Client_ " +
+                        " left join " + schema + ".empstat s on s.code = e.empstat_ " +
+                        " left join " + schema + ".Position p on p.Code = e.Position_" +
+                        " where e.Empnumber = @Empnumber ";
+
+        var data = await _sql.FetchData<LoginOutputModel?, dynamic>(sql, new { Empnumber = empNumber }, connName);
+
+        return data.FirstOrDefault();
+
+    }
+
     // ---- User ------------------------------------------------------------------------- 
     public async Task<UserMainModel?> _1000_Login(string loginname, string password, string schema = "Main")
     {
@@ -98,15 +123,46 @@ public class LoginAccess : ILoginAccess
         return data.FirstOrDefault();
     }
 
+    public async Task<LoginOutputModel?> _1004_ValidateUserFromEmpmas(
+        string empnumber, string dateHired, string secLicense, string movNumber, 
+        string schema="SecPis", string connName="MySqlConn")
+    {
+        string sql = @" select  e.Empnumber, e.EmpLastNm, e.EmpFirstNm, e.EmpMidNm,
+                                c.clNumber, c.ClName,
+                                s.code EmpStatCd, s.Name EmpStatus, s.IsResigned,  
+                                Position_ PositionCd, p.Name as Position,
+                                e.DateHired,
+                                e.Sss,
+                                e.Tin,
+                                e.SecLicense License,
+                                e.MovNumber,
+                                e.Email,
+                                e.passwd
+                            from " + schema + ".empmas e " +
+                        " left join " + schema + ".client c on c.ClNumber = e.Client_ " +
+                        " left join " + schema + ".empstat s on s.code = e.empstat_ " +
+                        " left join " + schema + @".Position p on p.Code = e.Position_ 
+                          where e.Empnumber = @Empnumber and DateHired = @DateHired and 
+                                SecLicense = @SecLicense and MovNumber = @MovNumber ";
 
-    public async Task _1004_InsertUserMain(UserMainModel user, string schema = "Main")
+        var data = await _sql.FetchData<LoginOutputModel?, dynamic>(sql, 
+                                                        new { Empnumber = empnumber,
+                                                                        DateHired = dateHired, 
+                                                                        SecLicense = secLicense, 
+                                                                        MovNumber = movNumber}, connName);
+
+        return data.FirstOrDefault();
+
+    }
+
+    public async Task _1004_InsertUserMain(string loginName, string password, string email, string domain, string schema = "Main")
     {
         string msql = @" Insert into " + schema + @".Users (LoginName, Password, Email, Domain )  values 
                                             (@LoginName, sha1(@Password), @Email, @Domain)";
 
         await _sql.ExecuteCmd<dynamic>(
             msql,
-            new { LoginName = user.LoginName, Password= user.Password, Email= user.Email, Domain = user.Domain }); 
+            new { LoginName = loginName, Password= password, Email= email, Domain = domain }); 
     }
     public async Task _1005_Update(int id, UserMainModel user, string schema = "Main")
     {

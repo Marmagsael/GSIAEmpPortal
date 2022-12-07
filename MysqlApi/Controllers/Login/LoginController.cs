@@ -3,6 +3,7 @@ using MysqlApiLibrary.DataAccess;
 using MysqlApiLibrary.DataAccess.Login;
 using MysqlApiLibrary.Models;
 using MysqlApiLibrary.Models.Login;
+using MySqlX.XDevAPI;
 using System.Data;
 
 namespace MysqlApi.Controllers.Login; 
@@ -44,14 +45,26 @@ public class LoginController : ControllerBase
         return _config.GetConnectionString(connName);
     }
 
-
-
-
     [HttpGet("GetPisScheme")]
     public string PisScheme()
     {
         return _schema.getDefaultPisSchema(); 
     }
+
+    [HttpGet("0001/EmpmasByEmpnumber/{empNumber}/{schema}/{connName}")]
+    public async Task<ActionResult<LoginOutputModel?>> EmpmasByEmpnumber(string empNumber, string schema="SecPis", string connName = "MySqlConn")
+    {
+        var res = await _login._00001_EmpmasByEmpNumber(empNumber, schema, connName);
+        return Ok(res);
+        //try
+        //{
+
+        //} catch (Exception ex)
+        //{
+        //    return BadRequest(ex.Message);
+        //}
+    }
+
 
     [HttpHead("1000/CreateMainSchema")]
     public void CreateMainSchema(string schemaName="Main")
@@ -71,7 +84,6 @@ public class LoginController : ControllerBase
         {
             return BadRequest(ex.Message);
         }
-        
     }
 
     [HttpGet("1001/{id}")]
@@ -97,20 +109,31 @@ public class LoginController : ControllerBase
     }
 
 
-    [HttpPut("1004/insertUser")]
-    public async Task<ActionResult<UserMainModel?>> Insert(UserMainModel user)
+    //[HttpPut("1004/insertUser")]
+    //public async Task<ActionResult<UserMainModel?>> Insert(UserMainModel user)
+    //{
+    //    var usr = await _login._1002_GetUserMainByLoginName(user.LoginName!);
+    //    if (usr == null)
+    //    {
+    //        user.Domain = _config.GetSection("Schema:domain").Value;
+    //        await _login._1004_InsertUserMain(user);
+    //        usr = await _login._1002_GetUserMainByLoginName(user.LoginName!);
+    //    } else
+    //    {
+    //        usr.Id = -1; 
+    //    }
+    //    return Ok(usr);
+    //}
+
+    [HttpGet("1004/validateUserFromEmpmas/{empnumber}/{dateHired}/{secLicense}/{movNumber}/{schema}")]
+    public async Task<ActionResult<UserMainModel?>> 
+        validateUserFromEmpmas(string empnumber, string dateHired, string secLicense, string movNumber,
+        string schema = "Main", string connName = "MySqlConn")
     {
-        var usr = await _login._1002_GetUserMainByLoginName(user.LoginName!);
-        if (usr == null)
-        {
-            user.Domain = _config.GetSection("Schema:domain").Value;
-            await _login._1004_InsertUserMain(user);
-            usr = await _login._1002_GetUserMainByLoginName(user.LoginName!);
-        } else
-        {
-            usr.Id = -1; 
-        }
-        return Ok(usr);
+        // Check kung available sya sa main users  ----------------------------
+        var userFromEmpmas = await _login._1004_ValidateUserFromEmpmas(empnumber, dateHired, secLicense, movNumber, schema);
+        return Ok(userFromEmpmas);
+
     }
 
     [HttpPut("1005/updateUser/{id}")]
