@@ -9890,7 +9890,6 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "Dapper >= 2.0.123",
       "LibraryMySql >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.Google >= 6.0.10",
       "Microsoft.AspNetCore.Authentication.OpenIdConnect >= 6.0.10",
@@ -9952,10 +9951,6 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
-          "Dapper": {
-            "target": "Package",
-            "version": "[2.0.123, )"
-          },
           "Microsoft.AspNetCore.Authentication.Google": {
             "target": "Package",
             "version": "[6.0.10, )"
