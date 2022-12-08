@@ -136,6 +136,26 @@ public class LoginController : ControllerBase
 
     }
 
+
+    [HttpPost("1004/InsertUserFromEmpmas/{empnumber}/{dateHired}/{secLicense}/{movNumber}/{schema}")]
+    public async Task<ActionResult<UserMainModel?>> InsertUserFromEmpmas(
+        string empnumber, string password, string email, string domain, 
+        string schema = "Main", string connName = "MySqlConn")
+    {
+        // Check kung available sya sa main users  ----------------------------
+        await _login._1004_InsertUserMain(empnumber, password,email, domain, schema );
+        var user = _login._00001_EmpmasByEmpNumber(empnumber);
+        
+        
+        
+        
+        // var userId = user(user => user.Id == empnumber).Value;
+        
+        //string domain = Convert.ToString(user.Domain);
+        return Ok(user);
+
+    }
+
     [HttpPut("1005/updateUser/{id}")]
     public async Task<ActionResult<UserMainModel?>> Update(int id, UserMainModel user)
     {

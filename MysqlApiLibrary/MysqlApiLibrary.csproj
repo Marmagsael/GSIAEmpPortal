@@ -14,6 +14,8 @@
 
   <ItemGroup>
     <Folder Include="DataAccess\_100Main\" />
+    <Folder Include="DataAccess\_x001Dummy\" />
+    <Folder Include="Models\Dummy\" />
   </ItemGroup>
 
 </Project>
