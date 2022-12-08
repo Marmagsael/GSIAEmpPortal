@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Web Apps\\Asp.Net\\GSIA(PIS)withAPI\\GSIA\\GSIA.csproj": {}
+    "C:\\Web Apps\\Asp.Net\\_GSIA(PIS)\\GSIA\\GSIA.csproj": {}
   },
   "projects": {
-    "C:\\Web Apps\\Asp.Net\\GSIA(PIS)withAPI\\GSIA\\GSIA.csproj": {
+    "C:\\Web Apps\\Asp.Net\\_GSIA(PIS)\\GSIA\\GSIA.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Web Apps\\Asp.Net\\GSIA(PIS)withAPI\\GSIA\\GSIA.csproj",
+        "projectUniqueName": "C:\\Web Apps\\Asp.Net\\_GSIA(PIS)\\GSIA\\GSIA.csproj",
         "projectName": "GSIA",
-        "projectPath": "C:\\Web Apps\\Asp.Net\\GSIA(PIS)withAPI\\GSIA\\GSIA.csproj",
+        "projectPath": "C:\\Web Apps\\Asp.Net\\_GSIA(PIS)\\GSIA\\GSIA.csproj",
         "packagesPath": "C:\\Users\\Judith\\.nuget\\packages\\",
-        "outputPath": "C:\\Web Apps\\Asp.Net\\GSIA(PIS)withAPI\\GSIA\\obj\\",
+        "outputPath": "C:\\Web Apps\\Asp.Net\\_GSIA(PIS)\\GSIA\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -49,10 +49,6 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "Dapper": {
-              "target": "Package",
-              "version": "[2.0.123, )"
-            },
             "Microsoft.AspNetCore.Authentication.Google": {
               "target": "Package",
               "version": "[6.0.10, )"

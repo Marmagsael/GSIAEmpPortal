@@ -1,4 +1,7 @@
-﻿using LibraryMySql.Models; 
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+using LibraryMySql.Models;
 using LibraryMySql.DataAccess.Login;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +15,14 @@ using System.ComponentModel;
 using System.Net.NetworkInformation;
 using System.Runtime.Intrinsics.X86;
 using System.Xml.Linq;
+using System.Net.Http;
+using Newtonsoft.Json;
+using GSIA.Models;
+using MysqlApiLibrary.Models.Login;
+using System.Linq.Expressions;
+using MySqlX.XDevAPI;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace GSIA.Controllers;
 
@@ -23,11 +34,17 @@ public class LoginController : Controller
     private readonly IMySqlDataAccess _mysql;
     private static string _empNumber = "";
 
+
+    Uri baseAddress = new Uri("https://localhost:7087/api");
+    HttpClient client;
+
     public LoginController(IConfiguration configuration, ILoginAccess login, IMySqlDataAccess mysql)
     {
         _configuration = configuration;
         _login = login;
         _mysql = mysql;
+        client = new HttpClient();
+        client.BaseAddress = baseAddress;
 
     }
     [AllowAnonymous]
@@ -40,47 +57,74 @@ public class LoginController : Controller
     [AllowAnonymous]
     [HttpPost("login")]
     public async Task<IActionResult> ValidateInitialCredential(LoginInputModel? input)
-    {    
-        if (input?.EmpNumber != null)
+    {
+        string loginName = input?.EmpNumber;
+        string pwd = input?.Password;
+        return Ok(_0001_CheckIfUserExists(loginName));
+
+
+    }
+
+    private string _0000_HttpResponse(string urlWithParams)
+    {
+        HttpResponseMessage response = client.GetAsync(client.BaseAddress + urlWithParams).Result;
+        if (response.IsSuccessStatusCode)
         {
-            //Find Employee Number In Main
-            input.Schema = "main";
-            var output =  await _login.LoginEmployeeByEmpnoMain(input);
-            if (output != null)
-            {
-                //Check if input Password matches the saved password
-                if(input.Password != null){
-                    if (input.Password == output.Password)
-                    {
-                        return View("~/Views/Main/Index.cshtml");
-                    }
-                    else
-                    {
-                        ViewData["errPassMsg"] = "Incorrect password";
-                        return View("~/Views/login/Index.cshtml");
-                    }
-                } else
-                {
-                    ViewData["errPassMsg"] = "Please enter your password";
-                    return View("~/Views/login/Index.cshtml");
-                }
-                
-            } else
-            {
-                //Find Employee Number In Secpis
-                input.Schema = "secpis";
-                output = await _login.LoginEmployee(input);
-                if (output != null)
-                {
-                    ViewData["empno"] = input.EmpNumber;
-                    _empNumber = input.EmpNumber;
-                    return View("~/Views/login/VerifyUser.cshtml");
-                }
-            }
-            
-            
+            string data = response.Content.ReadAsStringAsync().Result;
+            return data;
         }
-        return Ok("Please provide your employee number and password");
+        return "server error";
+    }
+    private bool _0001_CheckIfUserExists(string loginName)
+    {
+        UserMainModel model = new UserMainModel();
+        var data = _0000_HttpResponse("/Login/1002/GetUser//" + loginName);
+        model = JsonConvert.DeserializeObject<UserMainModel?>(data);
+        if (model != null)
+        {
+            return true;
+
+        }
+        return false;
+    }
+   
+    private string _0002_ValidateUNameAndPwd(string loginName, string pwd)
+    {
+        UserMainModel model = new UserMainModel();
+        HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/Login/1000/userlogin/" + loginName + "/" + pwd).Result;
+        if (response.IsSuccessStatusCode)
+        {
+            string data = response.Content.ReadAsStringAsync().Result;
+            model = JsonConvert.DeserializeObject<UserMainModel?>(data);
+
+            if (model != null)
+            {
+                return "exist";
+            }
+            return "notExist";
+        }
+        return "serverError";
+    }
+
+    private string _0003_CheckToPISSchema(string? loginName)
+    {
+        var schema = "secPis";
+        var connName = "MySqlConn";
+
+        LoginOutputModel model = new LoginOutputModel();
+        HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/Login/0001/EmpmasByEmpnumber/" + loginName + "/" + schema + "/" + connName).Result;
+
+        if (response.IsSuccessStatusCode)
+        {
+            string data = response?.Content.ReadAsStringAsync().Result;
+            model = JsonConvert.DeserializeObject<LoginOutputModel?>(data);
+            if (model != null)
+            {
+                return "exist";
+            }
+            return "notExist";
+        }
+        return "serverError";
     }
 
     // ---------- VERIFY EMPLOYEE NUMBER -----------------
@@ -93,56 +137,57 @@ public class LoginController : Controller
 
     [AllowAnonymous]
     [HttpPost("login/VerifyUserAndContinue")]
-    public  async Task<IActionResult> VerifyUserAndContinue(VerifyUserInputModel input)
+    public async Task<IActionResult> VerifyUserAndContinue(VerifyUserInputModel input, LoginOutputModel output)
     {
-        input.Schema = "secpis";
-        input.EmpNumber = _empNumber;
-        var output = await _login.LoginEmployee(input.Schema, input.EmpNumber);
-        if(output != null)
+        string empNumber  = _empNumber;
+        DateTime? dateHired  = input.DateHired;
+        string secLicense = input.SecLicense;
+        string movNumber = input.MovNumber;
+        string schema = "secpis";
+
+        LoginOutputModel model = new LoginOutputModel();
+        HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/Login/1004/validateUserFromEmpmas/" + empNumber + "/" + dateHired + "/" + secLicense + "/" + movNumber + "/" + schema).Result;
+        if (response.IsSuccessStatusCode)
         {
-            if(input.SecLicense == output.License  && 
-                input.DateHired == output.DateHired &&
-                input.MovNumber == output.MovNumber) {
+            string data = response.Content.ReadAsStringAsync().Result;
+            model = JsonConvert.DeserializeObject<LoginOutputModel?>(data);
+            return Ok(model);
+            if (model != null)
+            {
 
-                var parameter = new DynamicParameters();
-                parameter.Add("@Empnumber", input.EmpNumber, System.Data.DbType.String);
-                parameter.Add("@EmpLastNm", output.EmpLastNm, System.Data.DbType.String);
-                parameter.Add("@EmpFirstNm", output.EmpFirstNm, System.Data.DbType.String);
-                parameter.Add("@EmpMidNm", output.EmpMidNm, System.Data.DbType.String);
-                parameter.Add("@Clnumber", output.Clnumber, System.Data.DbType.String);
-                parameter.Add("@ClName", output.ClName, System.Data.DbType.String);
-                parameter.Add("@EmpStatCd", output.EmpStatCd, System.Data.DbType.String);
-                parameter.Add("@EmpStatus", output.EmpStatus, System.Data.DbType.String);
-                parameter.Add("@IsResigned", output.IsResigned, System.Data.DbType.String);
-                parameter.Add("@PositionCd", output.PositionCd, System.Data.DbType.String);
-                parameter.Add("@Position", output.Position, System.Data.DbType.String);
-                parameter.Add("@DateHired", output.DateHired, System.Data.DbType.DateTime);
-                parameter.Add("@Sss", output.Sss, System.Data.DbType.String);
-                parameter.Add("@Tin", output.Tin, System.Data.DbType.String);
-                parameter.Add("@License", output.License, System.Data.DbType.String);
-                parameter.Add("@MovNumber", output.MovNumber, System.Data.DbType.String);
-                parameter.Add("@Email", output.Email, System.Data.DbType.String);
-                parameter.Add("@Password", input.Password, System.Data.DbType.AnsiString);
-
-                //Save Data in Main Database
-                input.Schema = "main";
-                var sql = "Insert into " + input.Schema + ".users (EmpNumber, EmpLastNm, EmpFirstNm, EmpMidNm, Clnumber," +
-                            "ClName, EmpStatCd, EmpStatus, IsResigned, PositionCd, Position, DateHired, Sss, " +
-                            "Tin, License, MovNumber, Email, Password) " +
-                            "Values (@EmpNumber, @EmpLastNm, @EmpFirstNm, @EmpMidNm, @Clnumber, " +
-                            "@ClName, @EmpStatCd, @EmpStatus, @IsResigned, @PositionCd, @Position, @DateHired, @Sss," +
-                            "@Tin, @License, @MovNumber, @Email,  @Password)";
-               // HASHBYTES('SHA2_512', @Password)
-                await _mysql.ExecuteCmd(sql,parameter);
-
-                return Redirect("/Main");
-            } else {
-                return Ok("Not Match!");
             }
         }
-        return Ok("error");
+
+                //Validate Employee in empmas
+                //if (_0004_ValidateUsersOtherCredentialsInEmpmas(EmpNumber, DateHired, SecLicense, MovNumber, Schema) == "exist")
+                //{
+                //    return Ok(output);
+                //    //Valid Credential
+                //    //if(_0005_SaveCredentialsToMain())
+                //}
+
+                return Ok("error");
 
     }
+
+    private string _0004_ValidateUsersOtherCredentialsInEmpmas(string empNumber, DateTime? dateHired, string secLicense, string movNumber, string schema)
+    {
+        LoginOutputModel model = new LoginOutputModel();
+        HttpResponseMessage response = client.GetAsync(client.BaseAddress + "Login/1004/validateUserFromEmpmas/" + empNumber + "/" + dateHired + "/" + secLicense + "/" + movNumber + "/" + schema).Result;
+        if (response.IsSuccessStatusCode)
+        {
+            string data = response.Content.ReadAsStringAsync().Result;
+            model = JsonConvert.DeserializeObject<LoginOutputModel?>(data);
+
+            if (model != null)
+            {
+                return "exist";
+            }
+            return "notExist";
+        }
+        return "serverError";
+
+}
 
     // ---------- Signin with Google --------------------
     public async Task<IActionResult> SigninWithGoogle()
@@ -155,7 +200,7 @@ public class LoginController : Controller
         var name = claims.FirstOrDefault(c => c.Type == nameIdentifier).Value;
 
         var output = await _login.FetchEmployeeByEmailMain(email);
-        if(output != null)
+        if (output != null)
         {
             return Ok(output);
         }

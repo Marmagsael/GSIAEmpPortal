@@ -1,6 +1,6 @@
 ﻿@using Microsoft.Extensions.Configuration
 @inject IConfiguration Configuration
-@model AuthenticationDataModel
+@model LoginVerifyUserViewModel
 
 @{
     var empNo = ViewData["empNo"] as string;
@@ -12,61 +12,54 @@
         <div class="row login-bg d-flex flex-row-reverse">
             <div class="col-12 col-md-5 col-lg-3 login-form ">
                 <div class="inner-container bg-white p-3 rounded-3">
+                    @* ---- HEADER ---- *@
+                    <div class="login-header text-center mt-3 mb-4">
+                        <p class="fw-bold text-muted welcome-msg">Account Verification</p>
+                        <small><p>Please provide the following details to verify your account</p></small>
+                    </div>
+                    <br />
+
                     <form action="/login/VerifyUserAndContinue" method="Post">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        @* Header *@
-                        <div class="login-header text-center mt-3 mb-4">
-                            <p class="fw-bold text-muted welcome-msg">Account Verification</p>
-                            <small><p>Please provide the following details to verify your account</p></small>
-                        </div>
 
-                        <br />
-
-
-                        @* Form Input *@
-                        <div class="form-group mb-4">
-                            <label asp-for="EmpNumber" class=" control-label"></label>
+                        @* ---- EMPLOYEE NUMBER ---- *@
+                        <div class="form-group">
+                            <label asp-for="EmpNumber" class="control-label"></label>
                             <input asp-for="EmpNumber" class="form-control" value="@empNo" disabled />
+                            <span asp-validation-for="EmpNumber" class="text-danger b-err-msg"></span>
                         </div>
 
-                        <div class="row mb-lg-1">
-
-                            <div class="form-group col-lg-6  mb-lg-0 mb-sm-2">
-                                <label asp-for="Position" class="control-label"></label>
-                                <input asp-for="Position" class="form-control" />
-                                <span asp-validation-for="Position" class="text-danger b-err-msg"></span>
-                            </div>
-
-                            <div class="form-group col-lg-6  mb-lg-0 mb-sm-2">
-                                <label asp-for="MovNumber" class="control-label"></label>
-                                <input asp-for="MovNumber" class="form-control" />
-                                <span asp-validation-for="MovNumber" class="text-danger b-err-msg"></span>
-                            </div>
+                        @* ---- LATEST MOVEMENT NUMBER ---- *@
+                        <div class="form-group">
+                            <label asp-for="MovNumber" class="control-label"></label>
+                            <input asp-for="MovNumber" class="form-control" />
+                            <span asp-validation-for="MovNumber" class="text-danger b-err-msg mb-2"></span>
                         </div>
+                        
 
-                        <div class="row mb-lg-1">
-
-                            <div class="form-group col-lg-6  mb-lg-0 mb-sm-2">
+                        <div class="row">
+                            @* ---- SEC LICENSE NUMBER ---- *@
+                            <div class="form-group col-lg-6">
                                 <label asp-for="SecLicense" class="control-label">Sec License No.</label>
                                 <input asp-for="SecLicense" class="form-control" />
-                                <span asp-validation-for="SecLicense" class="text-danger b-err-msg"></span>
+                                <span asp-validation-for="SecLicense" class="text-danger b-err-msg mb-2"></span>
                             </div>
-
-                            <div class="form-group col-lg-6 mb-lg-0 mb-sm-2">
+                            @* ---- DATE HIRED ---- *@
+                            <div class="form-group col-lg-6">
                                 <label asp-for="DateHired" class="control-label">Date Hired</label>
                                 <input asp-for="DateHired" type="date" class="form-control" />
-                                <span asp-validation-for="DateHired" class="text-danger b-err-msg"></span>
+                                <span asp-validation-for="DateHired" class="text-danger b-err-msg mb-2"></span>
                             </div>
                         </div>
 
-
-                        <div class="form-group mb-lg-1">
-                            <label asp-for="Password" class="control-label"></label>
-                            <input asp-for="Password" class="form-control" type="password" />
-                            <span asp-validation-for="Password" class="text-danger b-err-msg"></span>
+                        @* ---- PASSWORD ---- *@
+                        <div class="form-group">
+                            <label asp-for="vPassword" class="control-label"></label>
+                            <input asp-for="vPassword" class="form-control" type="password" />
+                            <span asp-validation-for="vPassword" class="text-danger b-err-msg mb-2"></span>
                         </div>
 
-                        <input type="submit" value="Validate and Continue" class=" mt-4 btn btn-success w-100" />
+                        <input type="submit" value="Verify and Continue" class=" mt-4 btn btn-success w-100" />
                     </form>
                 </div>
             </div>

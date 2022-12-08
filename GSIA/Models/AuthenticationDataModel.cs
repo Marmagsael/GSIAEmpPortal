@@ -23,7 +23,7 @@ namespace GSIA.Models
         public string MovNumber { get; set; } = string.Empty;
 
         [Display(Name = "Sec License No.")]
-        [Required]
+        [Required (ErrorMessage ="Sec. License is required")]
         public string SecLicense { get; set; } = string.Empty;
 
         [Display(Name = "Date Hired")]
