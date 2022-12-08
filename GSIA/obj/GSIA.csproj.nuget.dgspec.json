@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Development\\Web\\GSIA\\GSIA\\GSIA\\GSIA.csproj": {}
+    "C:\\Web Apps\\Asp.Net\\GSIA(PIS)withAPI\\GSIA\\GSIA.csproj": {}
   },
   "projects": {
-    "D:\\Development\\Web\\GSIA\\GSIA\\GSIA\\GSIA.csproj": {
+    "C:\\Web Apps\\Asp.Net\\GSIA(PIS)withAPI\\GSIA\\GSIA.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Development\\Web\\GSIA\\GSIA\\GSIA\\GSIA.csproj",
+        "projectUniqueName": "C:\\Web Apps\\Asp.Net\\GSIA(PIS)withAPI\\GSIA\\GSIA.csproj",
         "projectName": "GSIA",
-        "projectPath": "D:\\Development\\Web\\GSIA\\GSIA\\GSIA\\GSIA.csproj",
-        "packagesPath": "C:\\Users\\Mar\\.nuget\\packages\\",
-        "outputPath": "D:\\Development\\Web\\GSIA\\GSIA\\GSIA\\obj\\",
+        "projectPath": "C:\\Web Apps\\Asp.Net\\GSIA(PIS)withAPI\\GSIA\\GSIA.csproj",
+        "packagesPath": "C:\\Users\\Judith\\.nuget\\packages\\",
+        "outputPath": "C:\\Web Apps\\Asp.Net\\GSIA(PIS)withAPI\\GSIA\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Mar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Judith\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -33,8 +33,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Development\\Web\\GSIA\\GSIA\\LibraryMySql\\LibraryMySql.csproj": {
-                "projectPath": "D:\\Development\\Web\\GSIA\\GSIA\\LibraryMySql\\LibraryMySql.csproj"
+              "C:\\Web Apps\\Asp.Net\\_GSIA(PIS)\\LibraryMySql\\LibraryMySql.csproj": {
+                "projectPath": "C:\\Web Apps\\Asp.Net\\_GSIA(PIS)\\LibraryMySql\\LibraryMySql.csproj"
               }
             }
           }
@@ -115,20 +115,20 @@
         }
       }
     },
-    "D:\\Development\\Web\\GSIA\\GSIA\\LibraryMySql\\LibraryMySql.csproj": {
+    "C:\\Web Apps\\Asp.Net\\_GSIA(PIS)\\LibraryMySql\\LibraryMySql.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Development\\Web\\GSIA\\GSIA\\LibraryMySql\\LibraryMySql.csproj",
+        "projectUniqueName": "C:\\Web Apps\\Asp.Net\\_GSIA(PIS)\\LibraryMySql\\LibraryMySql.csproj",
         "projectName": "LibraryMySql",
-        "projectPath": "D:\\Development\\Web\\GSIA\\GSIA\\LibraryMySql\\LibraryMySql.csproj",
-        "packagesPath": "C:\\Users\\Mar\\.nuget\\packages\\",
-        "outputPath": "D:\\Development\\Web\\GSIA\\GSIA\\LibraryMySql\\obj\\",
+        "projectPath": "C:\\Web Apps\\Asp.Net\\_GSIA(PIS)\\LibraryMySql\\LibraryMySql.csproj",
+        "packagesPath": "C:\\Users\\Judith\\.nuget\\packages\\",
+        "outputPath": "C:\\Web Apps\\Asp.Net\\_GSIA(PIS)\\LibraryMySql\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Mar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Judith\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

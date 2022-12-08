@@ -26,11 +26,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\LibraryMySql\LibraryMySql.csproj" />
+	  <Folder Include="wwwroot\images\" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="wwwroot\images\" />
+	  <ProjectReference Include="..\..\_GSIA(PIS)\LibraryMySql\LibraryMySql.csproj" />
 	</ItemGroup>
 
 </Project>
