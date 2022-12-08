@@ -16,15 +16,15 @@ public class SchemaAccess : ISchemaAccess
         _sql = sql;
     }
 
-    public string getDefaultSchema()
+    public string _0000getDefaultSchema()
     {
         return _config.GetSection("Schema:Default").Value;
     }
-    public string getDefaultPisSchema()
+    public string _0000getDefaultPisSchema()
     {
         return _config.GetSection("Schema:Pis").Value;
     }
-    public string getDefaultPaySchema()
+    public string _0000getDefaultPaySchema()
     {
         return _config.GetSection("Schema:Pay").Value;
     }

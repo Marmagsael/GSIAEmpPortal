@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.Google;
 using LibraryMySql;
 using Microsoft.Extensions.Options;
 using LibraryMySql.DataAccess.Login;
+using GsiaLibrary.DataAccess;
 
 namespace GSIA.StartupConfig;
 
@@ -18,6 +19,7 @@ public static class DependencyExt
 
         builder.Services.AddSingleton<IMySqlDataAccess, MySqlDataAccess>();
         builder.Services.AddSingleton<ILoginAccess, LoginAccess>();
+        builder.Services.AddSingleton<IApiAccess, ApiAccess>(); 
 
     }
 

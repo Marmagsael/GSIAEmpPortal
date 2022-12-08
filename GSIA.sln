@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GSIA", "GSIA\GSIA.csproj", "{63341C7D-81AE-4DAF-8A75-F5E168060DB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MysqlApi", "MysqlApi\MysqlApi.csproj", "{36C220E2-DEEE-4345-9056-87A3AB04E7C7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryMySql", "LibraryMySql\LibraryMySql.csproj", "{75FC7427-13F1-4FF2-A378-275C7CAFEFCA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MysqlApiLibrary", "MysqlApiLibrary\MysqlApiLibrary.csproj", "{D20E93EB-F07C-4016-AC41-64E99509B11F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MysqlApi", "MysqlApi\MysqlApi.csproj", "{36C220E2-DEEE-4345-9056-87A3AB04E7C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GSIA", "GSIA\GSIA.csproj", "{3586852A-2124-4214-812F-D1CA3959E725}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MysqlApiLibrary", "MysqlApiLibrary\MysqlApiLibrary.csproj", "{D20E93EB-F07C-4016-AC41-64E99509B11F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryMySql", "LibraryMySql\LibraryMySql.csproj", "{5A27106D-F691-4E08-BFE2-1FA8F3142542}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GsiaLibrary", "GsiaLibrary\GsiaLibrary.csproj", "{447D237E-05A3-4898-8527-82AD42716436}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,14 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{63341C7D-81AE-4DAF-8A75-F5E168060DB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{63341C7D-81AE-4DAF-8A75-F5E168060DB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{63341C7D-81AE-4DAF-8A75-F5E168060DB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{63341C7D-81AE-4DAF-8A75-F5E168060DB7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{75FC7427-13F1-4FF2-A378-275C7CAFEFCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{75FC7427-13F1-4FF2-A378-275C7CAFEFCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{75FC7427-13F1-4FF2-A378-275C7CAFEFCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{75FC7427-13F1-4FF2-A378-275C7CAFEFCA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{36C220E2-DEEE-4345-9056-87A3AB04E7C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{36C220E2-DEEE-4345-9056-87A3AB04E7C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36C220E2-DEEE-4345-9056-87A3AB04E7C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +27,18 @@ Global
 		{D20E93EB-F07C-4016-AC41-64E99509B11F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D20E93EB-F07C-4016-AC41-64E99509B11F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D20E93EB-F07C-4016-AC41-64E99509B11F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3586852A-2124-4214-812F-D1CA3959E725}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3586852A-2124-4214-812F-D1CA3959E725}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3586852A-2124-4214-812F-D1CA3959E725}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3586852A-2124-4214-812F-D1CA3959E725}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A27106D-F691-4E08-BFE2-1FA8F3142542}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A27106D-F691-4E08-BFE2-1FA8F3142542}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A27106D-F691-4E08-BFE2-1FA8F3142542}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A27106D-F691-4E08-BFE2-1FA8F3142542}.Release|Any CPU.Build.0 = Release|Any CPU
+		{447D237E-05A3-4898-8527-82AD42716436}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{447D237E-05A3-4898-8527-82AD42716436}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{447D237E-05A3-4898-8527-82AD42716436}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{447D237E-05A3-4898-8527-82AD42716436}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

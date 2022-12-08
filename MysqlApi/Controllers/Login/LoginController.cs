@@ -29,14 +29,14 @@ public class LoginController : ControllerBase
     [HttpGet]
     public async Task<LoginOutputModel?> Login(string username, string password)
     {
-        return await _login.LoginEmployee(_schema.getDefaultPisSchema(), username, password);
+        return await _login.LoginEmployee(_schema._0000getDefaultPisSchema(), username, password);
     }
 
     
     [HttpGet("UserList")] //For testing only
     public async Task<List<LoginOutputModel?>> Login()
     {
-        return await _login.LoginEmployee(_schema.getDefaultPisSchema());
+        return await _login.LoginEmployee(_schema._0000getDefaultPisSchema());
     }
 
     [HttpGet("GetConString")] 
@@ -45,11 +45,22 @@ public class LoginController : ControllerBase
         return _config.GetConnectionString(connName);
     }
 
-    [HttpGet("GetPisScheme")]
+    [HttpGet("0000/GetMainScheme")]
+    public string MainScheme()
+    {
+        return _schema._0000getDefaultSchema();
+    }
+    [HttpGet("0000/GetPisScheme")]
     public string PisScheme()
     {
-        return _schema.getDefaultPisSchema(); 
+        return _schema._0000getDefaultPisSchema();
     }
+    [HttpGet("0000/GetPayScheme")]
+    public string PayScheme()
+    {
+        return _schema._0000getDefaultPaySchema();
+    }
+
 
     [HttpGet("0001/EmpmasByEmpnumber/{empNumber}/{schema}/{connName}")]
     public async Task<ActionResult<LoginOutputModel?>> EmpmasByEmpnumber(string empNumber, string schema="SecPis", string connName = "MySqlConn")
