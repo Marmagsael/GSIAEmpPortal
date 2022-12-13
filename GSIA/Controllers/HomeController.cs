@@ -1,5 +1,4 @@
 ﻿using GSIA.Models;
-using LibraryMySql.DataAccess.Login;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -12,7 +11,7 @@ namespace GSIA.Controllers
      
 
 
-        public HomeController(ILogger<HomeController> logger, IConfiguration configuration, ILoginAccess data )
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }

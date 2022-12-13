@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lury7R1p5o86ZWlAuWvoSTlWoJVc8Z0q2BwzK+Ll8aUqOHuFQ6Xi2JrUAHmzHXtGgo1Is8cmXaUv71A1nC/YYA==",
+  "dgSpecHash": "5CfMMzyNKvRxGc8Mq9Cynhu/FbgkXskF1548CeathBNIxe4WWq6+oD1Yykhp7qGlpho6rZZE3Og+7TKo8PRCQA==",
   "success": true,
-  "projectFilePath": "C:\\Web Apps\\Asp.Net\\_GSIA(PIS)\\LibraryMySql\\LibraryMySql.csproj",
+  "projectFilePath": "C:\\Web Apps\\Asp.Net\\GSIA(PIS)withApi03\\LibraryMySql\\LibraryMySql.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Judith\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
     "C:\\Users\\Judith\\.nuget\\packages\\google.protobuf\\3.19.4\\google.protobuf.3.19.4.nupkg.sha512",

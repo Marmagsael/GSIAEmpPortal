@@ -1,30 +1,28 @@
-﻿@using Microsoft.Extensions.Configuration
+﻿@using GSIA.Models.Login;
+@using Microsoft.Extensions.Configuration
 @inject IConfiguration Configuration
-@model AuthenticationDataModel
+@model LoginViewModel
 
 @{
     var errPasswordMsg = ViewData["errPasswordMsg"] as string;
     var errEmpNoMsg    = ViewData["errEmpNoMsg"] as string;
+    var coName         = ViewData["CoName"] as string;
 }
-
 <section id="login-container">
     <div class="container-fluid">
         <div class="row login-bg d-flex flex-row-reverse">
             <div class="col-12 col-md-5 col-lg-3 login-form ">
                 <div class="inner-container bg-white p-3 rounded-3">
+                    @* Header *@
+                    <div class="login-header text-center mt-3 mb-4">
+                        <p class="fw-bold text-muted welcome-msg">Welcome to</p>
+                        <p class="fw-bolder comp-name">@coName</p>
+                    </div>
+
+
                     <form action="/login" method="Post">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        @* Header *@
-                        <div class="login-header text-center mt-3 mb-4">
-                            <p class="fw-bold text-muted welcome-msg">Welcome to</p>
-                            @* <p class="fw-bolder comp-name"> @ViewBag.Title</p>*@
-                            <p class="fw-bolder comp-name">GSIA</p>
-                        </div>
-
-
-                        @* Form Input *@
-
-
+                        @* ----- EMPLOYEE NUMBER ----- *@
                         <div class="form-group mb-2">
                             <label asp-for="EmpNumber" class="control-label"></label>
                             <input asp-for="EmpNumber" class="form-control" />
@@ -34,7 +32,7 @@
                                 <span class="text-danger"><small>@errEmpNoMsg</small></span>
                             }
                         </div>
-
+                       @* ----- PASSWORD ----- *@
                         <div class="form-group mb-2">
                             <label class="control-label">Password</label>
                             <input class="form-control" name="Password" type="password"/>
@@ -43,7 +41,7 @@
                                 <span class="text-danger"><small>@errPasswordMsg</small></span>
                             }
                         </div>
-
+                        @* ----- BUTTON ----- *@
                         <input type="submit" value="Sign-in" class=" mt-4 btn btn-success w-100" />
                         <hr class="mt-4">
                         <a class="mt-4 nav-link btn btn-danger w-100 text-white" asp-area="" asp-controller="Login" asp-action="SignInWithGoogle">Sig-in with Google</a>

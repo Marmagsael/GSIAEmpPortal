@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Web Apps\\Asp.Net\\_GSIA(PIS)\\LibraryMySql\\LibraryMySql.csproj": {}
+    "C:\\Web Apps\\Asp.Net\\GSIA(PIS)withApi03\\LibraryMySql\\LibraryMySql.csproj": {}
   },
   "projects": {
-    "C:\\Web Apps\\Asp.Net\\_GSIA(PIS)\\LibraryMySql\\LibraryMySql.csproj": {
+    "C:\\Web Apps\\Asp.Net\\GSIA(PIS)withApi03\\LibraryMySql\\LibraryMySql.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Web Apps\\Asp.Net\\_GSIA(PIS)\\LibraryMySql\\LibraryMySql.csproj",
+        "projectUniqueName": "C:\\Web Apps\\Asp.Net\\GSIA(PIS)withApi03\\LibraryMySql\\LibraryMySql.csproj",
         "projectName": "LibraryMySql",
-        "projectPath": "C:\\Web Apps\\Asp.Net\\_GSIA(PIS)\\LibraryMySql\\LibraryMySql.csproj",
+        "projectPath": "C:\\Web Apps\\Asp.Net\\GSIA(PIS)withApi03\\LibraryMySql\\LibraryMySql.csproj",
         "packagesPath": "C:\\Users\\Judith\\.nuget\\packages\\",
-        "outputPath": "C:\\Web Apps\\Asp.Net\\_GSIA(PIS)\\LibraryMySql\\obj\\",
+        "outputPath": "C:\\Web Apps\\Asp.Net\\GSIA(PIS)withApi03\\LibraryMySql\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
-using LibraryMySql;
-using Microsoft.Extensions.Options;
-using LibraryMySql.DataAccess.Login;
+using GsiaLibrary.DataAccess.Login;
+using GsiaLibrary.DataAccess;
 
 namespace GSIA.StartupConfig;
 
@@ -14,11 +13,16 @@ public static class DependencyExt
         builder.Services.AddControllersWithViews();
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSingleton<IApiAccess, ApiAccess>();
+        builder.Services.AddSingleton<ILoginData, LoginData>();
+    }
 
-
-        builder.Services.AddSingleton<IMySqlDataAccess, MySqlDataAccess>();
-        builder.Services.AddSingleton<ILoginAccess, LoginAccess>();
-
+    public static void AddHttpClient(this WebApplicationBuilder builder)
+    {
+        builder.Services.AddHttpClient("api", opt =>
+        {
+            opt.BaseAddress = new Uri(builder.Configuration.GetValue<string>("ApiAddress"+"/"));
+        });
     }
 
     public static void AddAuthenticationServices(this WebApplicationBuilder builder)

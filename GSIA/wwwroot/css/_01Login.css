@@ -53,3 +53,35 @@
     #login-container .inner-container {
         height: 100%;
     }
+
+.c-label {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+}
+
+.c-input{
+    padding-right:20%;
+}
+
+.c-input {
+    padding-right: 20%;
+}
+
+/*.c-input-placeholder {
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 0;
+    padding-left: 5px;
+}*/
+
+.c-input-text {
+    position: absolute;
+    display: block;
+    top: 50%;
+    right: 10px;
+    background: transparent;
+    padding-left: 5px;
+}
+
