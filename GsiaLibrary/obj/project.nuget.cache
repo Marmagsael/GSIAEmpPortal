@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "S6yF2WdTbBXhE+bN0iXts66oAtPFTu160L7PwbABgHrb1PZKnCrA4XVE+s/SHOIKrmq/qXUFECJUp0Z25Xc1eQ==",
+  "dgSpecHash": "jO7Bh4rQnsXhDXS5nujZ4O6A85SILY3iNsNnHUXtwka0Tw/V/8J+j1cyi3exHxdiFkUmS493HIoKvzEKlHqkLQ==",
   "success": true,
   "projectFilePath": "C:\\Web Apps\\Asp.Net\\GSIA(PIS)withApi03\\GsiaLibrary\\GsiaLibrary.csproj",
   "expectedPackageFiles": [
@@ -43,7 +43,6 @@
     "C:\\Users\\Judith\\.nuget\\packages\\system.io.filesystem.primitives\\4.3.0\\system.io.filesystem.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\Judith\\.nuget\\packages\\system.linq\\4.3.0\\system.linq.4.3.0.nupkg.sha512",
     "C:\\Users\\Judith\\.nuget\\packages\\system.net.http\\4.3.4\\system.net.http.4.3.4.nupkg.sha512",
-    "C:\\Users\\Judith\\.nuget\\packages\\system.net.http.json\\7.0.0\\system.net.http.json.7.0.0.nupkg.sha512",
     "C:\\Users\\Judith\\.nuget\\packages\\system.net.primitives\\4.3.0\\system.net.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\Judith\\.nuget\\packages\\system.reflection\\4.3.0\\system.reflection.4.3.0.nupkg.sha512",
     "C:\\Users\\Judith\\.nuget\\packages\\system.reflection.primitives\\4.3.0\\system.reflection.primitives.4.3.0.nupkg.sha512",
@@ -62,8 +61,6 @@
     "C:\\Users\\Judith\\.nuget\\packages\\system.security.cryptography.primitives\\4.3.0\\system.security.cryptography.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\Judith\\.nuget\\packages\\system.security.cryptography.x509certificates\\4.3.0\\system.security.cryptography.x509certificates.4.3.0.nupkg.sha512",
     "C:\\Users\\Judith\\.nuget\\packages\\system.text.encoding\\4.3.0\\system.text.encoding.4.3.0.nupkg.sha512",
-    "C:\\Users\\Judith\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
-    "C:\\Users\\Judith\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512",
     "C:\\Users\\Judith\\.nuget\\packages\\system.threading\\4.3.0\\system.threading.4.3.0.nupkg.sha512",
     "C:\\Users\\Judith\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512"
   ],

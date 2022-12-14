@@ -601,3 +601,4 @@ C:\Web Apps\Asp.Net\GSIA(PIS)withApi03\GSIA\obj\Debug\net6.0\GSIA.genruntimeconf
 C:\Web Apps\Asp.Net\GSIA(PIS)withApi03\GSIA\obj\Debug\net6.0\ref\GSIA.dll
 C:\Web Apps\Asp.Net\GSIA(PIS)withApi03\GSIA\bin\Debug\net6.0\GsiaLibrary.dll
 C:\Web Apps\Asp.Net\GSIA(PIS)withApi03\GSIA\bin\Debug\net6.0\GsiaLibrary.pdb
+C:\Web Apps\Asp.Net\GSIA(PIS)withApi03\GSIA\bin\Debug\net6.0\System.Reflection.MetadataLoadContext.dll

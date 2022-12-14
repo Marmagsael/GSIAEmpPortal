@@ -26,7 +26,7 @@ public class LoginData : ILoginData
         _httpClientFactory = httpClientFactory;
     }
 
-    public QueryResponseModel ValidateEmployeeByLoginNameAndPassword(LoginInputModel? input)
+    public QueryResponseModel _10000_ValidateEmployeeByLoginNameAndPassword(LoginInputModel? input)
     {
         string loginName = input?.EmpNumber!;
         string pwd = input?.Password!;
@@ -42,118 +42,60 @@ public class LoginData : ILoginData
         }
         else
         {
-            //--- CHECK IF USER EXIST IN SECPIS TABLE -----------------------------------
+            //--- CHECK IF EMPLOYEE NUMBER EXISTS IN MAIN TABLE -----------------------------------
             if (userFromMain.QueryResult.Length == 0)
             {
 
-                string schema = GetPisScheme();
-                QueryResponseModel userFromSecpis = _apiAccess.FetchDataFromApi("/Login/0001/EmpmasByEmpnumber/" + loginName + "/" + schema + "/MySqlConn");
-
-                if (userFromSecpis.QueryResult.Length == 0)
-                {
-                    //  EMPLOYEE NOT EXIST IN SECPIS TABLE 
-                    userFromSecpis.Description = "Employe Number was not found";
-                    userFromSecpis.ErrorField = "EmployeeNo";
-                    return userFromSecpis;
-                }
-                else
-                {
-                    //  EMPLOYEE  EXIST IN SECPIS TABLE 
-                    userFromSecpis.Description = "Employee number exists in secpis";
-                    userFromSecpis.ErrorField = null;
-                    return userFromSecpis;
-                }
+                //  EMPLOYEE DOES NOT EXIST IN MAIN TABLE 
+                userFromMain.Description = "Employee number does not exist. Please register.";
+                userFromMain.ErrorField = "EmployeeNo";
+                return userFromMain;
 
             }
             else
             {
-                //--- VALIDATE PASSWORD IN MAIN TABLE---
-                userFromMain = _apiAccess.FetchDataFromApi("/Login/1000/userlogin/" + loginName + "/" + pwd);
-                if (userFromMain.QueryResult == null)
+                //  EMPLOYEE EXISTS IN MAIN TABLE THEN  CHECK EMPLOYEE'S PASSWORD ---------------------------------------
+                // CHECK IF  USER PROVIDE A PASSWORD
+                if (pwd == null)
                 {
-                    // NO PASSWORD WAS PROVIDED
-                    userFromMain.Description = "Please provide a password";
+                    userFromMain.Description = "Please provide your password.";
                     userFromMain.ErrorField = "Password";
                     return userFromMain;
                 }
                 else
                 {
-                    if (userFromMain.QueryResult.Length == 0)
+                    userFromMain = _apiAccess.FetchDataFromApi("/Login/1000/userlogin/" + loginName + "/" + pwd);
+
+                    // --- CHECK SERVER CONNECTION -----------------------------------
+                    if (userFromMain.Reponse == "connection failed")
                     {
-                        // PASSWORD DID NOT MATCH
-                        userFromMain.Description = "Incorrect Password";
-                        userFromMain.ErrorField = "Password";
+                        userFromMain.Description = "There's a problem connecting to the server.";
+                        userFromMain.ErrorField = "Server";
                         return userFromMain;
                     }
                     else
                     {
-                        // PASSWORD MATCH
-                        userFromMain.Description = "Password Match";
-                        userFromMain.ErrorField = null;
-                        return userFromMain;
+                        //CHECK IF  THE PASSWORD IS CORRECT
+                        if (userFromMain.QueryResult.Length == 0)
+                        {
+                            userFromMain.Description = "You have entered an invalid password. Please try again.";
+                            userFromMain.ErrorField = "Password";
+                            return userFromMain;
+                        }
+                        else
+                        {
+                            userFromMain.Description = "Password Match";
+                            userFromMain.ErrorField = null;
+                            return userFromMain;
+                        }
                     }
                 }
+
             }
         }
     }
-    public QueryResponseModel ValidateEmployeeByAddedCredentials(VerifyAccountInputModel? input)
-    {
-        string EmpNumber = input.vEmpNumber;
-        string DateHired = input.DateHired;
-        string SecLicense = input.SecLicense;
-        string MovNumber = input.MovNumber;
-        string Email = input.Email + "@gmail.com";
-        string Password = input.vPassword;
-        string schema = GetPisScheme();
-        string ConnName = "MySqlConn";
 
-
-        QueryResponseModel? userFromSecpis = _apiAccess.FetchDataFromApi("/Login/1004/validateUserFromEmpmas/" + EmpNumber + "/" + DateHired + "/" + SecLicense + "/" + MovNumber + "/" + schema + "?connName=MySqlConn");
-
-        // CHECK SERVER CONNECTION -------------------------------
-        if (userFromSecpis.Reponse == "connection failed")
-        {
-            userFromSecpis.Description = "There's a problem connecting to the server";
-            userFromSecpis.ErrorField = "Server";
-            return userFromSecpis;
-        }
-        else
-        {
-            //--- CHECK IF USER'S INPUT MATCHES WITH THE DATA IN EMPMAS TABLE -----------------------------------
-            if (userFromSecpis.QueryResult.Length == 0)
-            {
-                // CREDENTIALS DO NOT MATCH WITH THE RECORD IN PIS
-                userFromSecpis.Description = "Credentials do not match the record";
-                userFromSecpis.ErrorField = "annonymous";
-                return userFromSecpis;
-
-            }
-            else
-            {
-                // CREDENTIALS MATCH WITH THE RECORD IN PIS 
-                UserMainModel mainModel = new()
-                {
-                    LoginName = EmpNumber,
-                    Password = Password,
-                    Email = Email,
-                    Domain = "gsiaph.info"
-                };
-
-                schema = GetMainScheme();
-
-                //  INSERT CREDENTIALS IN MAIN SCHEMA 
-                string data = JsonConvert.SerializeObject(mainModel);
-                StringContent content = new(data, Encoding.UTF8, "application/json");
-
-                userFromSecpis = _apiAccess.ExecuteDataFromApi("/Login/1004/InsertUserFromEmpmas/" + EmpNumber + "/" + Password + "/" + Email + "/" + mainModel.Domain + "/" + schema + "/" + ConnName, content);
-
-                return userFromSecpis;
-            }
-        }
-
-
-    }
-    public QueryResponseModel ValidateEmployeeByEmail(string email)
+    public QueryResponseModel _20000_ValidateEmployeeByEmail(string email)
     {
 
         string Email = email; ;
@@ -161,21 +103,24 @@ public class LoginData : ILoginData
         string ConnName = "MySqlConn";
 
         QueryResponseModel? userFromMain = _apiAccess.FetchDataFromApi("/Login/1003/GetUser/" + Email);
-       
+
         // CHECK SERVER CONNECTION -------------------------------
         if (userFromMain.Reponse == "connection failed")
         {
             userFromMain.Description = "There's a problem connecting to the server";
             userFromMain.ErrorField = "Server";
             return userFromMain;
-        } else {
+        }
+        else
+        {
             //CHECK IF USER EMAIL EXISTS IN THE MAIN TABLE
             if (userFromMain.QueryResult.Length == 0)
             {
                 userFromMain.Description = "Email don't exist";
                 userFromMain.ErrorField = null;
                 return userFromMain;
-            } else
+            }
+            else
             {
                 userFromMain.Description = "Email exists";
                 userFromMain.ErrorField = null;

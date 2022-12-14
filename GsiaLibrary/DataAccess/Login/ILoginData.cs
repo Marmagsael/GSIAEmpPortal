@@ -6,8 +6,7 @@ namespace GsiaLibrary.DataAccess.Login
     public interface ILoginData
     {
         string GetCompanyInfo();
-        QueryResponseModel ValidateEmployeeByAddedCredentials(VerifyAccountInputModel? input);
-        QueryResponseModel ValidateEmployeeByEmail(string email);
-        QueryResponseModel ValidateEmployeeByLoginNameAndPassword(LoginInputModel? input);
+        QueryResponseModel _10000_ValidateEmployeeByLoginNameAndPassword(LoginInputModel? input);
+        QueryResponseModel _20000_ValidateEmployeeByEmail(string email);
     }
 }
