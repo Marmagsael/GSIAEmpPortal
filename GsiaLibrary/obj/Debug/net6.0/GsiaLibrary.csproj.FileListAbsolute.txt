@@ -10,15 +10,3 @@ C:\Web Apps\Asp.Net\GSIA(PIS)withApi02\GsiaLibrary\obj\Debug\net6.0\GsiaLibrary.
 C:\Web Apps\Asp.Net\GSIA(PIS)withApi02\GsiaLibrary\obj\Debug\net6.0\refint\GsiaLibrary.dll
 C:\Web Apps\Asp.Net\GSIA(PIS)withApi02\GsiaLibrary\obj\Debug\net6.0\GsiaLibrary.pdb
 C:\Web Apps\Asp.Net\GSIA(PIS)withApi02\GsiaLibrary\obj\Debug\net6.0\ref\GsiaLibrary.dll
-C:\Web Apps\Asp.Net\GSIA(PIS)withApi03\GsiaLibrary\bin\Debug\net6.0\GsiaLibrary.deps.json
-C:\Web Apps\Asp.Net\GSIA(PIS)withApi03\GsiaLibrary\bin\Debug\net6.0\GsiaLibrary.dll
-C:\Web Apps\Asp.Net\GSIA(PIS)withApi03\GsiaLibrary\bin\Debug\net6.0\GsiaLibrary.pdb
-C:\Web Apps\Asp.Net\GSIA(PIS)withApi03\GsiaLibrary\obj\Debug\net6.0\GsiaLibrary.csproj.AssemblyReference.cache
-C:\Web Apps\Asp.Net\GSIA(PIS)withApi03\GsiaLibrary\obj\Debug\net6.0\GsiaLibrary.GeneratedMSBuildEditorConfig.editorconfig
-C:\Web Apps\Asp.Net\GSIA(PIS)withApi03\GsiaLibrary\obj\Debug\net6.0\GsiaLibrary.AssemblyInfoInputs.cache
-C:\Web Apps\Asp.Net\GSIA(PIS)withApi03\GsiaLibrary\obj\Debug\net6.0\GsiaLibrary.AssemblyInfo.cs
-C:\Web Apps\Asp.Net\GSIA(PIS)withApi03\GsiaLibrary\obj\Debug\net6.0\GsiaLibrary.csproj.CoreCompileInputs.cache
-C:\Web Apps\Asp.Net\GSIA(PIS)withApi03\GsiaLibrary\obj\Debug\net6.0\GsiaLibrary.dll
-C:\Web Apps\Asp.Net\GSIA(PIS)withApi03\GsiaLibrary\obj\Debug\net6.0\refint\GsiaLibrary.dll
-C:\Web Apps\Asp.Net\GSIA(PIS)withApi03\GsiaLibrary\obj\Debug\net6.0\GsiaLibrary.pdb
-C:\Web Apps\Asp.Net\GSIA(PIS)withApi03\GsiaLibrary\obj\Debug\net6.0\ref\GsiaLibrary.dll

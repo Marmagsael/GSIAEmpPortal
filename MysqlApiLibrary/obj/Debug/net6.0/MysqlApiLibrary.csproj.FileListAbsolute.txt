@@ -10,15 +10,3 @@ D:\Development\Web\GSIA\GSIA\MysqlApiLibrary\obj\Debug\net6.0\MysqlApiLibrary.dl
 D:\Development\Web\GSIA\GSIA\MysqlApiLibrary\obj\Debug\net6.0\refint\MysqlApiLibrary.dll
 D:\Development\Web\GSIA\GSIA\MysqlApiLibrary\obj\Debug\net6.0\MysqlApiLibrary.pdb
 D:\Development\Web\GSIA\GSIA\MysqlApiLibrary\obj\Debug\net6.0\ref\MysqlApiLibrary.dll
-C:\Web Apps\Asp.Net\GSIA(PIS)withApi03\MysqlApiLibrary\bin\Debug\net6.0\MysqlApiLibrary.deps.json
-C:\Web Apps\Asp.Net\GSIA(PIS)withApi03\MysqlApiLibrary\bin\Debug\net6.0\MysqlApiLibrary.dll
-C:\Web Apps\Asp.Net\GSIA(PIS)withApi03\MysqlApiLibrary\bin\Debug\net6.0\MysqlApiLibrary.pdb
-C:\Web Apps\Asp.Net\GSIA(PIS)withApi03\MysqlApiLibrary\obj\Debug\net6.0\MysqlApiLibrary.csproj.AssemblyReference.cache
-C:\Web Apps\Asp.Net\GSIA(PIS)withApi03\MysqlApiLibrary\obj\Debug\net6.0\MysqlApiLibrary.GeneratedMSBuildEditorConfig.editorconfig
-C:\Web Apps\Asp.Net\GSIA(PIS)withApi03\MysqlApiLibrary\obj\Debug\net6.0\MysqlApiLibrary.AssemblyInfoInputs.cache
-C:\Web Apps\Asp.Net\GSIA(PIS)withApi03\MysqlApiLibrary\obj\Debug\net6.0\MysqlApiLibrary.AssemblyInfo.cs
-C:\Web Apps\Asp.Net\GSIA(PIS)withApi03\MysqlApiLibrary\obj\Debug\net6.0\MysqlApiLibrary.csproj.CoreCompileInputs.cache
-C:\Web Apps\Asp.Net\GSIA(PIS)withApi03\MysqlApiLibrary\obj\Debug\net6.0\MysqlApiLibrary.dll
-C:\Web Apps\Asp.Net\GSIA(PIS)withApi03\MysqlApiLibrary\obj\Debug\net6.0\refint\MysqlApiLibrary.dll
-C:\Web Apps\Asp.Net\GSIA(PIS)withApi03\MysqlApiLibrary\obj\Debug\net6.0\MysqlApiLibrary.pdb
-C:\Web Apps\Asp.Net\GSIA(PIS)withApi03\MysqlApiLibrary\obj\Debug\net6.0\ref\MysqlApiLibrary.dll

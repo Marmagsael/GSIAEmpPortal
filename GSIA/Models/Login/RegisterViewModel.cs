@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.VisualBasic;
+using System.ComponentModel.DataAnnotations;
 
 namespace GSIA.Models.Login
 {
@@ -8,28 +9,38 @@ namespace GSIA.Models.Login
         [Required(ErrorMessage = "Employee Number is required.")]
         public string EmpNumber { get; set; } = string.Empty;
 
-        [Display(Name = "Movement Number")]
-        [Required(ErrorMessage = "Movement Number is required.")]
+
+        [Display(Name = "Deployment Code")]
+        public string DepCode { get; set; } = string.Empty;
+
+
+        [Display(Name = "Latest Movement No.")]
+        [Required(ErrorMessage = "Latest Movement No. is required.")]
         public string MovNumber { get; set; } = string.Empty;
+
 
         [Display(Name = "Sec License")]
         [Required(ErrorMessage = "Sec License is required.")]
         public string SecLicense { get; set; } = string.Empty;
 
+
         [Display(Name = "Date Hired")]
-        [Required(ErrorMessage = "Date Hired is required.")]
-        public DateTime DateHired { get; set; }
+        [DataType(DataType.Date)]
+        [Required(ErrorMessage = "Date hired is required")]
+        public string DateHired { get; set; } = string.Empty;
+
 
         [Display(Name = "Password")]
         [Required(ErrorMessage = "Password is required")]
-        [StringLength(255, ErrorMessage = "Must be between 5 and 255 characters", MinimumLength = 6)]
         [DataType(DataType.Password)]
+        [StringLength(20, ErrorMessage = "The {0} must be at least 6 characters long.", MinimumLength = 6)]
         public string Password { get; set; } = string.Empty;
+
 
         [Display(Name = "Confirm Password")]
         [Required(ErrorMessage = "Confirm Password is required")]
-        [StringLength(255, ErrorMessage = "Must be between 5 and 255 characters", MinimumLength = 6)]
         [DataType(DataType.Password)]
+        [StringLength(20, ErrorMessage = "The {0} must be at least 6 characters long.", MinimumLength = 6)]
         [Compare("Password")]
         public string ConfirmPassword { get; set; } = string.Empty;
 

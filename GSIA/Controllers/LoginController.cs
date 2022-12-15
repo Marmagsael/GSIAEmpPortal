@@ -1,9 +1,13 @@
-﻿using GsiaLibrary.DataAccess.Login;
+﻿using GSIA.Models.Login;
+using GsiaLibrary.DataAccess.Login;
 using GsiaLibrary.Models;
 using GsiaLibrary.Models.UI.Login;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using Newtonsoft.Json;
 
 namespace GSIA.Controllers;
 
@@ -72,6 +76,7 @@ public class LoginController : Controller
     public IActionResult SignInWithGoogle()
     {
         var claims = User.Claims;
+
         string emailIdentifier = ClaimTypes.Email;
         string email = claims.FirstOrDefault(c => c.Type == emailIdentifier).Value;
 
@@ -89,19 +94,65 @@ public class LoginController : Controller
 
     // --------- REGISTRATION PAGE -----------
     [AllowAnonymous]
-    [HttpGet("Register")]
+    [HttpGet("register")]
     public IActionResult Register()
     {
+        var claimsCount = User.Claims.Count();
+        string hasClaims = "false";
+        if (claimsCount != 0)
+        {
+            // WITH CLAIMS -----------------------------------------------
+            hasClaims = "true";
+        }
+
+        ViewData["hasClaims"] = hasClaims;
         return View();
     }
 
 
 
     [AllowAnonymous]
-    [HttpPost("Register")]
-    public IActionResult RegisterAccount()
+    [HttpPost("register")]
+    public async Task<IActionResult> RegisterAccount(RegisterInputModel input)
     {
-        return View();
+
+        var claimsCount = User.Claims.Count();
+        if(claimsCount != 0)
+        {
+            // WITH CLAIMS -----------------------------------------------
+            var claims = User.Claims;
+            string emailIdentifier = ClaimTypes.Email;
+            string email = claims.FirstOrDefault(c => c.Type == emailIdentifier).Value;
+
+            input.Email = email;
+        } 
+
+        var data = _login._3000_RegisterAccount(input);
+        if (data.ErrorField == null)
+        {
+
+            if(claimsCount == 0)
+            {
+                //CONVERT OUTPUT TO JS DATA ----------------------------------------------------------
+                LoginOutputModel outputModel = new();
+                outputModel = JsonConvert.DeserializeObject<LoginOutputModel>(data.QueryResult);
+
+                //ADD NEW CLAIMS --------------------------------------------------------------------
+                var claims = new List<Claim>();
+                claims.Add(new Claim(ClaimTypes.Name, outputModel.EmpFirstNm + outputModel.EmpLastNm ));
+                claims.Add(new Claim(ClaimTypes.GivenName, outputModel.EmpFirstNm ));
+                claims.Add(new Claim(ClaimTypes.Surname, outputModel.EmpLastNm));
+
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var claimPrincipal = new ClaimsPrincipal(claimsIdentity);
+                await HttpContext.SignInAsync(claimPrincipal);
+            }
+            return Redirect("/Main");
+        }
+        ViewData["errorMessage"] = data.Description;
+        return View("~/Views/Login/Register.cshtml");
+
+
     }
 
 }
