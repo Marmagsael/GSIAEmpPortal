@@ -24,8 +24,11 @@ public class LoginController : Controller
 
     [AllowAnonymous]
     [HttpGet("login")]
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
+        // To clear claims ----------------
+        await HttpContext.SignOutAsync();
+
         ViewData["CoName"] = _login.GetCompanyInfo();
         return View();
     }
@@ -117,14 +120,17 @@ public class LoginController : Controller
     {
 
         var claimsCount = User.Claims.Count();
-        if(claimsCount != 0)
+        string hasClaims = "false";
+
+        if (claimsCount != 0)
         {
-            // WITH CLAIMS -----------------------------------------------
+            // User Not signed in with Google -----------------------------------------------
             var claims = User.Claims;
             string emailIdentifier = ClaimTypes.Email;
             string email = claims.FirstOrDefault(c => c.Type == emailIdentifier).Value;
 
             input.Email = email;
+            hasClaims = "true";
         } 
 
         var data = _login._3000_RegisterAccount(input);
@@ -149,6 +155,7 @@ public class LoginController : Controller
             }
             return Redirect("/Main");
         }
+        ViewData["hasClaims"] = hasClaims;
         ViewData["errorMessage"] = data.Description;
         return View("~/Views/Login/Register.cshtml");
 

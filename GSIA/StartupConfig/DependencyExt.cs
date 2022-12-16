@@ -21,7 +21,7 @@ public static class DependencyExt
     {
         builder.Services.AddHttpClient("api", opt =>
         {
-            opt.BaseAddress = new Uri(builder.Configuration.GetValue<string>("ApiAddress"+"/"));
+            opt.BaseAddress = new Uri(builder.Configuration.GetValue<string>("ApiAddress"));
         });
     }
 

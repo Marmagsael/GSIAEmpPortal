@@ -3,47 +3,53 @@
 
 @{
     var errPasswordMsg = ViewData["errPasswordMsg"] as string;
-    var errEmpNoMsg    = ViewData["errEmpNoMsg"] as string;
-    var coName         = ViewData["CoName"] as string;
+    var errEmpNoMsg = ViewData["errEmpNoMsg"] as string;
+    var coName = ViewData["CoName"] as string;
 }
 <section id="login-container">
     <div class="container-fluid">
         <div class="row login-bg d-flex flex-row-reverse">
             <div class="col-12 col-md-5 col-lg-3 login-form ">
                 <div class="inner-container bg-white p-3 rounded-3">
-                    @* Header *@
+                    @* -------- HEADER --------- *@
                     <div class="login-header text-center mt-3 mb-4">
-                        <p class="fw-bold text-muted welcome-msg">Welcome to</p>
-                        <p class="fw-bolder comp-name">@coName</p>
+                        <p class="fw-bold form-title">Welcome to</p>
+                        <!-- <p class="fw-bolder comp-name">@coName</p> -->
+                        <p class="fw-bolder comp-name">GSIA</p>
                     </div>
 
 
                     <form action="/login" method="Post">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         @* ----- EMPLOYEE NUMBER ----- *@
-                        <div class="form-group mb-2">
+                        <div class="form-group">
                             <label asp-for="EmpNumber" class="control-label"></label>
                             <input asp-for="EmpNumber" class="form-control" />
-                            <small><span asp-validation-for="EmpNumber" class="text-danger"></span> </small>
+                            <span asp-validation-for="EmpNumber" class="text-danger err-msg"></span>
                             @if (errEmpNoMsg != null)
                             {
-                                <span class="text-danger"><small>@errEmpNoMsg</small></span>
+                                <span class="text-danger err-msg"><small>@errEmpNoMsg</small></span>
                             }
                         </div>
-                       @* ----- PASSWORD ----- *@
-                        <div class="form-group mb-2">
+                        @* ----- PASSWORD ----- *@
+                        <div class="form-group">
                             <label class="control-label">Password</label>
-                            <input class="form-control" name="Password" type="password"/>
+                            <input class="form-control" name="Password" type="password" />
                             @if (errPasswordMsg != null)
                             {
-                                <span class="text-danger"><small>@errPasswordMsg</small></span>
+                                <span class="text-danger  err-msg"><small>@errPasswordMsg</small></span>
                             }
                         </div>
                         @* ----- BUTTON ----- *@
-                        <input type="submit" value="Sign-in" class=" mt-4 btn btn-success w-100" />
-                        <hr class="mt-4">
-                        <a type="button"  class="mt-4 nav-link btn btn-danger w-100 text-white" asp-area="" asp-controller="Login" asp-action="SignInWithGoogle">Sign-in with Google</a>
-                        <a type="button" class="mt-4 nav-link btn btn-outline-secondary w-100 text-dark" asp-area="" asp-controller="Login" asp-action="Register">Register</a>
+
+                        <input type="submit" value="Sign-in" class=" btn btn-success w-100 mt-3" />
+
+                        <div class="horizontal-divider d-flex align-items-center gap-2"><hr class="w-100" /> <small> or </small> <hr class="w-100" /></div>
+
+                        <a type="button" class="nav-link btn btn-danger w-100 text-white" asp-area="" asp-controller="Login" asp-action="SignInWithGoogle">Sign-in with Google</a>
+
+                        <p class="text-center mt-5 signup-link">Don't have an account ? <a class="" asp-area="" asp-controller="Login" asp-action="Register">Sign up</a></p>
+
                     </form>
                 </div>
             </div>
@@ -57,5 +63,5 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 
-    
+
 }

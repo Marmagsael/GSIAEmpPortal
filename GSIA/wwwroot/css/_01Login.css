@@ -1,4 +1,6 @@
-﻿body {
+﻿
+
+body {
     background-color: rgb(57, 108, 73);
     background-image: url('Images/Global/landing_bg.jpg');
     background-repeat: no-repeat;
@@ -8,7 +10,7 @@
 /* Navbar */
 #main-navbar {
     background-color: rgb(32 72 24 / 90%);
-    height:60px;
+    height: 60px;
 }
 
     #main-navbar .navbar-brand-name {
@@ -27,61 +29,58 @@
     margin: 0;
 }
 
-    #login-container .login-header .welcome-msg {
-        font-size: 1.25rem;
-        color: darkgrey;
-    }
-
-    #login-container .login-header .comp-name {
-        font-size: 2rem;
-        color: green;
-    }
-
-    /* Login Form */
-    #login-container .login-bg {
-        background-image: url('/images/login-bg.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-
-    #login-container .login-form {
-        background-color: rgba(255,255,255,.7);
-        padding: 15px;
-        height: calc(100vh - 60px);
-    }
-
-    #login-container .inner-container {
-        height: 100%;
-    }
-
-.c-label {
-    position: relative;
-    display: block;
-    box-sizing: border-box;
+#login-container .login-header .form-title {
+    font-size: var(--text-lg);
+    color: var(--color-text-dark-100);
 }
 
-.c-input{
-    padding-right:20%;
+#login-container .login-header .comp-name {
+    font-size: var(--text-lg);
+    color: var(--color-brand);
 }
 
-.c-input {
-    padding-right: 20%;
+/* Login Form */
+#login-container .login-bg {
+    background-image: url('/images/login-bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-/*.c-input-placeholder {
-    position: absolute;
-    display: block;
-    top: 50%;
-    left: 0;
-    padding-left: 5px;
-}*/
-
-.c-input-text {
-    position: absolute;
-    display: block;
-    top: 50%;
-    right: 10px;
-    background: transparent;
-    padding-left: 5px;
+#login-container .login-form {
+    background-color: rgba(255,255,255,.7);
+    padding: 15px;
+    height: calc(100vh - 60px);
 }
 
+#login-container .inner-container {
+    height: 100%;
+}
+
+.form-group {
+    margin-bottom: var(--space-lg);
+}
+
+.horizontal-divider {
+    margin: var(--space-md) 0;
+}
+
+label {
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-sm);
+}
+
+input {
+    font-size: var(--text-md);
+}
+
+.err-msg {
+    font-size: var(--text-xs);
+}
+/*Button*/
+.signup-link {
+    font-size: var(--text-sm);
+}
+
+.signup-link a{
+    font-size: var(--text-md);
+}
