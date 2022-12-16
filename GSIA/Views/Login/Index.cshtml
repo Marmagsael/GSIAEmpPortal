@@ -2,9 +2,11 @@
 @model LoginViewModel
 
 @{
-    var errPasswordMsg = ViewData["errPasswordMsg"] as string;
-    var errEmpNoMsg = ViewData["errEmpNoMsg"] as string;
     var coName = ViewData["CoName"] as string;
+
+    var errServerMsg = ViewData["errServerMsg"] as string;
+    var errEmpNoMsg = ViewData["errEmpNoMsg"] as string;
+    var errPasswordMsg = ViewData["errPasswordMsg"] as string;
 }
 <section id="login-container">
     <div class="container-fluid">
@@ -13,11 +15,16 @@
                 <div class="inner-container bg-white p-3 rounded-3">
                     @* -------- HEADER --------- *@
                     <div class="login-header text-center mt-3 mb-4">
-                        <p class="fw-bold form-title">Welcome to</p>
+                        <p class=" form-title">Welcome to</p>
                         <!-- <p class="fw-bolder comp-name">@coName</p> -->
                         <p class="fw-bolder comp-name">GSIA</p>
                     </div>
-
+                    @if (@errServerMsg != null)
+                    {
+                        <div class="alert alert-danger d-flex align-items-center err-msg" role="alert">
+                               @errServerMsg
+                        </div>
+                    }
 
                     <form action="/login" method="Post">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -28,7 +35,7 @@
                             <span asp-validation-for="EmpNumber" class="text-danger err-msg"></span>
                             @if (errEmpNoMsg != null)
                             {
-                                <span class="text-danger err-msg"><small>@errEmpNoMsg</small></span>
+                                <span class="text-danger err-msg">@errEmpNoMsg</span>
                             }
                         </div>
                         @* ----- PASSWORD ----- *@
@@ -37,7 +44,7 @@
                             <input class="form-control" name="Password" type="password" />
                             @if (errPasswordMsg != null)
                             {
-                                <span class="text-danger  err-msg"><small>@errPasswordMsg</small></span>
+                                <span class="text-danger  err-msg">@errPasswordMsg</span>
                             }
                         </div>
                         @* ----- BUTTON ----- *@
@@ -48,7 +55,7 @@
 
                         <a type="button" class="nav-link btn btn-danger w-100 text-white" asp-area="" asp-controller="Login" asp-action="SignInWithGoogle">Sign-in with Google</a>
 
-                        <p class="text-center mt-5 signup-link">Don't have an account ? <a class="" asp-area="" asp-controller="Login" asp-action="Register">Sign up</a></p>
+                        <p class="text-center mt-4 signup-link">Don't have an account ? <a class="" asp-area="" asp-controller="Login" asp-action="Register">Sign up</a></p>
 
                     </form>
                 </div>

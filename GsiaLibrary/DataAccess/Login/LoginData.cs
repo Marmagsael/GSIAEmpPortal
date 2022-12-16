@@ -104,7 +104,7 @@ public class LoginData : ILoginData
         string Email = email; ;
 
         QueryResponseModel? userFromMain = _apiAccess.FetchDataFromApi("/Login/1003/GetUser/" + Email);
-        
+
         // CHECK SERVER CONNECTION ------------------------------------------------------------------
         if (userFromMain.Reponse == "connection failed")
         {
@@ -132,20 +132,20 @@ public class LoginData : ILoginData
         }
 
     }
-  
+
 
     public QueryResponseModel _3000_RegisterAccount(RegisterInputModel input)
     {
-        string empNumber    = input?.EmpNumber!;
-        string depCode      = input?.DepCode!; // ASK THE EQUIVALENT FIELD NAME IN DATABASE
-        string movNumber    = input?.MovNumber!;
-        string secLicense   = input?.SecLicense!;
-        string dateHired    = input?.DateHired!;
-        string password     = input?.Password!;
-        string email        = input.Email;
-        string schema       = GetPisScheme();
+        string empNumber = input?.EmpNumber!;
+        string depCode = input?.DepCode!; // ASK THE EQUIVALENT FIELD NAME IN DATABASE
+        string movNumber = input?.MovNumber!;
+        string secLicense = input?.SecLicense!;
+        string dateHired = input?.DateHired!;
+        string password = input?.Password!;
+        string email = input.Email;
+        string schema = GetPisScheme();
 
-        
+
 
 
         QueryResponseModel userFromMain = _apiAccess.FetchDataFromApi("/Login/1002/GetUser/" + empNumber);
@@ -174,7 +174,7 @@ public class LoginData : ILoginData
                 // CHECK IF CREDENTIALS MATCHES WITH RECORDS IN SECPIS  -------------------------------------
 
                 userFromMain.ErrorField = email;
-                if(email == null) { email = "null"; } // ******* TEMPORARY *************************************
+                if (email == null) { email = "null"; } // ******* TEMPORARY *************************************
 
                 QueryResponseModel userFromSecpis = _apiAccess.FetchDataFromApi("/Login/1004/validateUserFromEmpmas/" + empNumber + "/" + dateHired + "/" + secLicense + "/" + movNumber + "/" + schema + "?connName=MySqlConn");
                 // --- CHECK SERVER CONNECTION ---------------------------------------------------------------
@@ -183,7 +183,8 @@ public class LoginData : ILoginData
                     userFromSecpis.Description = "There's a problem connecting to the server.";
                     userFromSecpis.ErrorField = "Server";
                     return userFromSecpis;
-                } else
+                }
+                else
                 {
 
                     if (userFromSecpis.QueryResult.Length == 0)
@@ -192,19 +193,20 @@ public class LoginData : ILoginData
                         userFromSecpis.Description = "Credentials do not match our record.";
                         userFromSecpis.ErrorField = "annonymous";
                         return userFromSecpis;
-                    } else
+                    }
+                    else
                     {
                         // VALID CREDENTIALS ---------------------------------------------------------------
-                        string domain   = "gsiaph.info";
-                        schema          = GetMainScheme();
+                        string domain = "gsiaph.info";
+                        schema = GetMainScheme();
                         string connName = "MySqlConn";
 
                         UserMainModel mainModel = new()
                         {
-                            LoginName   = empNumber,
-                            Password    = password,
-                            Email       = email,
-                            Domain      = "domain"
+                            LoginName = empNumber,
+                            Password = password,
+                            Email = email,
+                            Domain = "domain"
                         };
 
                         //CONVERT DATA TO JSON -------------------------------------------------------------
@@ -214,8 +216,8 @@ public class LoginData : ILoginData
 
                         // INSERT RECORDS TO MAIN SCHEMA ---------------------------------------------------
                         QueryResponseModel userInsertToMain = _apiAccess.ExecuteDataFromApi("/Login/1004/InsertUserFromEmpmas/" + empNumber + "/" + password + "/" + email + "/" + domain + "/" + schema + "/" + connName, content);
-                       
-                        
+
+
                         // --- CHECK SERVER CONNECTION ------------------------------------------------------
                         if (userInsertToMain.Reponse == "connection failed")
                         {
@@ -228,11 +230,11 @@ public class LoginData : ILoginData
                         userInsertToMain.ErrorField = null;
                         return userInsertToMain;
                     }
-                   
+
 
                 }
 
-               
+
             }
         }
     }

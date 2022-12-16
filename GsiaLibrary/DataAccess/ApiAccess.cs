@@ -10,12 +10,13 @@ namespace GsiaLibrary.DataAccess;
 public class ApiAccess : IApiAccess
 {
     private readonly IConfiguration _config;
-
+    //private readonly IHttpClientFactory _httpClientFactory;
     HttpClient client;
 
-    public ApiAccess(IConfiguration config)
+    public ApiAccess(IConfiguration config, IHttpClientFactory httpClientFactory)
     {
         _config = config;
+        //_httpClientFactory = httpClientFactory;
         string uriAddress = _config.GetSection("ApiAddress").Value;
         Uri baseAddress = new Uri(uriAddress);
         client = new HttpClient();
@@ -27,7 +28,8 @@ public class ApiAccess : IApiAccess
 
     public QueryResponseModel FetchDataFromApi(string ApiUrl)
     {
-
+        //var client = _httpClientFactory.CreateClient("api");
+        //var response = await client.GetAsync(ApiUrl);
         HttpResponseMessage response = client.GetAsync(client.BaseAddress + ApiUrl).Result;
 
         QueryResponseModel QResponse = new QueryResponseModel();

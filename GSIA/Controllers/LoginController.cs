@@ -26,7 +26,7 @@ public class LoginController : Controller
     [HttpGet("login")]
     public async Task<IActionResult> Index()
     {
-        // To clear claims ----------------
+        // CLEAR CLAIMS ----------------
         await HttpContext.SignOutAsync();
 
         ViewData["CoName"] = _login.GetCompanyInfo();
@@ -42,6 +42,7 @@ public class LoginController : Controller
         string coName = _login.GetCompanyInfo();
         var data = _login._10000_ValidateEmployeeByLoginNameAndPassword(input);
 
+
         //If ERROR OCCURED, DISPLAY ERROR MESSAGE
         if (data.ErrorField is not null)
         {
@@ -49,7 +50,7 @@ public class LoginController : Controller
             if (data.ErrorField == "Server")
             {
                 ViewData["coName"] = coName;
-                ViewData["errPasswordMsg"] = data.Description;
+                ViewData["errServerMsg"] = data.Description;
                 return View("Index");
             }
 
