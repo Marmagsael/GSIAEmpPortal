@@ -4,7 +4,7 @@ namespace GsiaLibrary.DataAccess
 {
     public interface IApiAccess
     {
-        QueryResponseModel ExecuteDataFromApi(string ApiUrl, HttpContent content);
+        Task<QueryResponseModel> ExecuteDataFromApi<T>(string ApiUrl, T content);
         QueryResponseModel FetchDataFromApi(string ApiUrl);
     }
 }

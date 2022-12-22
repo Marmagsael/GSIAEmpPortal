@@ -8,16 +8,19 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using Newtonsoft.Json;
+using GsiaLibrary.DataAccess.General;
 
 namespace GSIA.Controllers;
 
 public class LoginController : Controller
 {
     private readonly ILoginData _login;
+    private readonly ICompanyData _company;
 
-    public LoginController(ILoginData login)
+    public LoginController(ILoginData login, ICompanyData company)
     {
         _login = login;
+        _company = company;
     }
 
 
@@ -29,7 +32,7 @@ public class LoginController : Controller
         // CLEAR CLAIMS ----------------
         await HttpContext.SignOutAsync();
 
-        ViewData["CoName"] = _login.GetCompanyInfo();
+        ViewData["CoName"] = _company.GetCompanyInfo();
         return View();
     }
 
@@ -39,40 +42,42 @@ public class LoginController : Controller
     public IActionResult ValidateEmployeeByLoginNameAndPassword(LoginInputModel input)
     {
 
-        string coName = _login.GetCompanyInfo();
+        string coName ="";
         var data = _login._10000_ValidateEmployeeByLoginNameAndPassword(input);
 
+        return Ok(data);
 
-        //If ERROR OCCURED, DISPLAY ERROR MESSAGE
-        if (data.ErrorField is not null)
-        {
-            // -- DISPLAY SERVER ERROR MESSAGE IN LOGIN PAGE  
-            if (data.ErrorField == "Server")
-            {
-                ViewData["coName"] = coName;
-                ViewData["errServerMsg"] = data.Description;
-                return View("Index");
-            }
 
-            // -- DISPLAY PASSWORD ERROR MESSAGE IN LOGIN PAGE  
-            if (data.ErrorField == "Password")
-            {
-                ViewData["coName"] = coName;
-                ViewData["errPasswordMsg"] = data.Description;
-                return View("Index");
-            }
+        ////If ERROR OCCURED, DISPLAY ERROR MESSAGE
+        //if (data.ErrorField is not null)
+        //{
+        //    // -- DISPLAY SERVER ERROR MESSAGE IN LOGIN PAGE  
+        //    if (data.ErrorField == "Server")
+        //    {
+        //        ViewData["coName"] = coName;
+        //        ViewData["errServerMsg"] = data.Description;
+        //        return View("Index");
+        //    }
 
-            // -- DISPLAY EMPLOYEE NUMBER ERROR MESSAGE IN LOGIN PAGE  
-            if (data.ErrorField == "EmployeeNo")
-            {
-                ViewData["coName"] = coName;
-                ViewData["errEmpNoMsg"] = data.Description;
-                return View("Index");
-            }
+        //    // -- DISPLAY PASSWORD ERROR MESSAGE IN LOGIN PAGE  
+        //    if (data.ErrorField == "Password")
+        //    {
+        //        ViewData["coName"] = coName;
+        //        ViewData["errPasswordMsg"] = data.Description;
+        //        return View("Index");
+        //    }
 
-        }
-        // -- IF NO ERROR OCCUR, REDIRECT USER TO LANDING PAGE 
-        return Redirect("/Main");
+        //    // -- DISPLAY EMPLOYEE NUMBER ERROR MESSAGE IN LOGIN PAGE  
+        //    if (data.ErrorField == "EmployeeNo")
+        //    {
+        //        ViewData["coName"] = coName;
+        //        ViewData["errEmpNoMsg"] = data.Description;
+        //        return View("Index");
+        //    }
+
+        //}
+        //// -- IF NO ERROR OCCUR, REDIRECT USER TO LANDING PAGE 
+        //return Redirect("/Main");
     }
 
 
@@ -134,11 +139,11 @@ public class LoginController : Controller
             hasClaims = "true";
         } 
 
-        var data = _login._3000_RegisterAccount(input);
+        var data = await _login._3000_RegisterAccount(input);
         if (data.ErrorField == null)
         {
 
-            if(claimsCount == 0)
+            if (claimsCount == 0)
             {
                 //CONVERT OUTPUT TO JS DATA ----------------------------------------------------------
                 LoginOutputModel outputModel = new();
@@ -146,8 +151,8 @@ public class LoginController : Controller
 
                 //ADD NEW CLAIMS --------------------------------------------------------------------
                 var claims = new List<Claim>();
-                claims.Add(new Claim(ClaimTypes.Name, outputModel.EmpFirstNm + outputModel.EmpLastNm ));
-                claims.Add(new Claim(ClaimTypes.GivenName, outputModel.EmpFirstNm ));
+                claims.Add(new Claim(ClaimTypes.Name, outputModel.EmpFirstNm + outputModel.EmpLastNm));
+                claims.Add(new Claim(ClaimTypes.GivenName, outputModel.EmpFirstNm));
                 claims.Add(new Claim(ClaimTypes.Surname, outputModel.EmpLastNm));
 
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -159,8 +164,6 @@ public class LoginController : Controller
         ViewData["hasClaims"] = hasClaims;
         ViewData["errorMessage"] = data.Description;
         return View("~/Views/Login/Register.cshtml");
-
-
     }
 
 }

@@ -141,10 +141,10 @@ public class LoginController : ControllerBase
         validateUserFromEmpmas(string empnumber, string dateHired, string secLicense, string movNumber,
         string schema = "Main", string connName = "MySqlConn")
     {
-        // Check kung available sya sa main users  ----------------------------
+        // Check kung available sya sa secpis users  ----------------------------
         var userFromEmpmas = await _login._1004_ValidateUserFromEmpmas(empnumber, dateHired, secLicense, movNumber, schema);
         return Ok(userFromEmpmas);
-
+         
     }
 
 

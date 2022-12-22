@@ -3,13 +3,6 @@ using GsiaLibrary.Models;
 using GsiaLibrary.Models.FromApi.Login;
 using GsiaLibrary.Models.UI.Login;
 using Microsoft.Extensions.Configuration;
-using Microsoft.VisualBasic;
-using Newtonsoft.Json;
-using System.ComponentModel;
-using System.Net.Http.Json;
-using System.Reflection;
-using System.Text;
-using System.Xml.Serialization;
 
 namespace GsiaLibrary.DataAccess.Login;
 
@@ -17,14 +10,11 @@ public class LoginData : ILoginData
 {
     private readonly IApiAccess _apiAccess;
     private readonly IConfiguration _config;
-    private readonly IHttpClientFactory _httpClientFactory;
 
-
-    public LoginData(IApiAccess apiAccess, IConfiguration config, IHttpClientFactory httpClientFactory)
+    public LoginData(IApiAccess apiAccess, IConfiguration config)
     {
         _apiAccess = apiAccess;
         _config = config;
-        _httpClientFactory = httpClientFactory;
     }
 
     public QueryResponseModel _10000_ValidateEmployeeByLoginNameAndPassword(LoginInputModel? input)
@@ -33,7 +23,8 @@ public class LoginData : ILoginData
         string pwd = input?.Password!;
 
 
-        QueryResponseModel userFromMain = _apiAccess.FetchDataFromApi("/Login/1002/GetUser/" + loginName);
+        QueryResponseModel userFromMain = _apiAccess.FetchDataFromApi($"Login/1002/GetUser/{loginName}");
+
         // --- CHECK SERVER CONNECTION -----------------------------------
         if (userFromMain.Reponse == "connection failed")
         {
@@ -65,7 +56,7 @@ public class LoginData : ILoginData
                 }
                 else
                 {
-                    userFromMain = _apiAccess.FetchDataFromApi("/Login/1000/userlogin/" + loginName + "/" + pwd);
+                    userFromMain = _apiAccess.FetchDataFromApi($"Login/1000/userlogin/{loginName}/{pwd}");
 
                     // --- CHECK SERVER CONNECTION --------------------------------------------------
                     if (userFromMain.Reponse == "connection failed")
@@ -103,7 +94,7 @@ public class LoginData : ILoginData
 
         string Email = email; ;
 
-        QueryResponseModel? userFromMain = _apiAccess.FetchDataFromApi("/Login/1003/GetUser/" + Email);
+        QueryResponseModel? userFromMain = _apiAccess.FetchDataFromApi($"Login/1003/GetUser/{Email}");
 
         // CHECK SERVER CONNECTION ------------------------------------------------------------------
         if (userFromMain.Reponse == "connection failed")
@@ -134,7 +125,7 @@ public class LoginData : ILoginData
     }
 
 
-    public QueryResponseModel _3000_RegisterAccount(RegisterInputModel input)
+    public async Task<QueryResponseModel> _3000_RegisterAccount(RegisterInputModel input)
     {
         string empNumber = input?.EmpNumber!;
         string depCode = input?.DepCode!; // ASK THE EQUIVALENT FIELD NAME IN DATABASE
@@ -143,12 +134,11 @@ public class LoginData : ILoginData
         string dateHired = input?.DateHired!;
         string password = input?.Password!;
         string email = input.Email;
-        string schema = GetPisScheme();
+        string schema = _apiAccess.FetchDataFromApi("Login/0000/GetPisScheme").QueryResult!;
+        string connName = _config.GetSection("ConnectionStrings:MySqlConn").Value;
 
 
-
-
-        QueryResponseModel userFromMain = _apiAccess.FetchDataFromApi("/Login/1002/GetUser/" + empNumber);
+        QueryResponseModel userFromMain = _apiAccess.FetchDataFromApi($"Login/1002/GetUser/{empNumber}");
         // --- CHECK SERVER CONNECTION ---------------------------------------------------------------
         if (userFromMain.Reponse == "connection failed")
         {
@@ -176,7 +166,7 @@ public class LoginData : ILoginData
                 userFromMain.ErrorField = email;
                 if (email == null) { email = "null"; } // ******* TEMPORARY *************************************
 
-                QueryResponseModel userFromSecpis = _apiAccess.FetchDataFromApi("/Login/1004/validateUserFromEmpmas/" + empNumber + "/" + dateHired + "/" + secLicense + "/" + movNumber + "/" + schema + "?connName=MySqlConn");
+                QueryResponseModel userFromSecpis = _apiAccess.FetchDataFromApi($"Login/1004/validateUserFromEmpmas/{empNumber}/{dateHired}/{secLicense}/{movNumber}/{schema}?connName={connName}");
                 // --- CHECK SERVER CONNECTION ---------------------------------------------------------------
                 if (userFromSecpis.Reponse == "connection failed")
                 {
@@ -197,32 +187,27 @@ public class LoginData : ILoginData
                     else
                     {
                         // VALID CREDENTIALS ---------------------------------------------------------------
-                        string domain = "gsiaph.info";
-                        schema = GetMainScheme();
-                        string connName = "MySqlConn";
+                        schema = _apiAccess.FetchDataFromApi("Login/0000/GetMainScheme").QueryResult!;
+                        string domain = _config.GetSection("Schema:domain").Value;
 
-                        UserMainModel mainModel = new()
+                        UserMainModel mainModel = new UserMainModel()
                         {
                             LoginName = empNumber,
                             Password = password,
                             Email = email,
-                            Domain = "domain"
+                            Domain = domain,
                         };
-
-                        //CONVERT DATA TO JSON -------------------------------------------------------------
-                        string data = JsonConvert.SerializeObject(mainModel);
-                        StringContent content = new(data, Encoding.UTF8, "application/json");
 
 
                         // INSERT RECORDS TO MAIN SCHEMA ---------------------------------------------------
-                        QueryResponseModel userInsertToMain = _apiAccess.ExecuteDataFromApi("/Login/1004/InsertUserFromEmpmas/" + empNumber + "/" + password + "/" + email + "/" + domain + "/" + schema + "/" + connName, content);
+                        QueryResponseModel userInsertToMain = await _apiAccess.ExecuteDataFromApi<UserMainModel>($"Login/1004/InsertUserFromEmpmas/{empNumber}/{password}/{email}/{domain}/{schema}/{connName}", mainModel);
 
 
-                        // --- CHECK SERVER CONNECTION ------------------------------------------------------
+                        //// --- CHECK SERVER CONNECTION ------------------------------------------------------
                         if (userInsertToMain.Reponse == "connection failed")
                         {
                             userInsertToMain.Description = "There's a problem connecting to the server.";
-                            userInsertToMain.ErrorField = "Server2";
+                            userInsertToMain.ErrorField = "Server";
                             return userInsertToMain;
                         }
                         // RECORDS HAVE BEEN INSERTED IN MAIN SUCCESSFULLY -----------------------------------
@@ -239,22 +224,7 @@ public class LoginData : ILoginData
         }
     }
 
-    private string GetMainScheme()
-    {
-        QueryResponseModel getSchema = _apiAccess.FetchDataFromApi("/Login/0000/GetMainScheme");
-        string schema = getSchema?.QueryResult!;
-        return schema;
-    }
-    private string GetPisScheme()
-    {
-        QueryResponseModel getSchema = _apiAccess.FetchDataFromApi("/Login/0000/GetPisScheme");
-        string schema = getSchema?.QueryResult!;
-        return schema;
-    }
-    public string GetCompanyInfo() // temporary
-    {
-        var CoName = _config.GetSection("CompanyInfo:CompanyName").Value;
-        return CoName;
-    }
+
+
 
 }

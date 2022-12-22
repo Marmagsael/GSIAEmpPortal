@@ -3,8 +3,10 @@ using GSIA.StartupConfig;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServices();
-builder.AddAuthenticationServices();
+builder.AddInjectedServices();
 builder.AddHttpClient();
+builder.AddAuthenticationServices();
+
 
 var app = builder.Build();
 

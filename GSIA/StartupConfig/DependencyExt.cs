@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
 using GsiaLibrary.DataAccess.Login;
 using GsiaLibrary.DataAccess;
+using GsiaLibrary.DataAccess.General;
 
 namespace GSIA.StartupConfig;
 
@@ -13,9 +14,15 @@ public static class DependencyExt
         builder.Services.AddControllersWithViews();
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
+    }
+
+    public static void AddInjectedServices(this WebApplicationBuilder builder)
+    {
         builder.Services.AddSingleton<IApiAccess, ApiAccess>();
         builder.Services.AddSingleton<ILoginData, LoginData>();
+        builder.Services.AddSingleton<ICompanyData, CompanyData>();
     }
+
 
     public static void AddHttpClient(this WebApplicationBuilder builder)
     {
