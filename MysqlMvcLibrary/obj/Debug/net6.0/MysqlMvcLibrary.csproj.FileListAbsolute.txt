@@ -1,0 +1,15 @@
+D:\Development\Web\GSIA\GSIA\MysqlMvcLibrary\bin\Debug\net6.0\MysqlMvcLibrary.deps.json
+D:\Development\Web\GSIA\GSIA\MysqlMvcLibrary\bin\Debug\net6.0\MysqlMvcLibrary.dll
+D:\Development\Web\GSIA\GSIA\MysqlMvcLibrary\bin\Debug\net6.0\MysqlMvcLibrary.pdb
+D:\Development\Web\GSIA\GSIA\MysqlMvcLibrary\bin\Debug\net6.0\MysqlApiLibrary.dll
+D:\Development\Web\GSIA\GSIA\MysqlMvcLibrary\bin\Debug\net6.0\MysqlApiLibrary.pdb
+D:\Development\Web\GSIA\GSIA\MysqlMvcLibrary\obj\Debug\net6.0\MysqlMvcLibrary.csproj.AssemblyReference.cache
+D:\Development\Web\GSIA\GSIA\MysqlMvcLibrary\obj\Debug\net6.0\MysqlMvcLibrary.GeneratedMSBuildEditorConfig.editorconfig
+D:\Development\Web\GSIA\GSIA\MysqlMvcLibrary\obj\Debug\net6.0\MysqlMvcLibrary.AssemblyInfoInputs.cache
+D:\Development\Web\GSIA\GSIA\MysqlMvcLibrary\obj\Debug\net6.0\MysqlMvcLibrary.AssemblyInfo.cs
+D:\Development\Web\GSIA\GSIA\MysqlMvcLibrary\obj\Debug\net6.0\MysqlMvcLibrary.csproj.CoreCompileInputs.cache
+D:\Development\Web\GSIA\GSIA\MysqlMvcLibrary\obj\Debug\net6.0\MysqlMvcLibrary.csproj.CopyComplete
+D:\Development\Web\GSIA\GSIA\MysqlMvcLibrary\obj\Debug\net6.0\MysqlMvcLibrary.dll
+D:\Development\Web\GSIA\GSIA\MysqlMvcLibrary\obj\Debug\net6.0\refint\MysqlMvcLibrary.dll
+D:\Development\Web\GSIA\GSIA\MysqlMvcLibrary\obj\Debug\net6.0\MysqlMvcLibrary.pdb
+D:\Development\Web\GSIA\GSIA\MysqlMvcLibrary\obj\Debug\net6.0\ref\MysqlMvcLibrary.dll

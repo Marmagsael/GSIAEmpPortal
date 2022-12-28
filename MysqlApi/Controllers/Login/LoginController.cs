@@ -82,6 +82,12 @@ public class LoginController : ControllerBase
     {
         _schema._1001_CreateDefaultSchema(schemaName);
         _schema._1002_CreateLoginTbl(schemaName);
+        _schema._1003_CreateMainTable(schemaName);
+        _schema._1004_InsertDefaultValuesMain(schemaName);
+        _schema._1004_InsertDefaultValuesPis(schemaName);
+        _schema._1004_InsertDefaultValuesPay(schemaName);
+
+
     }
 
     [HttpGet("1000/userlogin/{loginname}/{password}")]

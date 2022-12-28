@@ -34,7 +34,7 @@ public class LoginAccess : ILoginAccess
                         " left join " + schema + ".client c on c.ClNumber = e.Client_ " +
                         " left join " + schema + ".empstat s on s.code = e.empstat_ " +
                         " left join " + schema + ".Position p on p.Code = e.Position_" +
-                        " where e.Empnumber = @Empnumber and passwd = sha1(@Password) ";
+                        " where e.Empnumber = @Empnumber and passwd = sha2(@Password,512) ";
 
         var data = await _sql.FetchData<LoginOutputModel?, dynamic>(sql, new { Empnumber = empNumber, Password = password });
 
@@ -96,7 +96,7 @@ public class LoginAccess : ILoginAccess
     public async Task<UserMainModel?> _1000_Login(string loginname, string password, string schema = "Main")
     {
         string sql = @" select  LoginName, Email, Domain 
-                        from " + schema + @".Users e where e.LoginName = @LoginName and Password = sha1(@Password)";
+                        from " + schema + @".Users e where e.LoginName = @LoginName and Password = sha2(@Password,512)";
         var data = await _sql.FetchData<UserMainModel?, dynamic>(sql, new { LoginName = loginname, Password = password });
         return data.FirstOrDefault();
     }
@@ -158,7 +158,7 @@ public class LoginAccess : ILoginAccess
     public async Task _1004_InsertUserMain(string loginName, string password, string email, string domain, string schema = "Main")
     {
         string msql = @" Insert into " + schema + @".Users (LoginName, Password, Email, Domain )  values 
-                                            (@LoginName, sha1(@Password), @Email, @Domain)";
+                                            (@LoginName, sha2(@Password,512), @Email, @Domain)";
 
         await _sql.ExecuteCmd<dynamic>(
             msql,
@@ -168,7 +168,7 @@ public class LoginAccess : ILoginAccess
     {
         string msql = @" Update " + schema + @".Users set 
                 LoginName   = @LoginName, 
-                Password    = sha1(@Password), 
+                Password    = sha2(@Password,512), 
                 Email       = @Email, 
                 Domain      = @Domain where Id = @Id; "; 
 

@@ -41,14 +41,14 @@ public class LoginController : Controller
     // ---------- Signin with Google --------------------
     public async Task<IActionResult> SigninWithGoogle()
     {
-        var claims = User.Claims;
+        var claims = User?.Claims;
         var emailIdentifier = ClaimTypes.Email;
         var nameIdentifier = ClaimTypes.Name;
 
-        var email = claims.FirstOrDefault(c => c.Type == emailIdentifier).Value;
-        var name = claims.FirstOrDefault(c => c.Type == nameIdentifier).Value;
+        var email   = claims?.FirstOrDefault(c => c.Type == emailIdentifier)?.Value;
+        var name    = claims?.FirstOrDefault(c => c.Type == nameIdentifier)?.Value;
 
-        var output = await _login.FetchEmployeeByEmailMain(email);
+        var output = await _login.FetchEmployeeByEmailMain(email!);
         if(output != null)
         {
             return Ok(output);
