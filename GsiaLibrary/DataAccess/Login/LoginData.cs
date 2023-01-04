@@ -21,6 +21,8 @@ public class LoginData : ILoginData
     {
         string loginName = input?.EmpNumber!;
         string pwd = input?.Password!;
+        string schema = _apiAccess.FetchDataFromApi("Login/0000/GetPisScheme").QueryResult!;
+        string connName = _config.GetSection("ConnectionStrings:MySqlConn").Value;
 
 
         QueryResponseModel userFromMain = _apiAccess.FetchDataFromApi($"Login/1002/GetUser/{loginName}");
@@ -80,7 +82,27 @@ public class LoginData : ILoginData
                             // PASSWORD MATCH! --------------------------------------------------------
                             userFromMain.Description = "Password Match";
                             userFromMain.ErrorField = null;
-                            return userFromMain;
+
+                            //GET EMPLOYEE'S DATA BY EMPLOYEE NUMBER IN SECPIS TABLE TO ADD IN CLAIMS'
+                            QueryResponseModel userFromSecpis = _apiAccess.FetchDataFromApi($"Login/0001/EmpmasByEmpnumber/{loginName}/{schema}/{connName}");
+                            // --- CHECK SERVER CONNECTION --------------------------------------------------
+                            if (userFromSecpis.Reponse == "connection failed")
+                            {
+                                userFromSecpis.Description = "There's a problem connecting to the server.";
+                                userFromSecpis.ErrorField = "Server";
+                                return userFromSecpis;
+                            } else
+                            {
+
+                                if(userFromSecpis.QueryResult.Length == 0)
+                                {
+                                    userFromSecpis.Description = "Employee number does not exist in secpis.";
+                                    userFromSecpis.ErrorField = "EmployeeNo";
+                                    return userFromSecpis;
+                                }
+                                userFromSecpis.ErrorField = null;
+                                return userFromSecpis;
+                            }
                         }
                     }
                 }

@@ -15,6 +15,22 @@
           }
         }
       },
+      "DapperPlus/1.1.0.2": {
+        "type": "package",
+        "dependencies": {
+          "Dapper": "1.50.0"
+        },
+        "compile": {
+          "lib/net45/DapperPlus.dll": {
+            "related": ".XML"
+          }
+        },
+        "runtime": {
+          "lib/net45/DapperPlus.dll": {
+            "related": ".XML"
+          }
+        }
+      },
       "Google.Protobuf/3.19.4": {
         "type": "package",
         "compile": {
@@ -544,6 +560,7 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "Dapper": "2.0.123",
+          "DapperPlus": "1.1.0.2",
           "Microsoft.Extensions.Configuration.Abstractions": "6.0.0",
           "MySql.Data": "8.0.31"
         },
@@ -573,6 +590,19 @@
         "lib/net5.0/Dapper.xml",
         "lib/netstandard2.0/Dapper.dll",
         "lib/netstandard2.0/Dapper.xml"
+      ]
+    },
+    "DapperPlus/1.1.0.2": {
+      "sha512": "ppPLKjxiZb7XJDheE0zvghZA0YNCSPMxMEfdt3UXpUOUcB+NCDUqOU0YhU4wI6FzixmB7WWc6p75Mvtf3Aj1kw==",
+      "type": "package",
+      "path": "dapperplus/1.1.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "dapperplus.1.1.0.2.nupkg.sha512",
+        "dapperplus.nuspec",
+        "lib/net45/DapperPlus.XML",
+        "lib/net45/DapperPlus.dll"
       ]
     },
     "Google.Protobuf/3.19.4": {
@@ -1539,5 +1569,17 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'DapperPlus 1.1.0.2' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "DapperPlus",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }

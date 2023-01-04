@@ -82,6 +82,12 @@ public class LoginController : ControllerBase
     {
         _schema._1001_CreateDefaultSchema(schemaName);
         _schema._1002_CreateLoginTbl(schemaName);
+        _schema._1003_CreateMainTable(schemaName);
+        _schema._1004_InsertDefaultValuesMain(schemaName);
+        _schema._1004_InsertDefaultValuesPis(schemaName);
+        _schema._1004_InsertDefaultValuesPay(schemaName);
+
+
     }
 
     [HttpGet("1000/userlogin/{loginname}/{password}")]
@@ -141,31 +147,27 @@ public class LoginController : ControllerBase
         validateUserFromEmpmas(string empnumber, string dateHired, string secLicense, string movNumber,
         string schema = "Main", string connName = "MySqlConn")
     {
-        // Check kung available sya sa secpis users  ----------------------------
+        // Check kung available sya sa main users  ----------------------------
         var userFromEmpmas = await _login._1004_ValidateUserFromEmpmas(empnumber, dateHired, secLicense, movNumber, schema);
         return Ok(userFromEmpmas);
-         
+
     }
 
 
-    //[HttpPost("1004/InsertUserFromEmpmas/")]
-    //[HttpPost("1004/InsertUserFromEmpmas")]
-    [HttpPost("1004/InsertUserFromEmpmas/{empnumber}/{password}/{email}/{domain}/{schema}/{connName}")]
+    [HttpPost("1004/InsertUserFromEmpmas/{empnumber}/{dateHired}/{secLicense}/{movNumber}/{schema}")]
     public async Task<ActionResult<UserMainModel?>> InsertUserFromEmpmas(
         string empnumber, string password, string email, string domain, 
         string schema = "Main", string connName = "MySqlConn")
     {
         // Check kung available sya sa main users  ----------------------------
-        // await _login._1004_InsertUserMain(empnumber, password,email, domain, schema );
-        await _login._1004_InsertUserMain(empnumber, password, email, domain, schema);
-        //var user = await _login._00001_EmpmasByEmpNumber(empnumber);
-        var user = await _login._00001_EmpmasByEmpNumber(empnumber, "secpis", connName);
-
-
-
-
+        await _login._1004_InsertUserMain(empnumber, password,email, domain, schema );
+        var user = _login._00001_EmpmasByEmpNumber(empnumber);
+        
+        
+        
+        
         // var userId = user(user => user.Id == empnumber).Value;
-
+        
         //string domain = Convert.ToString(user.Domain);
         return Ok(user);
 

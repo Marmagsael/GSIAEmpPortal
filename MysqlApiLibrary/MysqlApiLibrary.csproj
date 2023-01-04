@@ -8,12 +8,12 @@
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.123" />
+    <PackageReference Include="DapperPlus" Version="1.1.0.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
     <PackageReference Include="MySql.Data" Version="8.0.31" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DataAccess\_100Main\" />
     <Folder Include="DataAccess\_x001Dummy\" />
     <Folder Include="Models\Dummy\" />
   </ItemGroup>

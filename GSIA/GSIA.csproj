@@ -23,6 +23,7 @@
 
 	<ItemGroup>
 	  <Folder Include="wwwroot\images\" />
+	  <Folder Include="wwwroot\js\pis\pages\" />
 	</ItemGroup>
 
 	<ItemGroup>

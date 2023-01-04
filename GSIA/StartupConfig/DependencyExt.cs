@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.Google;
 using GsiaLibrary.DataAccess.Login;
 using GsiaLibrary.DataAccess;
 using GsiaLibrary.DataAccess.General;
+using GsiaLibrary.DataAccess._100Main;
 
 namespace GSIA.StartupConfig;
 
@@ -21,6 +22,7 @@ public static class DependencyExt
         builder.Services.AddSingleton<IApiAccess, ApiAccess>();
         builder.Services.AddSingleton<ILoginData, LoginData>();
         builder.Services.AddSingleton<ICompanyData, CompanyData>();
+        builder.Services.AddSingleton<IMenuData, MenuData>();
     }
 
 

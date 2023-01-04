@@ -49,6 +49,10 @@
               "target": "Package",
               "version": "[2.0.123, )"
             },
+            "DapperPlus": {
+              "target": "Package",
+              "version": "[1.1.0.2, )"
+            },
             "Microsoft.Extensions.Configuration.Abstractions": {
               "target": "Package",
               "version": "[6.0.0, )"

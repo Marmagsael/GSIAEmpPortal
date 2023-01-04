@@ -1,4 +1,5 @@
 ﻿using MysqlApiLibrary.DataAccess;
+using MysqlApiLibrary.DataAccess._100Main;
 using MysqlApiLibrary.DataAccess.Login;
 
 namespace MysqlApi.StartupConfig; 
@@ -19,6 +20,7 @@ public static class DependencyExt
         builder.Services.AddSingleton<IMysqlDataAccess, MysqlDataAccess>();
         builder.Services.AddSingleton<ILoginAccess, LoginAccess>();
         builder.Services.AddSingleton<ISchemaAccess, SchemaAccess>();
+        builder.Services.AddSingleton<IMenuUsersAccess, MenuUsersAccess>();
     }
 
     public static void AddCors(this WebApplicationBuilder builder)
