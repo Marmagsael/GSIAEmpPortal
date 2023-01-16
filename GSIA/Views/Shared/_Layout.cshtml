@@ -5,20 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - GSIA</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/GSIA.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/_01Login.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/main.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
 </head>
-<body>
-    <header>
-        <nav id="main-navbar" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark  box-shadow">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">GSIA</a>
-            </div>
+<body class="auth-body">
+    <header id="header" class="header">
+        <nav id="navbar" class="navbar">
+            <a asp-controller="Login" asp-action="Index" class="co-info">
+                <h2 class="co-name">GSIA</h2>
+            </a>
         </nav>
     </header>
-
-    <main role="main">
+    <main role="main" class="auth-main">
         @RenderBody()
     </main>
 

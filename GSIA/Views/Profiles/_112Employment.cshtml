@@ -1,7 +1,248 @@
-﻿@{
+﻿@model GSIA.Models.Pis.EmpmasUiModel
+
+@{
     Layout = "~/Views/Shared/Pis/_PisLayout.cshtml";
+    <link rel="stylesheet" href="~/css/pis/_mainContent.css" asp-append-version="true" />
+    ViewData["Title"] = "_111PersonnelInformation";
 }
+<div class="main-content-wrapper">
+    <div class="mc-padding">
+        <h2 class="page-title ">Employment</h2>
+    </div>
+    <hr class="divider" />
+
+    <div class="row">
+        <div class=" col-12">
+            <form asp-action="_111PersonnelInformation">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="mc-padding">
+                    <div class="img-wrapper"><i class="fa-solid fa-user-tie"></i></div>
+                    <div class="form-group">
+                        <label asp-for="Empnumber" class="control-label"></label>
+                        <div class="col-md-8 col-lg-1">
+                            <input asp-for="Empnumber" class="form-control" disabled/>
+                            <span asp-validation-for="Empnumber" class="text-danger err-input-msg"></span>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Emplastnm" class="control-label"></label>
+                        <div class="col-md-8 col-lg-3">
+                            <input asp-for="Emplastnm" class="form-control" disabled />
+                            <span asp-validation-for="Emplastnm" class="text-danger err-input-msg"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Empfirstnm" class="control-label"></label>
+                        <div class="col-md-8 col-lg-3">
+                            <input asp-for="Empfirstnm" class="form-control" disabled />
+                            <span asp-validation-for="Empfirstnm" class="text-danger err-input-msg"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Empmidnm" class="control-label"></label>
+                        <div class="col-md-8 col-lg-3">
+                            <input asp-for="Empmidnm" class="form-control" disabled />
+                            <span asp-validation-for="Empmidnm" class="text-danger err-input-msg"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-tabs">
+                    <button>Employment Details</button>
+                    <button>Personal Data</button>
+                    <button>Address</button>
+                    <button>Education</button>
+                    <button>Family</button>
+                    <button>References</button>
+                    <button>Employment Record</button>
+                    <button>Clearance</button>
+                    <button>Security</button>
+                    <button>Government</button>
+                </div>
+                @*----- EMPLOYMENT DETAILS ------- *@
+                <div class="section-category-wrapper mt-0"><h5 class="section-category">Employment Details</h5></div>
+                <div class="mc-padding">
+                    <div class="form-group">
+                        <label asp-for="Empstat_" class="control-label"></label>
+                        <div class="col-md-8 col-lg-1">
+                            <input asp-for="Empstat_" class="form-control" disabled/>
+                            <span asp-validation-for="Empstat_" class="text-danger err-input-msg"></span>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Remarks" class="control-label"></label>
+                        <div class="col-md-8 col-lg-3">
+                            <textarea asp-for="Remarks" class="form-control" rows="5" disabled></textarea>
+                            <span asp-validation-for="Remarks" class="text-danger err-input-msg"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Client" class="control-label"></label>
+                        <div class="col-md-8 col-lg-3">
+                            <input asp-for="Client" class="form-control" disabled />
+                            <span asp-validation-for="Client" class="text-danger err-input-msg"></span>
+                        </div>
+                    </div>
+
+                </div>
+
+                @*----- PERSONAL DATA ------- *@
+               @* <div class="section-category-wrapper"><h5 class="section-category">Personal Data</h5></div>
+
+                <div class="mc-padding">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="Empbirth" class="control-label"></label>
+                                <div class="col-md-8 col-lg-3">
+                                    <input asp-for="Empbirth" class="form-control" type="date" disabled />
+                                    <span asp-validation-for="Empbirth" class="text-danger err-input-msg"></span>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Birthplace" class="control-label"></label>
+                                <div class="col-md-8 col-lg-6">
+                                    <input asp-for="Birthplace" class="form-control" disabled />
+                                    <span asp-validation-for="Birthplace" class="text-danger err-input-msg"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Sex_" class="control-label"></label>
+                                <div class="col-md-8 col-lg-3">
+                                    <select asp-for="Sex_" class="form-select" disabled>
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                    </select>
+                                    <span asp-validation-for="Sex_" class="text-danger err-input-msg"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Citizen" class="control-label"></label>
+                                <div class="col-md-8 col-lg-6">
+                                    <input asp-for="Citizen" class="form-control" disabled />
+                                    <span asp-validation-for="Citizen" class="text-danger err-input-msg"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Civstat_" class="control-label"></label>
+                                <div class="col-md-8 col-lg-3">
+                                    <select asp-for="Civstat_" class="form-select" disabled>
+                                        <option>Single</option>
+                                        <option>Married</option>
+                                    </select>
+                                    <span asp-validation-for="Civstat_" class="text-danger err-input-msg"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Religion" class="control-label"></label>
+                                <div class="col-md-8 col-lg-6">
+                                    <input asp-for="Religion" class="form-control" disabled />
+                                    <span asp-validation-for="Religion" class="text-danger err-input-msg"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Height" class="control-label"></label>
+                                <div class="col-md-8 col-lg-6">
+                                    <input asp-for="Height" class="form-control" disabled />
+                                    <span asp-validation-for="Height" class="text-danger err-input-msg"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Weight" class="control-label"></label>
+                                <div class="col-md-8 col-lg-6">
+                                    <input asp-for="Weight" class="form-control" disabled />
+                                    <span asp-validation-for="Weight" class="text-danger err-input-msg"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="Hair" class="control-label"></label>
+                                <div class="col-md-8 col-lg-6">
+                                    <input asp-for="Hair" class="form-control" disabled />
+                                    <span asp-validation-for="Hair" class="text-danger err-input-msg"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Eyes" class="control-label"></label>
+                                <div class="col-md-8 col-lg-6">
+                                    <input asp-for="Eyes" class="form-control" disabled />
+                                    <span asp-validation-for="Eyes" class="text-danger err-input-msg"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Complexion" class="control-label"></label>
+                                <div class="col-md-8 col-lg-6">
+                                    <input asp-for="Complexion" class="form-control" disabled />
+                                    <span asp-validation-for="Complexion" class="text-danger err-input-msg"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Marks" class="control-label"></label>
+                                <div class="col-md-8 col-lg-6">
+                                    <input asp-for="Marks" class="form-control" disabled />
+                                    <span asp-validation-for="Marks" class="text-danger err-input-msg"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Bloodtype" class="control-label"></label>
+                                <div class="col-md-8 col-lg-6">
+                                    <input asp-for="Bloodtype" class="form-control" disabled />
+                                    <span asp-validation-for="Bloodtype" class="text-danger err-input-msg"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Spouse" class="control-label"></label>
+                                <div class="col-md-8 col-lg-6">
+                                    <input asp-for="Spouse" class="form-control" disabled />
+                                    <span asp-validation-for="Spouse" class="text-danger err-input-msg"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Occupation" class="control-label"></label>
+                                <div class="col-md-8 col-lg-6">
+                                    <input asp-for="Occupation" class="form-control" disabled />
+                                    <span asp-validation-for="Occupation" class="text-danger err-input-msg"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Nochildren" class="control-label"></label>
+                                <div class="col-md-8 col-lg-6">
+                                    <input asp-for="Nochildren" class="form-control" disabled />
+                                    <span asp-validation-for="Nochildren" class="text-danger err-input-msg"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>*@
+
+                @*
+                <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                </div>*@
+            </form>
+
+           
+
+        </div>
+    </div>
+
+</div>
 
 
-<h1>_112Employment</h1>
-
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

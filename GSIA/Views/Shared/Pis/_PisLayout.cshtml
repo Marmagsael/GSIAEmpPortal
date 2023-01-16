@@ -5,34 +5,28 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - PIS</title>
-    <link rel="stylesheet" href="~/css/pis/_00General.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/pis/_00main.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/main.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
 </head>
-<body>
-    <div class="container-fluid p-0">
-        @* Header *@
-        <header id="pisTop">
-            <partial name="Pis/PartialView/p_top" />
-        </header>
+<body> 
+    @* Header *@
+    <header id="pisTop">
+        <partial name="Pis/PartialView/p_top" />
+    </header>
 
-        <div id="pisBody">
-            @* Left-menu *@
-            <aside id="pisLeft">
-                @*<partial name="Pis/PartialView/p_left" />*@
-                @*@{ Html.ActionLink("login/leftMenu","LeftMenu");}*@
-                @await Component.InvokeAsync("LeftMenu")
-            </aside>
+    <div id="pisBody" class="pisBody">
+        @* Left-menu *@
+        <aside id="pisLeft" class="pisLeft lg-active">
+            @await Component.InvokeAsync("LeftMenu")
+        </aside>
 
-            @* Main Content *@
-            <div id="pisRight">
-                <main role="main">
-                    @RenderBody()
-                </main>
-            </div>
-        </div>
+        @* Main Content *@
+        <main id="pisRight" class="pisRight pisLeftIsActive" role="main">
+            @RenderBody()
+        </main>
     </div>
+   
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

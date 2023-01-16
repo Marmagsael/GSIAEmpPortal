@@ -1,0 +1,94 @@
+﻿
+/*Base Styles*/
+html, body,
+h1, h2, h3, h4, h5, h6,
+p, a, ul, ol, li, * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+.menu-toggle-icon {
+    font-size: 18px !important;
+    color: var(--color-white);
+    width:32px;
+}
+
+
+.menu-toggle-icon:hover,
+.menu-toggle-iconfocus {
+    color: var(--color-white);
+}
+
+.avatar-wrapper{
+    position:relative;
+}
+
+.avatar {
+    background: var(--color-white);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+}
+
+
+.avatar-list {
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity .1s ease-in;
+    position: absolute;
+    right: 0;
+    top: 3rem;
+    z-index: 777;
+    background: white;
+    width: 280px;
+    height: auto;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    border-radius: 4px;
+}
+
+.list-item {
+    font-weight: 500;
+    list-style-type: none;
+    user-select: none;
+    -moz-user-select: none;
+}
+
+.list-item-icon{
+    display:inline-block;
+    width:24px;
+}
+
+.list-link {
+    text-decoration: none;
+    padding: 0.8rem 1rem;
+    color: #333;
+    width: 100%;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.list-link:hover {
+    color: #333;
+    background: #19875414;
+}
+
+/* Apply styles in Javascript*/
+.menu-toggle-icon.activated .open-menu-icon {
+    display: none;
+}
+
+.menu-toggle-icon.activated .close-menu-icon {
+    display: block;
+}
+
+.avatar-wrapper.active .avatar-list {
+    opacity: 1;
+    transform: scale(1);
+}

@@ -3,29 +3,44 @@
 @{
     string compName = Configuration.GetSection("CompanyInfo:CompanyName").Value;
 }
-<header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark  box-shadow ">
-        <div class="container-fluid justify-content-between">
-            <a class="navbar-brand" asp-area="" asp-controller="Pis" asp-action="Index">@compName</a>
+<link rel="stylesheet" href="~/css/pis/_topNavbar.css" asp-append-version="true" />
 
-            <div>
-                <div class="text-light d-flex justify-content-between align-items-center gap-2">
-                    <i class="fa-regular fa-user text-light"></i>
-                    @*<span class="text-uppercase">@User.Identity!.Name!.Split(' ')[0]</span>*@
-                    <i class="fa-solid fa-angle-down"></i>
-                </div>
+<header class="header pis-header" id="header">
+    <nav class="navbar">
 
-               @* <ul class="nav-dd-dtls">
-                    <li class="nav-dd-item">
-                        <a class="nav-dd-link" asp-area="" asp-controller="Login" asp-action="Logout"> Logout </a>
-                    </li>
+        <button class="btn  menu-toggle-icon " id="menu-toggle-icon">
+            <i class="fa-solid fa-bars open-menu-icon"></i>
+            <i class="fa-solid fa-xmark close-menu-icon"></i>
+        </button>
 
-                </ul>*@
-            </div>
-            
-            
-        </div>
+        <a  class="co-info">
+            <h2 class="co-name ">GSIA</h2>
+        </a>
 
+       <div class="avatar-wrapper">
+           <div class="avatar" id="toggle-avatar-icon">
+                <i class="fa-regular fa-user"></i>
+           </div>
+           <ul class="avatar-list">
+               <li class="list-item">
+                    <a class="list-link" asp-action="Logout" asp-controller="Login">
+                        <span class="list-item-icon">  <i class="fa-regular fa-user"></i></span>
+                        <span>Judith Reyes</span>
+                     </a>
+                </li>
+
+                <hr class="divider">
+
+                <li class="list-item">
+                    <a class="list-link" asp-action="Logout" asp-controller="Login">
+                        <span class="list-item-icon"><i class="fa-solid fa-arrow-right-from-bracket"></i></span>
+                        <span>Logout</span>
+                    </a>
+                </li>
+           </ul>
+       </div>
+
+      
        
     </nav>
 </header>

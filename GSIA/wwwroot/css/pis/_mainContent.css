@@ -1,0 +1,44 @@
+﻿.form-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.form-group > span{
+    display:block;
+}
+
+.img-wrapper {
+    width: 9.375rem;
+    height: 9.375rem;
+    border: 1px solid #ced4da;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    margin-bottom: 24px;
+}
+
+.img-wrapper > i {
+    font-size: 6.25rem;
+}
+
+
+@media only screen and (min-width: 481px) {
+  
+  
+}
+
+@media only screen and (min-width: 769px) {
+    /*Reusable styles*/
+    .form-group {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+   
+}
+
+@media only screen and (min-width: 1025px) {
+   
+}

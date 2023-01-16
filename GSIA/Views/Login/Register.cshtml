@@ -2,105 +2,90 @@
 @model RegisterViewModel
 
 @{
-    var errorMessage    = ViewData["errorMessage"] as string;
-    var hasClaims       = ViewData["hasClaims"] as string;
+    var errorMessage = ViewData["errorMessage"] as string;
+    var hasClaims = ViewData["hasClaims"] as string;
 }
 
-<section id="login-container">
-    <div class="container-fluid">
-        <div class="row login-bg d-flex flex-row-reverse">
-            <div class="col-12 col-md-5 col-lg-3 login-form ">
-                <div class="inner-container bg-white p-3 rounded-3">
-                    @* ----- HEADER ----- *@
-                    <div class="login-header text-center mt-3 mb-4">
-                        <p class=" form-title">Register your account</p>
-                        @if (@hasClaims == "true")
-                        {
-                            <small class="text-danger"><p class="my-2">Account not yet exists, please provide the following details to Register.</p></small>
-                        }
-                    </div>
-
-                    @if(@errorMessage != null){
-                        <div class="alert alert-danger d-flex align-items-center err-msg" role="alert">
-                        @*<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>*@
-                        <div>
-                            @errorMessage
-                        </div>
-                    </div>
-                    }
-                   
-
-                    <form action="/register" method="Post">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="auth-wrapper">
+    <div class="auth-content">
+        <div class="auth-content-hdr-wrapper place-items-center-col">
+            <img class="auth-content-hdr-logo" src="/images/gsia-logo.png" />
+            <h3 class="auth-content-hdr-text page-title">Welcome to GSIA</h3>
+            
+          @if (@hasClaims == "true")
+            {
+                <p class="body-text-lg text-danger mt-2">The email address you used to login does not exist yet. Please provide the following details to register an account with that email address. </p>
+            } else
+            {
+                <p class="body-text-lg mt-2">Please fill out all the fields to register an account with your employee number.</p>
+            }
+        </div>
 
 
-                        @* ----- EMPLOYEE NUMBER ----- *@
-                        <div class="form-group ">
-                            <label asp-for="EmpNumber" class="control-label"></label>
-                            <input asp-for="EmpNumber" class="form-control" />
-                            <small><span asp-validation-for="EmpNumber" class="text-danger err-msg"></span> </small>
-                        </div>
+        @*---- ALERT MESSAGE FOR SERVER ERROR ----*@
+        @if (@errorMessage != null)
+        {
+            <div class="b-alert-msg  alert-danger " role="alert">
+                <span class="alert">@errorMessage</span>
+            </div>
+        }
 
-                        <div class="row">
-                            @* ----- DEPLOYMENT CODE ----- *@
-                            <div class="form-group col-lg-6">
-                                <label asp-for="DepCode" class="control-label"></label>
-                                <input asp-for="DepCode" class="form-control" />
-                            </div>
-
-                            @* ----- MOVEMENT NUMBER ----- *@
-                            <div class="form-group col-lg-6">
-                                <label asp-for="MovNumber" class="control-label"></label>
-                                <input asp-for="MovNumber" class="form-control" />
-                                <small><span asp-validation-for="MovNumber" class="text-danger err-msg"></span> </small>
-                            </div>
-                        </div>
-
-                         <div class="row">
-                            @* ----- SEC LICENSE ----- *@
-                            <div class="form-group col-lg-6">
-                                <label asp-for="SecLicense" class="control-label"></label>
-                                <input asp-for="SecLicense" class="form-control" />
-                                <span asp-validation-for="SecLicense" class="text-danger err-msg"></span> 
-                            </div>
-
-                            @* ----- DATE HIRED ----- *@
-                            <div class="form-group col-lg-6">
-                                <label asp-for="DateHired" class="control-label"></label>
-                                <input asp-for="DateHired" class="form-control" />
-                                <span asp-validation-for="DateHired" class="text-danger err-msg"></span> 
-                            </div>
-                        </div>
-
-                        @* ----- PASSWORD ----- *@
-                        <div class="form-group">
-                            <label asp-for="Password" class="control-label"></label>
-                            <input asp-for="Password" class="form-control" />
-                            <small><span asp-validation-for="Password" class="text-danger err-msg"></span> 
-                        </div>
-
-                        @* ----- CONFIRM PASSWORD ----- *@
-                        <div class="form-group">
-                            <label asp-for="ConfirmPassword" class="control-label"></label>
-                            <input asp-for="ConfirmPassword" class="form-control" />
-                            <span asp-validation-for="ConfirmPassword" class="text-danger err-msg"></span>
-                        </div>
-
-                        @* ----- BUTTON ----- *@
-                        <input type="submit" value="Register" class="mt-3 btn btn-success w-100" />
-                        <p class="text-center mt-4 signup-link">Already have an account? <a class="" asp-area="" asp-controller="Login" asp-action="Index">Sign in</a></p>
-                    </form>
+        <form action="/register" method="Post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="EmpNumber" class="control-label"></label>
+                <input asp-for="EmpNumber" class="form-control" />
+                <span asp-validation-for="EmpNumber" class="err-input-msg text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="form-group col-lg-6">
+                    <label asp-for="DepCode" class="control-label"></label>
+                    <input asp-for="DepCode" class="form-control" />
+                    <span asp-validation-for="DepCode" class="err-input-msg text-danger"></span>
+                </div>
+                <div class="form-group col-lg-6">
+                    <label asp-for="MovNumber" class="control-label"></label>
+                    <input asp-for="MovNumber" class="form-control" />
+                    <span asp-validation-for="MovNumber" class="err-input-msg text-danger"></span>
                 </div>
             </div>
-        </div>
+            <div class="row">
+                <div class="form-group col-lg-6">
+                    <label asp-for="SecLicense" class="control-label"></label>
+                    <input asp-for="SecLicense" class="form-control" />
+                    <span asp-validation-for="SecLicense" class="err-input-msg text-danger"></span>
+                </div>
+                <div class="form-group col-lg-6">
+                    <label asp-for="DateHired" class="control-label"></label>
+                    <input asp-for="DateHired" class="form-control" />
+                    <span asp-validation-for="DateHired" class="err-input-msg text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="err-input-msg text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword" class="control-label"></label>
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="err-input-msg text-danger"></span>
+            </div>
+            <div class="form-group mb-0">
+                <input type="submit" value="Register" class="btn b-btn-primary w-100 mt-2" />
+            </div>
+        </form>
+
+        <div class="auth-action-link body-text-md ">Already have an account? <a asp-action="Index" asp-controller="Home" class="link-primary fw-bold">Login</a></div>
+
+        <div class="auth-content-footer body-text-md ">© 2023 All Rights Reserved.</div>
     </div>
-</section>
+</div>
 
 
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-
-
 }

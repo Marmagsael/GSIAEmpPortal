@@ -1,0 +1,73 @@
+.auth-body {
+    background: url("/images/login-bg.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.auth-main {
+    display: flex;
+    justify-content: end;
+    padding-top: 40px;
+    overflow-x: hidden;
+}
+
+
+.auth-wrapper {
+    width: 100vw;
+    background: rgba(255,255,255, .8);
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.auth-content {
+    position: relative;
+    width: 100%;
+    min-height: 100%;
+    background: var(--color-white);
+    border-radius: 16px;
+    padding: 16px;
+    padding-top: 32px;
+    box-sizing: border-box;
+}
+
+.auth-content-hdr-wrapper {
+    margin-bottom: 32px;
+}
+
+.auth-content-hdr-logo {
+    width: 64px;
+    margin-bottom: var(--space-sm);
+}
+
+
+.auth-action-link {
+    margin-top: var(--space-lg);
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.auth-content-footer {
+    position: absolute;
+    bottom: 3%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    margin-top: auto;
+}
+
+.btn-signin-google {
+    gap: .5rem;
+}
+
+    .btn-signin-google > img {
+        width: 20px;
+    }
+
+
+@media only screen and (min-width: 1025px) {
+    .auth-wrapper {
+        width: 500px;
+    }
+}

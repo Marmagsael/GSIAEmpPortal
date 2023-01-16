@@ -161,17 +161,24 @@ public class SchemaAccess : ISchemaAccess
             sql = @$"insert into {schema}.menus10user
                     (Odr,   Id,     IdParent,	Indent,     Type,   Code,       Icon1,                          Icon2,  DispText,	                IsWithChild,	Controller,         Action) values 
                     (100,	100,    0,			0,		    'Hdr',  'H001',     '',                             '',     'Profiles',                 1,				null,		        null), 
-                    (200,	200,    0,			0,		    'Hdr',  'H002',     '',                             '',     'Attendance',               1,				null,		        null),
+                    (200,	200,    0,			0,		    'Hdr',  'H002',     '',                             '',     'Employment',               1,				null,		        null),
 
-                    (110,	110,    100,		0,		    'SHdr', 'SH110',    'fa-regular fa-folder-open',    '',     'My 201 Records',           1,				null,		        null),
+                    (110,	110,    100,		0,		    'SHdr', 'SH110',    'fa-regular fa-folder-open',    '',     'My Profile',               1,				null,		        null),
                     
-                    (111,	111,    110,        1,		    'Dtl',  'D111',     'fa-regular fa-file-lines',     '',     'Personal Information',		0,				'Profiles',			'_111PersonnelInformation'), 
+                    (111,	111,    110,        1,		    'Dtl',  'D111',     'fa-regular fa-file-lines',     '',     'My 201 Records',		    0,				'Profiles',			'_111PersonnelInformation'), 
                     (112,	112,    110,        1,		    'Dtl',  'D112',     'fa-solid fa-suitcase',         '',     'Employment',		        0,				'Profiles',			'_112Employment'), 
                     (113,	113,    110,        1,		    'Dtl',  'D113',     'fa-solid fa-person-chalkboard','',     'Trainings',		        0,				'Profiles',			'_113Trainings'), 
                     (114,	114,    110,        1,		    'Dtl',  'D114',     'fa-solid fa-cloud-arrow-up',   '',     'Uploadables',		        0,				'Profiles',			'_114Uploadables'), 
-                    (115,	115,    110,        1,		    'Dtl',  'D115',     'fa-solid fa-list-check',       '',     'Correction Request',		0,				'Profiles',			'_115CorrectionRequest') 
+                    
+                    (210,	210,    200,		0,		    'SHdr', 'SH210',    'fa-regular fa-folder-open',    '',     'Company Records',          1,				null,		        null),
+                    
+                    (211,	211,    210,        1,		    'Dtl',  'D211',     'fa-regular fa-file-lines',     '',     'Personal Information',		0,				'Profiles',			'_211PersonnelInformation'), 
+                    (212,	212,    210,        1,		    'Dtl',  'D212',     'fa-solid fa-suitcase',         '',     'Movement History',		        0,				'Profiles',			'_212Employment'), 
+                    (213,	213,    210,        1,		    'Dtl',  'D213',     'fa-solid fa-person-chalkboard','',     'Trainings',		        0,				'Profiles',			'_213Trainings') 
                     "; 
             await _sql.ExecuteCmd(sql, new { });
+            //(115, 115, 110, 1, 'Dtl', 'D115', 'fa-solid fa-list-check', '', 'Correction Request', 0, 'Profiles', '_115CorrectionRequest'),
+
         }
     }
 

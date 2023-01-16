@@ -1,12 +1,28 @@
 ﻿@model IEnumerable<GsiaLibrary.Models.UI._001Main.MenuOutputModel>;
-@{
-}
 
-<div class="lm-hdr">
-    <span class="lm-hdr-text">@User?.Identity?.Name</span>
-    <span class="lm-hdr-icon lm-icon"><i class="fa-solid fa-angles-left"></i></span>
-    <span class="lm-hdr-icon lm-icon hide"><i class="fa-solid fa-angles-right"></i></span>
+<link rel="stylesheet" href="~/css/pis/_leftmenu.css" asp-append-version="true" />
+
+@* -------- USER NAME + MENU TOGGLE BUTTON -------- *@
+<div class="lm-hdr-wrapper">
+    <div class="lm-hdr lm-padding">
+        <span class="lm-hdr-text">@User?.Identity?.Name</span>
+        <button class="lm-hdr-icon lm-toggle-menu" id="lm-toggle-menu">
+            <i class="fa-solid fa-angles-left"></i>
+            <i class="fa-solid fa-angles-right"></i>
+        </button>
+        
+    </div>
+
+    <hr class="divider" />
+
+    @* -------- COMPANY NAME -------- *@
+    <div class="lm-hdr lm-padding co-name">
+        <span class="lm-hdr-text">Company Name</span>
+    </div>
+
+    <hr class="divider" />
 </div>
+
 
 @if (Model != null)
 {
@@ -17,7 +33,7 @@
     @foreach (var mHdr in menusHdr)
     {
         <div class="lm-body">
-            <p class="lm-category">@mHdr?.DispText</p>
+            <p class="lm-category lm-padding">@mHdr?.DispText</p>
 
 
             @{
@@ -30,43 +46,44 @@
                 @* -------- MENU MAIN ITEM -------- *@
                 @foreach (var s in menusSHdr)
                 {
-                    <div class="lmd-content">
+                    <div class="lmd-content ">
 
                         @if (!string.IsNullOrEmpty(@s?.Action))
                         {
-                            <a class="lmd-hdr" asp-area="" asp-controller="@s?.Controller" asp-action="@s?.Action">
+                            <a class="lmd-hdr lm-item" asp-area="" asp-controller="@s?.Controller" asp-action="@s?.Action">
                                 @if (s?.Icon1.Length > 0)
                                 {
-                                    <span class="lmd-hdr-icon1 lmd-icon1"><i class="@s?.Icon1"></i></span>
+                                    <span class="lmd-hdr-icon1"><i class="@s?.Icon1"></i></span>
                                 }
                                 <span class="lmd-hdr-text">@s?.DispText</span>
                             </a>
                         }
                         else
                         {
-                            <div class="lmd-hdr">
+                            <div class="lmd-hdr lm-item">
                                 @if (s?.Icon1.Length > 0)
                                 {
-                                    <span class="lmd-hdr-icon1 lmd-icon1"><i class="@s?.Icon1"></i></span>
+                                    <span class="lmd-hdr-icon1"><i class="@s?.Icon1"></i></span>
                                 }
                                 <span class="lmd-hdr-text">@s?.DispText</span>
                             </div>
                         }
                         @if (s?.IsWithChild == 1)
                         {
-                            <div class="lmd-hdr-icon2">
-                                <span class="lmd-icon2-up lm-icon hide"><i class="fa-solid fa-angle-up"></i></span>
-                                <span class="lmd-icon2-down lm-icon"><i class="fa-solid fa-angle-down"></i></span>
-                            </div>
+                            <button class="lm-toggle-subcontent lmd-hdr-icon2">
+                                <i class="fa-solid fa-angle-up"></i>
+                                <i class="fa-solid fa-angle-down"></i>
+                            </button>
+
                             var idS = s?.Id;
                             var menusS = Model.Where(m => m?.IdParent == idS);
                             @* -------- MENU SUBITEM -------- *@
                             <div class="lmd-subcontent-wrapper ">
                                 @foreach (var d in menusS)
                                 {
-                                    <div class="lmd-subcontent hide ">
-                                        <a asp-area="" asp-controller="@d?.Controller" asp-action="@d?.Action">
-                                            <span class="lmd-dtl-icon1 lmd-icon1"><i class="@d?.Icon1"></i></span>
+                                    <div class="lmd-subcontent">
+                                        <a class="lmd-subcontent-item lm-item" asp-area="" asp-controller="@d?.Controller" asp-action="@d?.Action">
+                                            <span class="lmd-dtl-icon1 "><i class="@d?.Icon1"></i></span>
                                             <span class="lmd-dtl-text"> @d?.DispText </span>
                                         </a>
 
