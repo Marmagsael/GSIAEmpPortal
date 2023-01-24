@@ -56,11 +56,10 @@
                         </div>
                     </div>
                 </div>
-
                 @*----- UPLOADABLES ------- *@
                 <div>
                     <!-- Tabs -->
-                    <ul class="nav nav-pills nav-justified b-tab-container d-flex" id="pills-tab" role="tablist">
+                    <ul class="nav nav-pills nav-justified b-tab-container d-flex gap-1" id="pills-tab" role="tablist">
                         @*-- NBI --*@
                         <li class="nav-item" role="presentation">
                             <button class="nav-link  fw-semibold  active b-tab "
@@ -139,7 +138,7 @@
                                 Drug
                             </button>
                         </li>
-                        @*-- Medical --*@
+                        @*-- Court --*@
                         <li class="nav-item" role="presentation">
                             <button class="nav-link fw-semibold b-tab   text-muted"
                                     id="pills-court-tab"
@@ -152,7 +151,7 @@
                                 Court
                             </button>
                         </li>
-                        @*-- Court --*@
+                        @*-- Medical --*@
                         <li class="nav-item" role="presentation">
                             <button class="nav-link fw-semibold b-tab  text-muted"
                                     id="pills-med-tab"
@@ -173,7 +172,7 @@
                     <div class="mc-padding tab-content text-light-secondary" id="pills-tabContent">
                             <!-- NBI Tab Content -->
                             <div 
-                                class="tab-pane fade active opacity-100" 
+                                class="tab-pane fade active show" 
                                 id="pills-nbi" 
                                 role="tabpanel" 
                                 aria-labelledby="pills-nbi-tab" 
@@ -193,30 +192,18 @@
 
                                         <div class="form-group">
                                             <label for="upload-file" class="control-label">Upload File</label>
-                                            <div class="upload-container col-md-8 col-lg-4">
-                                                @* ---- FILE CATEGORY-----*@
+                                            <div class="col-md-8 col-lg-4">
 
-                                                <div class="card">
-                                                    @* ---- DRAG AREA----*@
-                                                    <div class="drag-area d-flex flex-column w-full">
-                                                        <span class="b-body-lg-text fw-bold">Drag & drop files here</span>
-                                                        <span>or</span>
-                                                        <span class="select link-primary fw-bold" role="button">Select files</span>
-                                                        <input name="file" type="file" class="file d-none" id="upload-file"  multiple />
-                                                        <span class="b-body-sm-text text-muted py-2"> File must be  .... </span>
-                                                    </div>
-
-                                                    <!-- IMAGE PREVIEW CONTAINER -->
-                                                    <div class="image-preview position-relative w-full pt-2 d-none">
-                                                        <div class="num-of-files b-body-md-text fw-bold pb-3"></div>
-                                                        <div class="container">
-                                                        </div>
-                                                        <div class="btns-container d-flex justify-content-md-end flex-md-row flex-sm-column-reverse flex-column gap-sm-2 pt-4">
-                                                        </div>
+                                                @* ---- UPLOAD IMAGE----*@
+                                                <div class="upload-container nbi">
+                                                    <input name="file" type="file" multiple id="upload-button" multiple class="nbi"/>
+                                                    <div class="upload-hdr text-center body-text-lg "> <span>Drag and Drop files here or <label for="upload-button"> Browse </label></span> <span class="btn remove-all-images">Cancel</span></div>
+                                                    <div class="image-display-container nbi">
+                                                        <div id="image-display"></div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            </div>
+                                        </div>
 
                                         <div class="form-group">
                                             <label asp-for="Remarks" class="control-label"></label>
@@ -233,7 +220,8 @@
                                       
                                     </form>
                             </div>
-                            <!-- Police Tab Content  -->
+
+                            <!-- Police Tab Content -->
                             <div class="tab-pane fade"
                              id="pills-police"
                              role="tabpanel"
@@ -250,28 +238,16 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group upload-outer-container">
                                     <label for="upload-file" class="control-label">Upload File</label>
-                                    <div class="upload-container col-md-8 col-lg-4">
-                                        @* ---- FILE CATEGORY-----*@
+                                    <div class="col-md-8 col-lg-4 ">
 
-                                        <div class="card">
-                                            @* ---- DRAG AREA----*@
-                                            <div class="drag-area d-flex flex-column w-full">
-                                                <span class="b-body-lg-text fw-bold">Drag & drop files here</span>
-                                                <span>or</span>
-                                                <span class="select link-primary fw-bold" role="button">Select files</span>
-                                                <input name="file" type="file" class="file d-none" id="upload-file" multiple />
-                                                <span class="b-body-sm-text text-muted py-2"> File must be  .... </span>
-                                            </div>
-
-                                            <!-- IMAGE PREVIEW CONTAINER -->
-                                            <div class="image-preview position-relative w-full pt-2 d-none">
-                                                <div class="num-of-files b-body-md-text fw-bold pb-3"></div>
-                                                <div class="container">
-                                                </div>
-                                                <div class="btns-container d-flex justify-content-md-end flex-md-row flex-sm-column-reverse flex-column gap-sm-2 pt-4">
-                                                </div>
+                                        @* ---- UPLOAD IMAGE----*@
+                                        <div class="upload-container  police">
+                                            <input name="file" type="file" accept="/images" multiple />
+                                            <div class="upload-hdr text-center body-text-lg "> <span>Drag and Drop files here or <label for="upload-button"> Browse </label></span> <span class="btn remove-all-images">Cancel</span></div>
+                                            <div class="image-display-container">
+                                                <div id="image-display" class="police"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -292,7 +268,8 @@
 
                             </form>
                         </div>
-                            <!-- PNP Tab Content  -->
+
+                            <!-- PNP Tab Content -->
                             <div class="tab-pane fade"
                              id="pills-pnp"
                              role="tabpanel"
@@ -311,26 +288,14 @@
 
                                 <div class="form-group">
                                     <label for="upload-file" class="control-label">Upload File</label>
-                                    <div class="upload-container col-md-8 col-lg-4">
-                                        @* ---- FILE CATEGORY-----*@
+                                    <div class="col-md-8 col-lg-4">
 
-                                        <div class="card">
-                                            @* ---- DRAG AREA----*@
-                                            <div class="drag-area d-flex flex-column w-full">
-                                                <span class="b-body-lg-text fw-bold">Drag & drop files here</span>
-                                                <span>or</span>
-                                                <span class="select link-primary fw-bold" role="button">Select files</span>
-                                                <input name="file" type="file" class="file d-none" id="upload-file" multiple />
-                                                <span class="b-body-sm-text text-muted py-2"> File must be  .... </span>
-                                            </div>
-
-                                            <!-- IMAGE PREVIEW CONTAINER -->
-                                            <div class="image-preview position-relative w-full pt-2 d-none">
-                                                <div class="num-of-files b-body-md-text fw-bold pb-3"></div>
-                                                <div class="container">
-                                                </div>
-                                                <div class="btns-container d-flex justify-content-md-end flex-md-row flex-sm-column-reverse flex-column gap-sm-2 pt-4">
-                                                </div>
+                                        @* ---- UPLOAD IMAGE----*@
+                                        <div class="upload-container">
+                                            <input name="file" type="file" multiple id="upload-button" multiple />
+                                            <div class="upload-hdr text-center body-text-lg "> <span>Drag and Drop files here or <label for="upload-button"> Browse </label></span> <span class="btn remove-all-images">Cancel</span></div>
+                                            <div class="image-display-container">
+                                                <div id="image-display"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -351,7 +316,8 @@
 
                             </form>
                         </div>
-                            <!-- Barangay Tab Content  -->
+
+                            <!-- Barangay Tab Content -->
                             <div class="tab-pane fade"
                              id="pills-brgy"
                              role="tabpanel"
@@ -370,26 +336,14 @@
 
                                 <div class="form-group">
                                     <label for="upload-file" class="control-label">Upload File</label>
-                                    <div class="upload-container col-md-8 col-lg-4">
-                                        @* ---- FILE CATEGORY-----*@
+                                    <div class="col-md-8 col-lg-4">
 
-                                        <div class="card">
-                                            @* ---- DRAG AREA----*@
-                                            <div class="drag-area d-flex flex-column w-full">
-                                                <span class="b-body-lg-text fw-bold">Drag & drop files here</span>
-                                                <span>or</span>
-                                                <span class="select link-primary fw-bold" role="button">Select files</span>
-                                                <input name="file" type="file" class="file d-none" id="upload-file" multiple />
-                                                <span class="b-body-sm-text text-muted py-2"> File must be  .... </span>
-                                            </div>
-
-                                            <!-- IMAGE PREVIEW CONTAINER -->
-                                            <div class="image-preview position-relative w-full pt-2 d-none">
-                                                <div class="num-of-files b-body-md-text fw-bold pb-3"></div>
-                                                <div class="container">
-                                                </div>
-                                                <div class="btns-container d-flex justify-content-md-end flex-md-row flex-sm-column-reverse flex-column gap-sm-2 pt-4">
-                                                </div>
+                                        @* ---- UPLOAD IMAGE----*@
+                                        <div class="upload-container">
+                                            <input name="file" type="file" multiple id="upload-button" multiple />
+                                            <div class="upload-hdr text-center body-text-lg "> <span>Drag and Drop files here or <label for="upload-button"> Browse </label></span> <span class="btn remove-all-images">Cancel</span></div>
+                                            <div class="image-display-container">
+                                                <div id="image-display"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -410,7 +364,8 @@
 
                             </form>
                         </div>
-                            <!-- Neuro Tab Content  -->
+
+                            <!-- Neuro Tab Content -->
                             <div class="tab-pane fade"
                              id="pills-neuro"
                              role="tabpanel"
@@ -429,26 +384,14 @@
 
                                 <div class="form-group">
                                     <label for="upload-file" class="control-label">Upload File</label>
-                                    <div class="upload-container col-md-8 col-lg-4">
-                                        @* ---- FILE CATEGORY-----*@
+                                    <div class="col-md-8 col-lg-4">
 
-                                        <div class="card">
-                                            @* ---- DRAG AREA----*@
-                                            <div class="drag-area d-flex flex-column w-full">
-                                                <span class="b-body-lg-text fw-bold">Drag & drop files here</span>
-                                                <span>or</span>
-                                                <span class="select link-primary fw-bold" role="button">Select files</span>
-                                                <input name="file" type="file" class="file d-none" id="upload-file" multiple />
-                                                <span class="b-body-sm-text text-muted py-2"> File must be  .... </span>
-                                            </div>
-
-                                            <!-- IMAGE PREVIEW CONTAINER -->
-                                            <div class="image-preview position-relative w-full pt-2 d-none">
-                                                <div class="num-of-files b-body-md-text fw-bold pb-3"></div>
-                                                <div class="container">
-                                                </div>
-                                                <div class="btns-container d-flex justify-content-md-end flex-md-row flex-sm-column-reverse flex-column gap-sm-2 pt-4">
-                                                </div>
+                                        @* ---- UPLOAD IMAGE----*@
+                                        <div class="upload-container">
+                                            <input name="file" type="file" multiple id="upload-button" multiple />
+                                            <div class="upload-hdr text-center body-text-lg "> <span>Drag and Drop files here or <label for="upload-button"> Browse </label></span> <span class="btn remove-all-images">Cancel</span></div>
+                                            <div class="image-display-container">
+                                                <div id="image-display"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -469,7 +412,8 @@
 
                             </form>
                         </div>
-                            <!-- Drug Tab Content  -->
+
+                            <!-- Drug Tab Content -->
                             <div class="tab-pane fade"
                              id="pills-drug"
                              role="tabpanel"
@@ -488,26 +432,14 @@
 
                                 <div class="form-group">
                                     <label for="upload-file" class="control-label">Upload File</label>
-                                    <div class="upload-container col-md-8 col-lg-4">
-                                        @* ---- FILE CATEGORY-----*@
+                                    <div class="col-md-8 col-lg-4">
 
-                                        <div class="card">
-                                            @* ---- DRAG AREA----*@
-                                            <div class="drag-area d-flex flex-column w-full">
-                                                <span class="b-body-lg-text fw-bold">Drag & drop files here</span>
-                                                <span>or</span>
-                                                <span class="select link-primary fw-bold" role="button">Select files</span>
-                                                <input name="file" type="file" class="file d-none" id="upload-file" multiple />
-                                                <span class="b-body-sm-text text-muted py-2"> File must be  .... </span>
-                                            </div>
-
-                                            <!-- IMAGE PREVIEW CONTAINER -->
-                                            <div class="image-preview position-relative w-full pt-2 d-none">
-                                                <div class="num-of-files b-body-md-text fw-bold pb-3"></div>
-                                                <div class="container">
-                                                </div>
-                                                <div class="btns-container d-flex justify-content-md-end flex-md-row flex-sm-column-reverse flex-column gap-sm-2 pt-4">
-                                                </div>
+                                        @* ---- UPLOAD IMAGE----*@
+                                        <div class="upload-container">
+                                            <input name="file" type="file" multiple id="upload-button" multiple />
+                                            <div class="upload-hdr text-center body-text-lg "> <span>Drag and Drop files here or <label for="upload-button"> Browse </label></span> <span class="btn remove-all-images">Cancel</span></div>
+                                            <div class="image-display-container">
+                                                <div id="image-display"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -528,7 +460,8 @@
 
                             </form>
                         </div>
-                            <!-- Court Tab Content  -->
+
+                            <!-- Court Tab Content -->
                             <div class="tab-pane fade"
                              id="pills-court"
                              role="tabpanel"
@@ -547,26 +480,14 @@
 
                                 <div class="form-group">
                                     <label for="upload-file" class="control-label">Upload File</label>
-                                    <div class="upload-container col-md-8 col-lg-4">
-                                        @* ---- FILE CATEGORY-----*@
+                                    <div class="col-md-8 col-lg-4">
 
-                                        <div class="card">
-                                            @* ---- DRAG AREA----*@
-                                            <div class="drag-area d-flex flex-column w-full">
-                                                <span class="b-body-lg-text fw-bold">Drag & drop files here</span>
-                                                <span>or</span>
-                                                <span class="select link-primary fw-bold" role="button">Select files</span>
-                                                <input name="file" type="file" class="file d-none" id="upload-file" multiple />
-                                                <span class="b-body-sm-text text-muted py-2"> File must be  .... </span>
-                                            </div>
-
-                                            <!-- IMAGE PREVIEW CONTAINER -->
-                                            <div class="image-preview position-relative w-full pt-2 d-none">
-                                                <div class="num-of-files b-body-md-text fw-bold pb-3"></div>
-                                                <div class="container">
-                                                </div>
-                                                <div class="btns-container d-flex justify-content-md-end flex-md-row flex-sm-column-reverse flex-column gap-sm-2 pt-4">
-                                                </div>
+                                        @* ---- UPLOAD IMAGE----*@
+                                        <div class="upload-container">
+                                            <input name="file" type="file" multiple id="upload-button" multiple />
+                                            <div class="upload-hdr text-center body-text-lg "> <span>Drag and Drop files here or <label for="upload-button"> Browse </label></span> <span class="btn remove-all-images">Cancel</span></div>
+                                            <div class="image-display-container">
+                                                <div id="image-display"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -587,8 +508,9 @@
 
                             </form>
                         </div>
-                            <!-- Medical Tab Content  -->
-                            <div class="tab-pane fade" 
+
+                            <!-- Medical Tab Content -->
+                            <div class="tab-pane fade"
                              id="pills-med"
                              role="tabpanel"
                              aria-labelledby="pills-med-tab"
@@ -606,26 +528,14 @@
 
                                 <div class="form-group">
                                     <label for="upload-file" class="control-label">Upload File</label>
-                                    <div class="upload-container col-md-8 col-lg-4">
-                                        @* ---- FILE CATEGORY-----*@
+                                    <div class="col-md-8 col-lg-4">
 
-                                        <div class="card">
-                                            @* ---- DRAG AREA----*@
-                                            <div class="drag-area d-flex flex-column w-full">
-                                                <span class="b-body-lg-text fw-bold">Drag & drop files here</span>
-                                                <span>or</span>
-                                                <span class="select link-primary fw-bold" role="button">Select files</span>
-                                                <input name="file" type="file" class="file d-none" id="upload-file" multiple />
-                                                <span class="b-body-sm-text text-muted py-2"> File must be  .... </span>
-                                            </div>
-
-                                            <!-- IMAGE PREVIEW CONTAINER -->
-                                            <div class="image-preview position-relative w-full pt-2 d-none">
-                                                <div class="num-of-files b-body-md-text fw-bold pb-3"></div>
-                                                <div class="container">
-                                                </div>
-                                                <div class="btns-container d-flex justify-content-md-end flex-md-row flex-sm-column-reverse flex-column gap-sm-2 pt-4">
-                                                </div>
+                                        @* ---- UPLOAD IMAGE----*@
+                                        <div class="upload-container">
+                                            <input name="file" type="file" multiple id="upload-button" multiple />
+                                            <div class="upload-hdr text-center body-text-lg "> <span>Drag and Drop files here or <label for="upload-button"> Browse </label></span> <span class="btn remove-all-images">Cancel</span></div>
+                                            <div class="image-display-container">
+                                                <div id="image-display"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -653,8 +563,8 @@
     </div>
 
 </div>
-
-<script src="~/js/pis/_01uploadFiles.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/pis/_01uploadFiles.js" asp-append-version="true"></script>
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");

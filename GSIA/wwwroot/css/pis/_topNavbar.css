@@ -10,9 +10,13 @@ p, a, ul, ol, li, * {
 
 
 .menu-toggle-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
     font-size: 18px !important;
     color: var(--color-white);
-    width:32px;
+    width: 32px;
 }
 
 

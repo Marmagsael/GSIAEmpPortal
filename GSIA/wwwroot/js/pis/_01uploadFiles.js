@@ -1,25 +1,41 @@
-﻿let files = [],
-	dragArea = document.querySelector('.drag-area'),
-	input = document.querySelector('.drag-area input'),
-	button = document.querySelector('.card button'),
-	select = document.querySelector('.drag-area .select'),
-	container = document.querySelector('.container');
-	previewContainer = document.querySelector('.image-preview');
-filesNum = document.querySelector('.num-of-files');
-btnsContainer = document.querySelector(".btns-container");
+﻿
+let files = [];
+let mainContainer = document.querySelector("#pills-nbi .upload-container");
+let input = document.querySelector("#pills-nbi .upload-container input");
+let imagesContainer = document.querySelector("#pills-nbi .upload-container #image-display");
+let tabs = document.getElementsByTagName("li");
+let removeAllImages = document.querySelector(".remove-all-images");
 
-/** CLICK LISTENER */
-select.addEventListener('click', () => input.click());
+function activeTab(e) {
+	files = [];
+	mainContainer = "";
+	input = "";
+	imagesContainer = "";
+
+	/*Get data-bs-target of clicked element*/
+	let elVal = e.target.dataset.bsTarget; 
+	let val1 = elVal + " .upload-container";
+	let val2 = elVal + " .upload-container input";
+	let val3 = elVal + " .upload-container #image-display"
+	mainContainer = document.querySelector(val1);
+	input = document.querySelector(val2); 
+	imagesContainer = document.querySelector(val3); 
+
+	console.log("@click", val1, input, imagesContainer)
+}
+
+
+for (let tab of tabs) {
+	tab.addEventListener("click", activeTab);
+}
+
 
 /* INPUT CHANGE EVENT */
 input.addEventListener('change', () => {
 	let file = input.files;
-	console.log('file', file)
-
-	// if user select no image
-	if (file.length == 0) return;
 
 	for (let i = 0; i < file.length; i++) {
+		// If image already exists, don't include the image.
 		if (file[i].type.split("/")[0] != 'image') continue;
 		if (!files.some(e => e.name == file[i].name)) files.push(file[i])
 	}
@@ -27,40 +43,23 @@ input.addEventListener('change', () => {
 	showImages();
 });
 
-/** SHOW IMAGES */
+///** DISPLAY CHOSEN IMAGES */
 function showImages() {
 
 	if (files.length > 0) {
-		previewContainer.classList.remove('d-none');
-		container.classList.add('image-preview-bdr')
-		filesNum.innerHTML = `Number of files to upload: <span class="num-of-files">${files.length}</span>`;
-		//btnsContainer.innerHTML = `
-		//	<button onclick="removeAllImage()" class="btn b-btn-secondary w-md-full ">Cancel</button>
-		//	<button onclick="uploadImage()" class="btn b-btn-primary">Upload</button>
-		//`
+		mainContainer.classList.add("has-content");
+
 	} else {
-		filesNum.innerHTML = '';
-		container.classList.remove('image-preview-bdr')
-		btnsContainer.innerHTML = '';
+		mainContainer.classList.remove("has-content");
 	}
-
-
-	container.innerHTML = files.reduce((prev, curr, index) => {
+	imagesContainer.innerHTML = files.reduce((prev, curr, index) => {
 		return `${prev}
-		    <div class="image-item-container border">
-			    <div class="image-val">
-					<img src="${URL.createObjectURL(curr)}" />
-					<span class="image-desc">
-						<div class=" image-name text-truncate b-body-lg-text">${curr.name}</div>
-						<div class="b-body-md-text text-muted">${curr.size}</div>
-					</span>
-				</div>
-			    
-				<button class="image-delete-btn" onclick="delImage(${index})">&times;</button>
-			</div>`
+		    <figure >
+				<img src="${URL.createObjectURL(curr)}" />
+				<figcaption class="d-block text-truncate">${curr.name}</figcaption>
+				<button class="image-delete-btn" onclick="delImage(${index})">&times;</span>
+			</figure>`
 	}, '');
-
-
 }
 
 function uploadImage() {
@@ -76,24 +75,31 @@ function delImage(index) {
 function removeAllImage() {
 	files = [];
 	showImages();
-}
+};
+
+removeAllImages.addEventListener('click', removeAllImage);
+
 
 /* DRAG & DROP */
-dragArea.addEventListener('dragover', e => {
-	e.preventDefault()
-	dragArea.classList.add('dragover')
+mainContainer.addEventListener('dragover', e => {
+	e.preventDefault();
+	event.stopPropagation();
+	mainContainer.classList.add('active')
 })
 
 /* DRAG LEAVE */
-dragArea.addEventListener('dragleave', e => {
-	e.preventDefault()
-	dragArea.classList.remove('dragover')
+mainContainer.addEventListener('dragleave', e => {
+	e.preventDefault();
+	event.stopPropagation();
+	mainContainer.classList.remove('active');
+	
 });
 
 /* DROP EVENT */
-dragArea.addEventListener('drop', e => {
-	e.preventDefault()
-	dragArea.classList.remove('dragover');
+mainContainer.addEventListener('drop', e => {
+	e.preventDefault();
+	event.stopPropagation();
+	mainContainer.classList.remove('active');
 
 	let file = e.dataTransfer.files;
 	for (let i = 0; i < file.length; i++) {

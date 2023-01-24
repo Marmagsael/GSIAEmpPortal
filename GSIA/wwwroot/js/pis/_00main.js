@@ -57,7 +57,6 @@
 
     function _05ExpandLeftTMenuWithMenuIcon() {
         $(".lmd-hdr").click(function () {
-            console.log("hi");
 
             if (!$("#pisLeft").hasClass("lg-active")) {
                 $("#pisLeft").toggleClass("lg-active");
