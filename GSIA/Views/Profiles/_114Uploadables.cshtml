@@ -16,7 +16,7 @@
 
     <div class="row">
         <div class=" col-12">
-            <form asp-action="_111PersonnelInformation">
+            <form >
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                 <div class="mc-padding">
@@ -177,10 +177,9 @@
                                 role="tabpanel" 
                                 aria-labelledby="pills-nbi-tab" 
                                 tabindex="0">
-                                <form 
-                                        action="" 
-                                        method="POST"
+                                <form   action="/Test" method="Post"
                                         novalidate
+                                        enctype="multipart/form-data"
                                         >
                                        <div class="form-group">
                                             <label asp-for="Exp_nbi" class="control-label"></label>
@@ -215,7 +214,7 @@
 
                                         <div class="form-group">
                                             <label class="control-label"></label>
-                                            <button class="btn b-btn-primary col-md-8 col-lg-3"> Upload </button>
+                                            <input type="submit" value="Upload" class="btn b-btn-primary col-md-8 col-lg-3"/> 
                                         </div>
                                       
                                     </form>
@@ -244,7 +243,7 @@
 
                                         @* ---- UPLOAD IMAGE----*@
                                         <div class="upload-container  police">
-                                            <input name="file" type="file" accept="/images" multiple />
+                                            <input name="file" type="file" accept="/images" multiple  class="police"/>
                                             <div class="upload-hdr text-center body-text-lg "> <span>Drag and Drop files here or <label for="upload-button"> Browse </label></span> <span class="btn remove-all-images">Cancel</span></div>
                                             <div class="image-display-container">
                                                 <div id="image-display" class="police"></div>

@@ -1,9 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "9QquAVhHdPeaEQnb60NOR346qBBy+9Eesw6qhRXo63VMGdukLKK49SR0Tx4uu46mubITfMTrh5HuHw0Ul8GlwQ==",
+  "dgSpecHash": "gV3/9gmloW/VZ6eERR+L1YgnIJqeMuQdYDMGUCvvKORLcNIoCoNKBvMbaXAZyi6Jhem8LVhq2iap5882mrYMJg==",
   "success": true,
   "projectFilePath": "C:\\Web Apps\\Asp.Net\\GSIA(PIS)withApi03\\GSIA\\GSIA.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Judith\\.nuget\\packages\\google.apis\\1.59.0\\google.apis.1.59.0.nupkg.sha512",
+    "C:\\Users\\Judith\\.nuget\\packages\\google.apis.auth\\1.59.0\\google.apis.auth.1.59.0.nupkg.sha512",
+    "C:\\Users\\Judith\\.nuget\\packages\\google.apis.core\\1.59.0\\google.apis.core.1.59.0.nupkg.sha512",
+    "C:\\Users\\Judith\\.nuget\\packages\\google.apis.drive.v3\\1.59.0.2922\\google.apis.drive.v3.1.59.0.2922.nupkg.sha512",
     "C:\\Users\\Judith\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Judith\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\Judith\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",
