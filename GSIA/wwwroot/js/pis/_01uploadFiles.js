@@ -1,47 +1,215 @@
 ﻿
-let files = [];
-let mainContainer = document.querySelector("#pills-nbi .upload-container");
-let input = document.querySelector("#pills-nbi .upload-container input");
-let imagesContainer = document.querySelector("#pills-nbi .upload-container #image-display");
-let tabs = document.getElementsByTagName("li");
-let removeAllImages = document.querySelector(".remove-all-images");
+let files = [],
+	uploadContainer = document.querySelector(".upload-container"),
+	input = document.querySelector(".upload-container input"),
+	imagesContainer = document.querySelector(".upload-container #image-display"),
+	removeAllImages = document.querySelector(".remove-all-images"),
+
+	expireLabel = document.querySelector(".form-date-expire label"),
+	expireInput = document.querySelector(".form-date-expire input"),
+	tabs = document.getElementsByTagName("li");
 
 
-///*OVERRIDE THE SELECTOR'S VALUE*/
 function activeTab(e) {
-	files = [];
-	mainContainer = "";
-	input = "";
-	imagesContainer = "";
+	/*Get data-bs-target of clicked element*/
+	let tabVal = e.target.id;
+	tab = document.getElementById(tabVal);
 
-	///* GET THE DATA-BS-TARGET OF THE CLICKED ELEMENT TO TARGET THE TAB CONTENT*/
-	let elVal = e.target.dataset.bsTarget; 
+	let navLink = document.getElementsByClassName("nav-link");
 
-	let val1 = elVal + " .upload-container";
-	let val2 = elVal + " .upload-container input";
-	let val3 = elVal + " .upload-container #image-display";
+	if (navLink.classList.contains(active)) navLink.classList.remove("active");
+	navLink.classList.remove("active");
+	if (input.files.length > 0) {
+		let cancelUpload = confirm("Are you sure you want to cancel your upload?");
+		if (cancelUpload) {
+			switch (tabVal) {
+				case "pills-nbi-tab":
+					tab.classList.add("active");
+					expireLabel.innerHTML = "NBI Expire"
+					expireLabel.setAttribute('for', 'Exp_police');
+					expireLabel.setAttribute('asp-for', 'Exp_police');
+					expireInput.setAttribute('asp-for', 'Exp_police');
+					expireInput.setAttribute('id', 'Exp_police');
+					expireInput.setAttribute('name', 'Exp_police');
+					break;
+				case "pills-police-tab":
+					tab.classList.add("active");
+					expireLabel.innerHTML = "Police Expire"
+					expireLabel.setAttribute('for', 'Exp_police');
+					expireLabel.setAttribute('asp-for', 'Exp_police');
+					expireInput.setAttribute('asp-for', 'Exp_police');
+					expireInput.setAttribute('id', 'Exp_police');
+					expireInput.setAttribute('name', 'Exp_police');
+					break;
 
-	mainContainer = document.querySelector(val1);
-	input = document.querySelector(val2); 
-	imagesContainer = document.querySelector(val3); 
+				case "pills-pnp-tab":
+					tab.classList.add("active");
+					expireLabel.innerHTML = "PNP Expire"
+					expireLabel.setAttribute('for', 'Exp_pnp');
+					expireLabel.setAttribute('asp-for', 'Exp_pnp');
+					expireInput.setAttribute('asp-for', 'Exp_pnp');
+					expireInput.setAttribute('id', 'Exp_pnp');
+					expireInput.setAttribute('name', 'Exp_pnp');
+					break;
 
-	console.log("@click", mainContainer, input, imagesContainer)
+				case "pills-brgy-tab":
+					tab.classList.add("active");
+					expireLabel.innerHTML = "Barangay Expire"
+					expireLabel.setAttribute('for', 'Exp_brgy');
+					expireLabel.setAttribute('asp-for', 'Exp_brgy');
+					expireInput.setAttribute('asp-for', 'Exp_brgy');
+					expireInput.setAttribute('id', 'Exp_brgy');
+					expireInput.setAttribute('name', 'Exp_brgy');
+					break;
+
+				case "pills-neuro-tab":
+					tab.classList.add("active");
+					expireLabel.innerHTML = "Neuro Expire"
+					expireLabel.setAttribute('for', 'Exp_neuro');
+					expireLabel.setAttribute('asp-for', 'Exp_neuro');
+					expireInput.setAttribute('asp-for', 'Exp_neuro');
+					expireInput.setAttribute('id', 'Exp_neuro');
+					expireInput.setAttribute('name', 'Exp_neuro');
+					break;
+
+				case "pills-drug-tab":
+					expireLabel.innerHTML = "Drug Expire"
+					expireLabel.setAttribute('for', 'Exp_drug');
+					expireLabel.setAttribute('asp-for', 'Exp_drug');
+					expireInput.setAttribute('asp-for', 'Exp_drug');
+					expireInput.setAttribute('id', 'Exp_drug');
+					expireInput.setAttribute('name', 'Exp_drug');
+					break;
+
+				case "pills-court-tab":
+					tab.classList.add("active");
+					expireLabel.innerHTML = "Court Expire"
+					expireLabel.setAttribute('for', 'Exp_court');
+					expireLabel.setAttribute('asp-for', 'Exp_court');
+					expireInput.setAttribute('asp-for', 'Exp_court');
+					expireInput.setAttribute('id', 'Exp_court');
+					expireInput.setAttribute('name', 'Exp_court');
+					break;
+
+				case "pills-med-tab":
+					tab.classList.add("active");
+					expireLabel.innerHTML = "Medical Expire"
+					expireLabel.setAttribute('for', 'Exp_med');
+					expireLabel.setAttribute('asp-for', 'Exp_med');
+					expireInput.setAttribute('asp-for', 'Exp_med');
+					expireInput.setAttribute('id', 'Exp_med');
+					expireInput.setAttribute('name', 'Exp_med');
+					break;
+
+				default:
+				// code block\
+			}
+		} else {
+			tab.classList.remove("active");
+			return false;
+
+		}
+	} else {
+		console.log(input.files.length)
+		switch (tabVal) {
+			case "pills-nbi-tab":
+				tab.classList.add("active");
+				expireLabel.innerHTML = "NBI Expire"
+				expireLabel.setAttribute('for', 'Exp_police');
+				expireLabel.setAttribute('asp-for', 'Exp_police');
+				expireInput.setAttribute('asp-for', 'Exp_police');
+				expireInput.setAttribute('id', 'Exp_police');
+				expireInput.setAttribute('name', 'Exp_police');
+				break;
+			case "pills-police-tab":
+				tab.classList.add("active");
+				expireLabel.innerHTML = "Police Expire"
+				expireLabel.setAttribute('for', 'Exp_police');
+				expireLabel.setAttribute('asp-for', 'Exp_police');
+				expireInput.setAttribute('asp-for', 'Exp_police');
+				expireInput.setAttribute('id', 'Exp_police');
+				expireInput.setAttribute('name', 'Exp_police');
+				break;
+
+			case "pills-pnp-tab":
+				tab.classList.add("active");
+				expireLabel.innerHTML = "PNP Expire"
+				expireLabel.setAttribute('for', 'Exp_pnp');
+				expireLabel.setAttribute('asp-for', 'Exp_pnp');
+				expireInput.setAttribute('asp-for', 'Exp_pnp');
+				expireInput.setAttribute('id', 'Exp_pnp');
+				expireInput.setAttribute('name', 'Exp_pnp');
+				break;
+
+			case "pills-brgy-tab":
+				tab.classList.add("active");
+				expireLabel.innerHTML = "Barangay Expire"
+				expireLabel.setAttribute('for', 'Exp_brgy');
+				expireLabel.setAttribute('asp-for', 'Exp_brgy');
+				expireInput.setAttribute('asp-for', 'Exp_brgy');
+				expireInput.setAttribute('id', 'Exp_brgy');
+				expireInput.setAttribute('name', 'Exp_brgy');
+				break;
+
+			case "pills-neuro-tab":
+				tab.classList.add("active");
+				expireLabel.innerHTML = "Neuro Expire"
+				expireLabel.setAttribute('for', 'Exp_neuro');
+				expireLabel.setAttribute('asp-for', 'Exp_neuro');
+				expireInput.setAttribute('asp-for', 'Exp_neuro');
+				expireInput.setAttribute('id', 'Exp_neuro');
+				expireInput.setAttribute('name', 'Exp_neuro');
+				break;
+
+			case "pills-drug-tab":
+				tab.classList.add("active");
+				expireLabel.innerHTML = "Drug Expire"
+				expireLabel.setAttribute('for', 'Exp_drug');
+				expireLabel.setAttribute('asp-for', 'Exp_drug');
+				expireInput.setAttribute('asp-for', 'Exp_drug');
+				expireInput.setAttribute('id', 'Exp_drug');
+				expireInput.setAttribute('name', 'Exp_drug');
+				break;
+
+			case "pills-court-tab":
+				tab.classList.add("active");
+				expireLabel.innerHTML = "Court Expire"
+				expireLabel.setAttribute('for', 'Exp_court');
+				expireLabel.setAttribute('asp-for', 'Exp_court');
+				expireInput.setAttribute('asp-for', 'Exp_court');
+				expireInput.setAttribute('id', 'Exp_court');
+				expireInput.setAttribute('name', 'Exp_court');
+				break;
+
+			case "pills-med-tab":
+				tab.classList.add("active");
+				expireLabel.innerHTML = "Medical Expire"
+				expireLabel.setAttribute('for', 'Exp_med');
+				expireLabel.setAttribute('asp-for', 'Exp_med');
+				expireInput.setAttribute('asp-for', 'Exp_med');
+				expireInput.setAttribute('id', 'Exp_med');
+				expireInput.setAttribute('name', 'Exp_med');
+				break;
+
+			default:
+			// code block\
+		}
+	}
 }
-
 
 for (let tab of tabs) {
 	tab.addEventListener("click", activeTab);
 }
 
 
-///* INPUT CHANGE EVENT */
+/* INPUT CHANGE EVENT */
 input.addEventListener('change', () => {
 	let file = input.files;
+	console.log(input.files.length)
 
 	for (let i = 0; i < file.length; i++) {
-		/** Allow only image file type */
+		// If image already exists, don't include the image.
 		if (file[i].type.split("/")[0] != 'image') continue;
-		/** Remove any duplicate image */
 		if (!files.some(e => e.name == file[i].name)) files.push(file[i])
 	}
 
@@ -52,10 +220,10 @@ input.addEventListener('change', () => {
 function showImages() {
 
 	if (files.length > 0) {
-		mainContainer.classList.add("has-content");
+		uploadContainer.classList.add("has-content");
 
 	} else {
-		mainContainer.classList.remove("has-content");
+		uploadContainer.classList.remove("has-content");
 	}
 	imagesContainer.innerHTML = files.reduce((prev, curr, index) => {
 		return `${prev}
@@ -71,12 +239,12 @@ function uploadImage() {
 
 }
 
-///* DELETE IMAGE */
+/* DELETE IMAGE */
 function delImage(index) {
 	files.splice(index, 1);
 	showImages();
 }
-///* REMOVE ALL IMAGES */
+/* REMOVE ALL IMAGES */
 function removeAllImage() {
 	files = [];
 	showImages();
@@ -86,33 +254,29 @@ removeAllImages.addEventListener('click', removeAllImage);
 
 
 /* DRAG & DROP */
-mainContainer.addEventListener('dragover', e => {
+uploadContainer.addEventListener('dragover', e => {
 	e.preventDefault();
 	event.stopPropagation();
-	mainContainer.classList.add('active')
+	uploadContainer.classList.add('active')
 })
 
 /* DRAG LEAVE */
-mainContainer.addEventListener('dragleave', e => {
+uploadContainer.addEventListener('dragleave', e => {
 	e.preventDefault();
 	event.stopPropagation();
-	mainContainer.classList.remove('active');
-
-	console.log(">>>>>>>>",mainContainer, input, imagesContainer)
-	
+	uploadContainer.classList.remove('active');
 });
 
 /* DROP EVENT */
-mainContainer.addEventListener('drop', e => {
+uploadContainer.addEventListener('drop', e => {
 	e.preventDefault();
 	event.stopPropagation();
-	mainContainer.classList.remove('active');
+	uploadContainer.classList.remove('active');
 
 	let file = e.dataTransfer.files;
 	for (let i = 0; i < file.length; i++) {
-		/** Allow only image file type */
+		/** Check if selected file is image */
 		if (file[i].type.split("/")[0] != 'image') continue;
-		/** Remove any duplicate image */
 		if (!files.some(e => e.name == file[i].name)) files.push(file[i])
 	}
 	showImages();

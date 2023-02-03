@@ -16,548 +16,186 @@
 
     <div class="row">
         <div class=" col-12">
-            <form >
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                <div class="mc-padding">
-                    @* --- Employee's Image' --- *@
-                    <div class="img-wrapper"><i class="fa-solid fa-user-tie"></i></div>
+            <div class="mc-padding">
+                @* --- Employee's Image' --- *@
+                <div class="img-wrapper"><i class="fa-solid fa-user-tie"></i></div>
 
-                    @* --- Employee Number ---*@
-                    <div class="form-group">
-                        <label asp-for="Empnumber" class="control-label"></label>
-                        <div class="col-md-8 col-lg-1">
-                            <input asp-for="Empnumber" class="form-control"  />
-                            <span asp-validation-for="Empnumber" class="text-danger err-input-msg"></span>
-                        </div>
-                    </div>
-                    @* --- Last Name ---*@
-                    <div class="form-group">
-                        <label asp-for="Emplastnm" class="control-label"></label>
-                        <div class="col-md-8 col-lg-3">
-                            <input asp-for="Emplastnm" class="form-control"  />
-                            <span asp-validation-for="Emplastnm" class="text-danger err-input-msg"></span>
-                        </div>
-                    </div>
-                    @* --- First Name ---*@
-                    <div class="form-group">
-                        <label asp-for="Empfirstnm" class="control-label"></label>
-                        <div class="col-md-8 col-lg-3">
-                            <input asp-for="Empfirstnm" class="form-control"  />
-                            <span asp-validation-for="Empfirstnm" class="text-danger err-input-msg"></span>
-                        </div>
-                    </div>
-                    @* --- Middle Name ---*@
-                    <div class="form-group">
-                        <label asp-for="Empmidnm" class="control-label"></label>
-                        <div class="col-md-8 col-lg-3">
-                            <input asp-for="Empmidnm" class="form-control"  />
-                            <span asp-validation-for="Empmidnm" class="text-danger err-input-msg"></span>
-                        </div>
+                @* --- Employee Number ---*@
+                <div class="form-group">
+                    <label asp-for="Empnumber" class="control-label"></label>
+                    <div class="col-md-8 col-lg-1">
+                        <input asp-for="Empnumber" class="form-control"  />
+                        <span asp-validation-for="Empnumber" class="text-danger err-input-msg"></span>
                     </div>
                 </div>
-                @*----- UPLOADABLES ------- *@
-                <div>
-                    <!-- Tabs -->
-                    <ul class="nav nav-pills nav-justified b-tab-container d-flex gap-1" id="pills-tab" role="tablist">
-                        @*-- NBI --*@
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link  fw-semibold  active b-tab "
-                                    id="pills-nbi-tab"
-                                    data-bs-toggle="pill"
-                                    data-bs-target="#pills-nbi"
-                                    type="button"
-                                    role="tab"
-                                    aria-controls="pills-nbi"
-                                    aria-selected="true">
-                                NBI
-                            </button>
-                        </li>
-                        @*-- Police --*@
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link fw-semibold b-tab  text-muted"
-                                    id="pills-police-tab"
-                                    data-bs-toggle="pill"
-                                    data-bs-target="#pills-police"
-                                    type="button"
-                                    role="tab"
-                                    aria-controls="pills-police"
-                                    aria-selected="false">
-                                Police
-                            </button>
-                        </li>
-                        @*-- PNP --*@
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link fw-semibold b-tab  text-muted"
-                                    id="pills-pnp-tab"
-                                    data-bs-toggle="pill"
-                                    data-bs-target="#pills-pnp"
-                                    type="button"
-                                    role="tab"
-                                    aria-controls="pills-pnp"
-                                    aria-selected="false">
-                                PNP
-                            </button>
-                        </li>
-                        @*-- Barangay --*@
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link fw-semibold b-tab   text-muted"
-                                    id="pills-brgy-tab"
-                                    data-bs-toggle="pill"
-                                    data-bs-target="#pills-brgy"
-                                    type="button"
-                                    role="tab"
-                                    aria-controls="pills-brgy"
-                                    aria-selected="false">
-                                Barangay
-                            </button>
-                        </li>
-                        @*-- Neuro --*@
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link fw-semibold b-tab  -muted"
-                                    id="pills-neuro-tab"
-                                    data-bs-toggle="pill"
-                                    data-bs-target="#pills-neuro"
-                                    type="button"
-                                    role="tab"
-                                    aria-controls="pills-neuro"
-                                    aria-selected="false">
-                                Neuro
-                            </button>
-                        </li>
-                        @*-- Drug --*@
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link fw-semibold b-tab text-muted"
-                                    id="pills-drug-tab"
-                                    data-bs-toggle="pill"
-                                    data-bs-target="#pills-drug"
-                                    type="button"
-                                    role="tab"
-                                    aria-controls="pills-drug"
-                                    aria-selected="false">
-                                Drug
-                            </button>
-                        </li>
-                        @*-- Court --*@
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link fw-semibold b-tab   text-muted"
-                                    id="pills-court-tab"
-                                    data-bs-toggle="pill"
-                                    data-bs-target="#pills-court"
-                                    type="button"
-                                    role="tab"
-                                    aria-controls="pills-court"
-                                    aria-selected="false">
-                                Court
-                            </button>
-                        </li>
-                        @*-- Medical --*@
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link fw-semibold b-tab  text-muted"
-                                    id="pills-med-tab"
-                                    data-bs-toggle="pill"
-                                    data-bs-target="#pills-med"
-                                    type="button"
-                                    role="tab"
-                                    aria-controls="pills-med"
-                                    aria-selected="false">
-                                Medical
-                            </button>
-                        </li>
-                    </ul>
+                @* --- Last Name ---*@
+                <div class="form-group">
+                    <label asp-for="Emplastnm" class="control-label"></label>
+                    <div class="col-md-8 col-lg-3">
+                        <input asp-for="Emplastnm" class="form-control"  />
+                        <span asp-validation-for="Emplastnm" class="text-danger err-input-msg"></span>
+                    </div>
+                </div>
+                @* --- First Name ---*@
+                <div class="form-group">
+                    <label asp-for="Empfirstnm" class="control-label"></label>
+                    <div class="col-md-8 col-lg-3">
+                        <input asp-for="Empfirstnm" class="form-control"  />
+                        <span asp-validation-for="Empfirstnm" class="text-danger err-input-msg"></span>
+                    </div>
+                </div>
+                @* --- Middle Name ---*@
+                <div class="form-group">
+                    <label asp-for="Empmidnm" class="control-label"></label>
+                    <div class="col-md-8 col-lg-3">
+                        <input asp-for="Empmidnm" class="form-control"  />
+                        <span asp-validation-for="Empmidnm" class="text-danger err-input-msg"></span>
+                    </div>
+                </div>
+            </div>
+            
+            @*----- UPLOADABLES ------- *@
+            <div>
+                <!-- Tabs -->
+                <ul class="nav nav-pills nav-justified b-tab-container d-flex gap-1" id="pills-tab" role="tablist">
+                    @*-- NBI --*@
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link  fw-semibold  active b-tab "
+                                id="pills-nbi-tab"                             
+                                type="button"
+                                role="tab"                        
+                                aria-selected="true">
+                            NBI
+                        </button>
+                    </li>
+                    @*-- Police --*@
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link fw-semibold b-tab  text-muted"
+                                id="pills-police-tab"                           
+                                type="button"
+                                role="tab"             
+                                aria-selected="false">
+                            Police
+                        </button>
+                    </li>
+                    @*-- PNP --*@
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link fw-semibold b-tab  text-muted"
+                                id="pills-pnp-tab"                           
+                                type="button"
+                                role="tab"
+                                aria-selected="false">
+                            PNP
+                        </button>
+                    </li>
+                    @*-- Barangay --*@
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link fw-semibold b-tab   text-muted"
+                                id="pills-brgy-tab"
+                                type="button"
+                                role="tab"
+                                aria-selected="false">
+                            Barangay
+                        </button>
+                    </li>
+                    @*-- Neuro --*@
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link fw-semibold b-tab  -muted"
+                                id="pills-neuro-tab"
+                                type="button"
+                                role="tab"
+                                aria-selected="false">
+                            Neuro
+                        </button>
+                    </li>
+                    @*-- Drug --*@
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link fw-semibold b-tab text-muted"
+                                id="pills-drug-tab"
+                                type="button"
+                                role="tab"
+                                aria-selected="false">
+                            Drug
+                        </button>
+                    </li>
+                    @*-- Court --*@
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link fw-semibold b-tab   text-muted"
+                                id="pills-court-tab"
+                                type="button"
+                                role="tab"
+                                aria-selected="false">
+                            Court
+                        </button>
+                    </li>
+                    @*-- Medical --*@
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link fw-semibold b-tab  text-muted"
+                                id="pills-med-tab"
+                                type="button"
+                                role="tab"
+                                aria-selected="false">
+                            Medical
+                        </button>
+                    </li>
+                </ul>
                     
-                    <!-- UPLOADABLES CAPTION -->
-                    <div class="section-category-wrapper mt-0"><h5 class="section-category"> Uploadables</h5></div>
-                    <!-- Tabs Content -->
-                    <div class="mc-padding tab-content text-light-secondary" id="pills-tabContent">
-                            <!-- NBI Tab Content -->
-                            <div 
-                                class="tab-pane fade active show" 
-                                id="pills-nbi" 
-                                role="tabpanel" 
-                                aria-labelledby="pills-nbi-tab" 
-                                tabindex="0">
-                                <form   action="/Test" method="Post"
-                                        novalidate
-                                        enctype="multipart/form-data"
-                                        >
-                                       <div class="form-group">
-                                            <label asp-for="Exp_nbi" class="control-label"></label>
-                                            <div class="col-md-8 col-lg-1">
-                                            <input asp-for="Exp_nbi" class="form-control" />
-                                            <span asp-validation-for="Exp_nbi" class="text-danger err-input-msg"></span>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="upload-file" class="control-label">Upload File</label>
-                                            <div class="col-md-8 col-lg-4">
-
-                                                @* ---- UPLOAD IMAGE----*@
-                                                <div class="upload-container nbi">
-                                                    <input name="file" type="file" multiple id="upload-button" multiple class="nbi"/>
-                                                    <div class="upload-hdr text-center body-text-lg "> <span>Drag and Drop files here or <label for="upload-button"> Browse </label></span> <span class="btn remove-all-images">Cancel</span></div>
-                                                    <div class="image-display-container nbi">
-                                                        <div id="image-display"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label asp-for="Remarks" class="control-label"></label>
-                                            <div class="col-md-8 col-lg-3">
-                                            <textarea asp-for="Remarks" class="form-control" ></textarea>
-                                            <span asp-validation-for="Remarks" class="text-danger err-input-msg"></span>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="control-label"></label>
-                                            <input type="submit" value="Upload" class="btn b-btn-primary col-md-8 col-lg-3"/> 
-                                        </div>
-                                      
-                                    </form>
+                <!-- UPLOADABLES CAPTION -->
+                <div class="section-category-wrapper mt-0"><h5 class="section-category"> Uploadables</h5></div>
+                
+                <!-- Tabs Content -->
+                <div class="mc-padding tab-content text-light-secondary" id="pills-tabContent">
+                    <div 
+                        class="tab-pane fade active show" 
+                        id="pills-nbi" 
+                        role="tabpanel" 
+                        aria-labelledby="pills-nbi-tab" 
+                        tabindex="0">
+                            @* ---- EXPIRE ----*@
+                            <div class="form-group form-date-expire">
+                                <label asp-for="Exp_nbi" class="control-label"></label>
+                                <div class="col-md-8 col-lg-1">
+                                    <input asp-for="Exp_nbi" class="form-control" />
+                                    <span  class="text-danger err-input-msg"></span>
+                                </div>
                             </div>
 
-                            <!-- Police Tab Content -->
-                            <div class="tab-pane fade"
-                             id="pills-police"
-                             role="tabpanel"
-                             aria-labelledby="pills-police-tab"
-                             tabindex="0">
-                            <form action=""
-                                  method="POST"
-                                  novalidate>
-                                <div class="form-group">
-                                    <label asp-for="Exp_police" class="control-label"></label>
-                                    <div class="col-md-8 col-lg-1">
-                                        <input asp-for="Exp_police" class="form-control" />
-                                        <span asp-validation-for="Exp_police" class="text-danger err-input-msg"></span>
-                                    </div>
-                                </div>
+                            <div class="form-group">
+                                <label for="upload-file" class="control-label">Upload File</label>
+                                <div class="col-md-8 col-lg-4">
 
-                                <div class="form-group upload-outer-container">
-                                    <label for="upload-file" class="control-label">Upload File</label>
-                                    <div class="col-md-8 col-lg-4 ">
-
-                                        @* ---- UPLOAD IMAGE----*@
-                                        <div class="upload-container  police">
-                                            <input name="file" type="file" accept="/images" multiple  class="police"/>
-                                            <div class="upload-hdr text-center body-text-lg "> <span>Drag and Drop files here or <label for="upload-button"> Browse </label></span> <span class="btn remove-all-images">Cancel</span></div>
-                                            <div class="image-display-container">
-                                                <div id="image-display" class="police"></div>
-                                            </div>
+                                    @* ---- UPLOAD IMAGE----*@
+                                    <div class="upload-container nbi">
+                                        <input name="file" type="file" multiple id="upload-button" multiple class="nbi"/>
+                                        <div class="upload-hdr text-center body-text-lg "> <span>Drag and Drop files here or <label for="upload-button"> Browse </label></span> <span class="btn remove-all-images">Cancel</span></div>
+                                        <div class="image-display-container nbi">
+                                            <div id="image-display"></div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="form-group">
-                                    <label asp-for="Remarks" class="control-label"></label>
-                                    <div class="col-md-8 col-lg-3">
-                                        <textarea asp-for="Remarks" class="form-control"></textarea>
-                                        <span asp-validation-for="Remarks" class="text-danger err-input-msg"></span>
-                                    </div>
+                            @* ---- REMARKS ----*@
+                            <div class="form-group">
+                                <label asp-for="Remarks" class="control-label"></label>
+                                <div class="col-md-8 col-lg-3">
+                                    <textarea asp-for="Remarks" class="form-control" ></textarea>
+                                    <span class="text-danger err-input-msg"></span>
                                 </div>
+                            </div>
 
-                                <div class="form-group">
-                                    <label class="control-label"></label>
-                                    <button class="btn b-btn-primary col-md-8 col-lg-3"> Upload </button>
-                                </div>
-
-                            </form>
+                            <div class="form-group">
+                                <label class="control-label"></label>
+                                <button class="btn b-btn-primary col-md-8 col-lg-3"> Upload </button>
+                            </div>
+                                      
                         </div>
 
-                            <!-- PNP Tab Content -->
-                            <div class="tab-pane fade"
-                             id="pills-pnp"
-                             role="tabpanel"
-                             aria-labelledby="pills-pnp-tab"
-                             tabindex="0">
-                            <form action=""
-                                  method="POST"
-                                  novalidate>
-                                <div class="form-group">
-                                    <label asp-for="Exp_pnp" class="control-label"></label>
-                                    <div class="col-md-8 col-lg-1">
-                                        <input asp-for="Exp_pnp" class="form-control" />
-                                        <span asp-validation-for="Exp_pnp" class="text-danger err-input-msg"></span>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="upload-file" class="control-label">Upload File</label>
-                                    <div class="col-md-8 col-lg-4">
-
-                                        @* ---- UPLOAD IMAGE----*@
-                                        <div class="upload-container">
-                                            <input name="file" type="file" multiple id="upload-button" multiple />
-                                            <div class="upload-hdr text-center body-text-lg "> <span>Drag and Drop files here or <label for="upload-button"> Browse </label></span> <span class="btn remove-all-images">Cancel</span></div>
-                                            <div class="image-display-container">
-                                                <div id="image-display"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label asp-for="Remarks" class="control-label"></label>
-                                    <div class="col-md-8 col-lg-3">
-                                        <textarea asp-for="Remarks" class="form-control"></textarea>
-                                        <span asp-validation-for="Remarks" class="text-danger err-input-msg"></span>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label"></label>
-                                    <button class="btn b-btn-primary col-md-8 col-lg-3"> Upload </button>
-                                </div>
-
-                            </form>
-                        </div>
-
-                            <!-- Barangay Tab Content -->
-                            <div class="tab-pane fade"
-                             id="pills-brgy"
-                             role="tabpanel"
-                             aria-labelledby="pills-brgy-tab"
-                             tabindex="0">
-                            <form action=""
-                                  method="POST"
-                                  novalidate>
-                                <div class="form-group">
-                                    <label asp-for="Exp_brgy" class="control-label"></label>
-                                    <div class="col-md-8 col-lg-1">
-                                        <input asp-for="Exp_brgy" class="form-control" />
-                                        <span asp-validation-for="Exp_brgy" class="text-danger err-input-msg"></span>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="upload-file" class="control-label">Upload File</label>
-                                    <div class="col-md-8 col-lg-4">
-
-                                        @* ---- UPLOAD IMAGE----*@
-                                        <div class="upload-container">
-                                            <input name="file" type="file" multiple id="upload-button" multiple />
-                                            <div class="upload-hdr text-center body-text-lg "> <span>Drag and Drop files here or <label for="upload-button"> Browse </label></span> <span class="btn remove-all-images">Cancel</span></div>
-                                            <div class="image-display-container">
-                                                <div id="image-display"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label asp-for="Remarks" class="control-label"></label>
-                                    <div class="col-md-8 col-lg-3">
-                                        <textarea asp-for="Remarks" class="form-control"></textarea>
-                                        <span asp-validation-for="Remarks" class="text-danger err-input-msg"></span>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label"></label>
-                                    <button class="btn b-btn-primary col-md-8 col-lg-3"> Upload </button>
-                                </div>
-
-                            </form>
-                        </div>
-
-                            <!-- Neuro Tab Content -->
-                            <div class="tab-pane fade"
-                             id="pills-neuro"
-                             role="tabpanel"
-                             aria-labelledby="pills-neuro-tab"
-                             tabindex="0">
-                            <form action=""
-                                  method="POST"
-                                  novalidate>
-                                <div class="form-group">
-                                    <label asp-for="Exp_neuro" class="control-label"></label>
-                                    <div class="col-md-8 col-lg-1">
-                                        <input asp-for="Exp_neuro" class="form-control" />
-                                        <span asp-validation-for="Exp_neuro" class="text-danger err-input-msg"></span>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="upload-file" class="control-label">Upload File</label>
-                                    <div class="col-md-8 col-lg-4">
-
-                                        @* ---- UPLOAD IMAGE----*@
-                                        <div class="upload-container">
-                                            <input name="file" type="file" multiple id="upload-button" multiple />
-                                            <div class="upload-hdr text-center body-text-lg "> <span>Drag and Drop files here or <label for="upload-button"> Browse </label></span> <span class="btn remove-all-images">Cancel</span></div>
-                                            <div class="image-display-container">
-                                                <div id="image-display"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label asp-for="Remarks" class="control-label"></label>
-                                    <div class="col-md-8 col-lg-3">
-                                        <textarea asp-for="Remarks" class="form-control"></textarea>
-                                        <span asp-validation-for="Remarks" class="text-danger err-input-msg"></span>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label"></label>
-                                    <button class="btn b-btn-primary col-md-8 col-lg-3"> Upload </button>
-                                </div>
-
-                            </form>
-                        </div>
-
-                            <!-- Drug Tab Content -->
-                            <div class="tab-pane fade"
-                             id="pills-drug"
-                             role="tabpanel"
-                             aria-labelledby="pills-drug-tab"
-                             tabindex="0">
-                            <form action=""
-                                  method="POST"
-                                  novalidate>
-                                <div class="form-group">
-                                    <label asp-for="Exp_drug" class="control-label"></label>
-                                    <div class="col-md-8 col-lg-1">
-                                        <input asp-for="Exp_drug" class="form-control" />
-                                        <span asp-validation-for="Exp_drug" class="text-danger err-input-msg"></span>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="upload-file" class="control-label">Upload File</label>
-                                    <div class="col-md-8 col-lg-4">
-
-                                        @* ---- UPLOAD IMAGE----*@
-                                        <div class="upload-container">
-                                            <input name="file" type="file" multiple id="upload-button" multiple />
-                                            <div class="upload-hdr text-center body-text-lg "> <span>Drag and Drop files here or <label for="upload-button"> Browse </label></span> <span class="btn remove-all-images">Cancel</span></div>
-                                            <div class="image-display-container">
-                                                <div id="image-display"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label asp-for="Remarks" class="control-label"></label>
-                                    <div class="col-md-8 col-lg-3">
-                                        <textarea asp-for="Remarks" class="form-control"></textarea>
-                                        <span asp-validation-for="Remarks" class="text-danger err-input-msg"></span>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label"></label>
-                                    <button class="btn b-btn-primary col-md-8 col-lg-3"> Upload </button>
-                                </div>
-
-                            </form>
-                        </div>
-
-                            <!-- Court Tab Content -->
-                            <div class="tab-pane fade"
-                             id="pills-court"
-                             role="tabpanel"
-                             aria-labelledby="pills-court-tab"
-                             tabindex="0">
-                            <form action=""
-                                  method="POST"
-                                  novalidate>
-                                <div class="form-group">
-                                    <label asp-for="Exp_court" class="control-label"></label>
-                                    <div class="col-md-8 col-lg-1">
-                                        <input asp-for="Exp_court" class="form-control" />
-                                        <span asp-validation-for="Exp_court" class="text-danger err-input-msg"></span>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="upload-file" class="control-label">Upload File</label>
-                                    <div class="col-md-8 col-lg-4">
-
-                                        @* ---- UPLOAD IMAGE----*@
-                                        <div class="upload-container">
-                                            <input name="file" type="file" multiple id="upload-button" multiple />
-                                            <div class="upload-hdr text-center body-text-lg "> <span>Drag and Drop files here or <label for="upload-button"> Browse </label></span> <span class="btn remove-all-images">Cancel</span></div>
-                                            <div class="image-display-container">
-                                                <div id="image-display"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label asp-for="Remarks" class="control-label"></label>
-                                    <div class="col-md-8 col-lg-3">
-                                        <textarea asp-for="Remarks" class="form-control"></textarea>
-                                        <span asp-validation-for="Remarks" class="text-danger err-input-msg"></span>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label"></label>
-                                    <button class="btn b-btn-primary col-md-8 col-lg-3"> Upload </button>
-                                </div>
-
-                            </form>
-                        </div>
-
-                            <!-- Medical Tab Content -->
-                            <div class="tab-pane fade"
-                             id="pills-med"
-                             role="tabpanel"
-                             aria-labelledby="pills-med-tab"
-                             tabindex="0">
-                            <form action=""
-                                  method="POST"
-                                  novalidate>
-                                <div class="form-group">
-                                    <label asp-for="Expmed" class="control-label"></label>
-                                    <div class="col-md-8 col-lg-1">
-                                        <input asp-for="Expmed" class="form-control" />
-                                        <span asp-validation-for="Expmed" class="text-danger err-input-msg"></span>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="upload-file" class="control-label">Upload File</label>
-                                    <div class="col-md-8 col-lg-4">
-
-                                        @* ---- UPLOAD IMAGE----*@
-                                        <div class="upload-container">
-                                            <input name="file" type="file" multiple id="upload-button" multiple />
-                                            <div class="upload-hdr text-center body-text-lg "> <span>Drag and Drop files here or <label for="upload-button"> Browse </label></span> <span class="btn remove-all-images">Cancel</span></div>
-                                            <div class="image-display-container">
-                                                <div id="image-display"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label asp-for="Remarks" class="control-label"></label>
-                                    <div class="col-md-8 col-lg-3">
-                                        <textarea asp-for="Remarks" class="form-control"></textarea>
-                                        <span asp-validation-for="Remarks" class="text-danger err-input-msg"></span>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label"></label>
-                                    <button class="btn b-btn-primary col-md-8 col-lg-3"> Upload </button>
-                                </div>
-
-                            </form>
-                        </div>
-                     </div>
+                       
                 </div>
-            </form>
+            </div>
+           
         </div>
     </div>
 

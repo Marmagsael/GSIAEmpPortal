@@ -5,13 +5,13 @@ using System.Diagnostics;
 
 namespace GSIA.Controllers
 {
-    public class Test : Controller
+    public class HomeController : Controller
     {
-        private readonly ILogger<Test> _logger;
+        private readonly ILogger<HomeController> _logger;
      
 
 
-        public Test(ILogger<Test> logger)
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
